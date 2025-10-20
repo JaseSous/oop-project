@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class sach {
     // Thuoc tinh
     String masach, tensach, matheloai, matg, manxb;
@@ -92,5 +94,28 @@ public class sach {
 
     void setGia(int gia){
         this.gia = gia;
+    }
+
+    // Phương thức
+    public void nhap(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\tMã sách: "); masach = sc.nextLine();
+        System.out.print("\tTên sách: "); tensach = sc.nextLine();
+        System.out.print("\tMã thể loại: "); matheloai = sc.nextLine();
+        System.out.print("\tMã tác giả: "); matg = sc.nextLine();
+        System.out.print("\tMã nhà xuất bản: "); manxb = sc.nextLine();
+        System.out.print("\tSố lượng: "); soluong = sc.nextInt();
+        System.out.print("\tGiá: "); gia = sc.nextInt();        
+    }
+
+    public void xuat(){
+        System.out.println("\tMã sách: " + masach);
+        System.out.println("\tTên sách: " + tensach);
+        System.out.println("\tMã thể loại: " + matheloai);
+        System.out.println("\tMã tác giả: " + matg);
+        System.out.println("\tMã nhà xuất bản: " + manxb);
+        System.out.println("\tSố lượng: " + soluong);
+        System.out.println("\tGiá: " + gia);
     }
 }
