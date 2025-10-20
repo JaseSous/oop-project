@@ -104,15 +104,14 @@ public class sachgiaokhoa extends sach {
     public void nhap(){
         super.nhap();
         Scanner sc = new Scanner(System.in);
+
+        System.out.print("\tMôn học: "); monhoc = sc.nextLine();
+        System.out.print("\tLớp: "); lop = sc.nextInt();       
     }
 
     public void xuat(){
-        System.out.println("\tMã sách: " + masach);
-        System.out.println("\tTên sách: " + tensach);
-        System.out.println("\tMã thể loại: " + matheloai);
-        System.out.println("\tMã tác giả: " + matg);
-        System.out.println("\tMã nhà xuất bản: " + manxb);
-        System.out.println("\tSố lượng: " + soluong);
-        System.out.println("\tGiá: " + gia);
+        super.xuat();
+        System.out.println("\tMôn học: " + monhoc);
+        System.out.println("\tLớp: " + lop);
     }
 }
