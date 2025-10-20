@@ -158,7 +158,7 @@ public class DanhSachKhachHang {
         String hotim = sc.nextLine().toLowerCase();
 
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getTen().toLowerCase().contains(hotim)) {
+            if (kh[i].getHo().toLowerCase().contains(hotim)) {
                 // dùng contains để tìm gần đúng
                 System.out.println("Tim thay khach hang:");
                 kh[i].xuat();
