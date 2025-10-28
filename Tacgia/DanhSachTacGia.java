@@ -1,199 +1,196 @@
-package Khachhang;
+package Tacgia;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class DanhSachKhachHang {
-    private Khachhang[] kh;
+public class DanhSachTacGia {
+    private Tacgia[] tg;
     private int soluong;
 
     //----Ham thiet lap----
-    public DanhSachKhachHang(){
-        this.kh=new Khachhang[0];
+    public DanhSachTacGia(){
+        this.tg=new Tacgia[0];
         this.soluong=0;
     }
     
     //----Ham nhap----
-    public void nhapkh(){
+    public void nhaptg(){
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap so luong Khach hang: ");
+        System.out.print("Nhap so luong Tac gia: ");
         int n = sc.nextInt(); sc.nextLine();
-        kh = new Khachhang[n];
+        tg = new Tacgia[n];
         soluong = n;
         for (int i = 0; i < n; i++){
-            System.out.println("Nhap khach hang thu " + (i + 1) + ":");
-            kh[i] = new Khachhang();
-            kh[i].nhap();
+            System.out.println("Nhap tac gia thu " + (i + 1) + ":");
+            tg[i] = new Tacgia();
+            tg[i].nhap();
         }
     }
 
     //----Ham xuat----
-    public void xuatkh(){
+    public void xuattg(){
         if (soluong == 0) {
             System.out.println("Danh sach rong!");
             return;
         }
-        System.out.println("----- DANH SACH KHACH HANG -----");
+        System.out.println("----- DANH SACH TAC GIA ------");
         for (int i = 0; i < soluong; i++) {
-            kh[i].xuat();
+            tg[i].xuat();
             System.out.println("--------------------");
         }
     }
 
-    //----Ham them khach hang----
+    //----Ham them tac gia----
     public void themvaodanhsach() {
-        Khachhang khach = new Khachhang();
-        khach.nhap();
-        kh = Arrays.copyOf(kh, soluong + 1);
-        kh[soluong] = khach;
+        Tacgia person = new Tacgia();
+        person.nhap();
+        tg = Arrays.copyOf(tg, soluong + 1);
+        tg[soluong] = person;
         soluong++;
     }
 
-    //----Ham xoa khach hang----
-    public void xoakh(){
+    //----Ham xoa tac gia----
+    public void xoatg(){
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma KH muon xoa: ");
+        System.out.print("Nhap ma tac gia muon xoa: ");
         long maxoa = sc.nextLong();
         
         int vitri = -1;
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getMakh() == maxoa) {
+            if (tg[i].getMatg() == maxoa) {
                 vitri = i;
                 break;
             }
         }
         if (vitri == -1) {
-            System.out.println("Khong tim thay khach hang!");
+            System.out.println("khong tim thay tac gia!");
             return;
         }
         for (int i = vitri; i < soluong - 1; i++) {
-            kh[i] = kh[i + 1];
+            tg[i] = tg[i + 1];
         }
-        kh = Arrays.copyOf(kh, soluong - 1);
+        tg = Arrays.copyOf(tg, soluong - 1);
         soluong--;
         System.out.println("Xoa thanh cong!");
     }
     
-    //----Ham sua khach hang----
+    //----Ham sua tac gia----
     public void suasv() {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma KH muon sua: ");
+        System.out.print("Nhap ma tac gia muon sua: ");
         long masua = sc.nextLong();
         int vitri = -1;
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getMakh() == masua) {
+            if (tg[i].getMatg() == masua) {
                 vitri = i;
                 break;
             }
         }
         if (vitri == -1) {
-            System.out.println("Khong tim thay khach hang!");
+            System.out.println("khong tim thay tac gia!");
             return;
         }
-        System.out.print("\nNhap ma khach hang moi: ");
-        long makh = sc.nextLong();
+        System.out.print("\nNhap ma tac gia moi: ");
+        long matg = sc.nextLong();
         sc.nextLine();
         System.out.print("Nhap ho moi: ");
         String ho = sc.nextLine();
         System.out.print("Nhap ten moi: ");
         String ten = sc.nextLine();
-        System.out.print("Nhap dia chi moi: ");
-        String dchi = sc.nextLine();
-        System.out.print("Nhap so dien thoai moi: ");
-        long sdt = sc.nextLong();
-        sc.nextLine();
+        System.out.print("Nhap trinh do cua tac gia moi: ");
+        String trinhdo = sc.nextLine();
         System.out.print("Nhap ngay sinh moi(dd/MM/yyyy): ");
         String ngaysinh = sc.nextLine();
 
-        kh[vitri] = new Khachhang(makh,ho,ten,dchi,sdt,ngaysinh);
+        tg[vitri] = new Tacgia(matg,ho,ten,trinhdo,ngaysinh);
 
         System.out.println("Sua thong tin thanh cong!");
     }
     
     //--------CÁC HÀM TÌM-----------
 
-    //----Ham tim khach hang theo makh----
+    //----Ham tim tac gia theo matg----
     public void timTheoma() {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma Khach Hang muon tim: ");
+        System.out.print("Nhap ma tac gia muon tim: ");
         int matim = sc.nextInt();
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getMakh() == matim) {
-                System.out.println("Tim thay khach hang:");
-                kh[i].xuat();
+            if (tg[i].getMatg() == matim) {
+                System.out.println("Tim thay tac gia:");
+                tg[i].xuat();
                 System.out.println("---------------------------");
             }
         }
-        System.out.println("Khong tim thay Khach Hang!");
+        System.out.println("khong tim thay tac gia!");
     }
 
-    //----Ham tim khach hang theo Ten----
+    //----Ham tim tac gia  theo Ten----
     public void timTheoten() {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ten (hoac ten mot phan) cua khach hang muon tim: ");
+        System.out.print("Nhap ten (hoac ten mot phan) cua tac gia muon tim: ");
         String tentim = sc.nextLine().toLowerCase();
 
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getTen().toLowerCase().contains(tentim)) {
+            if (tg[i].getTen().toLowerCase().contains(tentim)) {
                 // dùng contains để tìm gần đúng
-                System.out.println("Tim thay khach hang:");
-                kh[i].xuat();
+                System.out.println("Tim thay tac gia:");
+                tg[i].xuat();
                 System.out.println("---------------------------");
             }
         }
-        System.out.println("Khong tim thay khach hang nao co ten phu hop!");
+        System.out.println("khong tim thay tac gia nao co ten phu hop!");
     }
 
-    //----Ham tim khach hang theo ho----
+    //----Ham tim tac gia theo ho----
     public void timTheoho() {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ho (hoac ten mot phan) cua khach hang muon tim: ");
+        System.out.print("Nhap ho (hoac ten mot phan) cua tac gia muon tim: ");
         String hotim = sc.nextLine().toLowerCase();
 
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getHo().toLowerCase().contains(hotim)) {
+            if (tg[i].getHo().toLowerCase().contains(hotim)) {
                 // dùng contains để tìm gần đúng
-                System.out.println("Tim thay khach hang:");
-                kh[i].xuat();
+                System.out.println("Tim thay tac gia:");
+                tg[i].xuat();
                 System.out.println("---------------------------");
             }
         }
-        System.out.println("Khong tim thay khach hang nao co ho phu hop!");
+        System.out.println("khong tim thay tac gia nao co ho phu hop!");
     }
 
-    //----Ham tim khach hang theo sdt----
+    //----Ham tim tac gia theo sdt----
     public void timTheosdt() {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap so dien thoai Khach Hang muon tim: ");
+        System.out.print("Nhap so dien thoai tac gia muon tim: ");
         int sdttim = sc.nextInt();
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getMakh() == sdttim) {
-                System.out.println("Tim thay khach hang:");
-                kh[i].xuat();
+            if (tg[i].getMatg() == sdttim) {
+                System.out.println("Tim thay tac gia:");
+                tg[i].xuat();
                 System.out.println("---------------------------");
             }
         }
-        System.out.println("Khong tim thay Khach Hang!");
+        System.out.println("khong tim thay tac gia!");
     }
 
     //---------CÁC HÀM THỐNG KÊ----------
 
-    //----hàm thống kê khách hàng theo tuổi----
+    //----hàm thống kê tac gia theo tuổi----
     public void thongKeTheoNhomTuoi() {
         int duoi20 = 0;
         int tu20den29 = 0;
         int tren30 = 0;
     
         for (int i = 0; i < soluong; i++) {
-            int tuoi = kh[i].age();  // Gọi hàm age() của từng sinh viên
+            int tuoi = tg[i].age();  // Gọi hàm age() của từng tac gia
     
             if (tuoi < 20) {
                 duoi20++;
@@ -205,18 +202,18 @@ public class DanhSachKhachHang {
         }
     
         System.out.println("----- Thong ke theo nhom tuoi -----");
-        System.out.println("Duoi 20 tuoi: " + duoi20 + " sinh vien");
-        System.out.println("Tu 20 den 29 tuoi: " + tu20den29 + " sinh vien");
-        System.out.println("Tu 30 tuoi tro len: " + tren30 + " sinh vien");
+        System.out.println("Duoi 20 tuoi: " + duoi20 + " tac gia");
+        System.out.println("Tu 20 den 29 tuoi: " + tu20den29 + " tac gia");
+        System.out.println("Tu 30 tuoi tro len: " + tren30 + " tac gia");
     }
 
     //----Hàm thống kê theo Họ----
     public void thongKeTheoHo() {
-        String[] cacHo = new String[0]; // Mảng chứa các họ khác nhau
+        String[] cacHo = new String[0]; // Mảng chứa các họ khac nhau
         int[] demHo = new int[0];       // Mảng chứa số lượng tương ứng
     
         for (int i = 0; i < soluong; i++) {
-            String ho = kh[i].getHo().trim(); // Lấy họ của khách hàng
+            String ho = tg[i].getHo().trim(); // Lấy họ của tac gia
             boolean daCo = false;
     
             for (int j = 0; j < cacHo.length; j++) {
@@ -238,17 +235,17 @@ public class DanhSachKhachHang {
         // In kết quả
         System.out.println("----- Thong ke theo Ho -----");
         for (int i = 0; i < cacHo.length; i++) {
-            System.out.println(cacHo[i] + ": " + demHo[i] + " khach hang");
+            System.out.println(cacHo[i] + ": " + demHo[i] + " tac gia");
         }
     }
     
     //----Hàm thống kê theo Tên----
     public void thongKeTheoTen() {
-        String[] cacTen = new String[0]; // Mảng chứa các tên khác nhau
+        String[] cacTen = new String[0]; // Mảng chứa các tên khac nhau
         int[] demTen = new int[0];       // Mảng chứa số lượng tương ứng
     
         for (int i = 0; i < soluong; i++) {
-            String ten = kh[i].getTen().trim(); // Lấy ten của khách hàng
+            String ten = tg[i].getTen().trim(); // Lấy ten của tgách hàng
             boolean daCo = false;
     
             for (int j = 0; j < cacTen.length; j++) {
@@ -270,41 +267,41 @@ public class DanhSachKhachHang {
         // In kết quả
         System.out.println("----- Thong ke theo Ho -----");
         for (int i = 0; i < cacTen.length; i++) {
-            System.out.println(cacTen[i] + ": " + demTen[i] + " khach hang");
+            System.out.println(cacTen[i] + ": " + demTen[i] + " tac gia");
         }
     }
 
-    //----thống kê khách hàng có sinh nhật trong tháng này----
+    //----thống kê tac gia có sinh nhật trong tháng này----
     public void thongKeSinhNhatTrongThangHienTai() {
         int thangHienTai = LocalDate.now().getMonthValue(); // Lấy tháng hiện tại (1–12)
         int dem = 0;
 
-        System.out.println("----- Danh sach khach hang co sinh nhat trong thang " + thangHienTai + " -----");
+        System.out.println("----- Danh sach tac gia co sinh nhat trong thang " + thangHienTai + " -----");
 
         for (int i = 0; i < soluong; i++) {
             // Lấy chuỗi ngày sinh, tách ra phần tháng
-            String[] parts = kh[i].getNgaysinh().split("/");
+            String[] parts = tg[i].getNgaysinh().split("/");
 
-            // Kiểm tra chuỗi có đúng định dạng dd/MM/yyyy không
+            // Kiểm tra chuỗi có đúng định dạng dd/MM/yyyy tgông
             if (parts.length == 3) {
                 try {
                     int thangSinh = Integer.parseInt(parts[1]);
                     if (thangSinh == thangHienTai) {
-                        kh[i].xuat(); // in ra thông tin khách hàng
+                        tg[i].xuat(); // in ra thông tin tac gia
                         dem++;
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("Loi dinh dang ngay sinh cua khach hang thu " + (i + 1));
+                    System.out.println("Loi dinh dang ngay sinh cua tac gia thu " + (i + 1));
                 }
             } else {
-                System.out.println("Ngay sinh cua khach hang thu " + (i + 1) + " khong dung dinh dang dd/MM/yyyy!");
+                System.out.println("Ngay sinh cua tac gia thu " + (i + 1) + " khong dung dinh dang dd/MM/yyyy!");
             }
         }
 
         if (dem == 0) {
-            System.out.println("Khong co khach hang nao co sinh nhat trong thang nay.");
+            System.out.println("khong co tac gia nao co sinh nhat trong thang nay.");
         } else {
-            System.out.println("Tong cong co " + dem + " khach hang co sinh nhat trong thang nay.");
+            System.out.println("Tong cong co " + dem + " tac gia co sinh nhat trong thang nay.");
         }
     }
     
