@@ -23,7 +23,7 @@ public class Danhsachnhanvien {
         nv = new NhanVien[n];
         soluong = n;
         for (int i = 0; i < n; i++){
-            System.out.println("Nhap khach hang thu " + (i + 1) + ":");
+            System.out.println("Nhap Nhan vien thu " + (i + 1) + ":");
             nv[i] = new NhanVien();
             nv[i].nhap();
         }
@@ -66,7 +66,7 @@ public class Danhsachnhanvien {
             }
         }
         if (vitri == -1) {
-            System.out.println("Khong tim thay khach hang!");
+            System.out.println("Khong tim thay Nhan vien!");
             return;
         }
         for (int i = vitri; i < soluong - 1; i++) {
@@ -167,7 +167,7 @@ public class Danhsachnhanvien {
     //---------CÁC HÀM THỐNG KÊ----------
 
     //----hàm thống kê nhan vien theo tuổi----
-    public void thongKeTheoNhomTuoi() {
+    public void Thongketheonhomtuoi() {
         int duoi20 = 0;
         int tu20den29 = 0;
         int tren30 = 0;
@@ -191,7 +191,7 @@ public class Danhsachnhanvien {
     }
 
     //----Hàm thống kê theo Tên----
-    public void thongKeTheoTen() {
+    public void Thongketheoten() {
         String[] cacTen = new String[0]; // Mảng chứa các tên khác nhau
         int[] demTen = new int[0];       // Mảng chứa số lượng tương ứng
     
@@ -223,7 +223,7 @@ public class Danhsachnhanvien {
     }
 
     //----thống kê nhan vien co ngaysinh trong tháng này----
-    public void thongKeNgaySinhTrongThangHienTai() {
+    public void Thongkesinhnhattrongthanghientai() {
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap thang muon kiem tra (1–12): ");
@@ -257,5 +257,46 @@ public class Danhsachnhanvien {
         } else {
             System.out.println("Tong cong co " + dem + " nhan vien co ngaysinh trong thang nay.");
         }
+    }
+    
+    //----Hàm menu----
+    public void menu() {
+        nhapnv(); // nhập danh sách ban đầu (nếu bạn muốn)
+
+        int chon;
+        do {
+            @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+            Scanner sc = new Scanner(System.in);
+            System.out.println("\n---- MENU ----");
+            System.out.println("1. Xuat danh sach");
+            System.out.println("2. Them Nhan vien");
+            System.out.println("3. Xoa Nhan vien");
+            System.out.println("4. Sua Nhan vien");
+            System.out.println("5. Tim theo nv theo Ma Nhan vien");
+            System.out.println("6. Tim theo Ten");
+            System.out.println("7. Tim theo Ho");
+            System.out.println("8. Thong ke theo nhom tuoi cua Nhan vien");
+            System.out.println("9. Thong ke theo Ten cua Nhan vien");
+            System.out.println("10. Thong ke Nhan vien co sinh nhat trong thang hien tai");
+            System.out.println("0. Thoat");
+            System.out.print("Lua chon: ");
+            chon = sc.nextInt();
+            sc.nextLine();
+            
+        switch (chon) {
+            case 1: xuatkh(); break;
+            case 2: themvaodanhsach(); break;
+            case 3: xoanv(); break;
+            case 4: suasv(); break;
+            case 5: timTheoma(); break;
+            case 6: timTheoten(); break;
+            case 7: timTheoho(); break;
+            case 8: Thongketheonhomtuoi(); break;
+            case 9: Thongketheoten(); break;
+            case 10: Thongkesinhnhattrongthanghientai(); break;
+            case 0: System.out.println("Thoat!"); break;
+            default: System.out.println("Lua chon khong hop le!");
+        }
+    } while (chon != 0);
     }
 }
