@@ -113,19 +113,32 @@ public class Danhsachnhanvien {
     //----CÁC HÀM TÌM-----
 
     //----ham tim nhan vien theo manv----
-    public void timTheoma() {
+    public void timTheoma() { // Bỏ tham số đầu vào
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma Nhan vien muon tim: ");
-        long matim = sc.nextLong();
+        long matim = sc.nextInt();
+        
+        // Gọi hàm helper bên dưới
+        NhanVien nv_tim = timNhanVienTheoMa(matim);
+
+        if (nv_tim != null) {
+            System.out.println("Tim thay nhan vien:");
+            nv_tim.xuat();
+            System.out.println("---------------------------");
+        } else {
+            System.out.println("Khong tim thay Nhan vien!");
+        }
+    }
+
+    //---- HÀM HELPER MỚI: Dùng để trả về đối tượng NhanVien ----
+    public NhanVien timNhanVienTheoMa(long maNV) {
         for (int i = 0; i < soluong; i++) {
-            if (nv[i].getManv() == matim) {
-                System.out.println("Tim thay nhan vien:");
-                nv[i].xuat();
-                System.out.println("---------------------------");
+            if (nv[i].getManv() == maNV) {
+                return nv[i];
             }
         }
-        System.out.println("Khong tim thay Nhan vien!");
+        return null;
     }
 
     //----Ham tim nhan vien theo Ten----
