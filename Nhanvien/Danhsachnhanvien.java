@@ -117,7 +117,7 @@ public class Danhsachnhanvien {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma Nhan vien muon tim: ");
-        int matim = sc.nextInt();
+        long matim = sc.nextLong();
         for (int i = 0; i < soluong; i++) {
             if (nv[i].getManv() == matim) {
                 System.out.println("Tim thay nhan vien:");
@@ -221,43 +221,6 @@ public class Danhsachnhanvien {
             System.out.println(cacTen[i] + ": " + demTen[i] + " nhan vien");
         }
     }
-
-    //----thống kê nhan vien co ngaysinh trong tháng này----
-    public void Thongkesinhnhattrongthanghientai() {
-        @SuppressWarnings("resource")
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap thang muon kiem tra (1–12): ");
-        int thangNhap = sc.nextInt();
-        int dem = 0;
-
-        System.out.println("----- Danh sach nhan vien co ngaysinh trong thang " + thangNhap + " -----");
-
-        for (int i = 0; i < soluong; i++) {
-            // Lấy chuỗi ngày sinh, tách ra phần tháng
-            String[] parts = nv[i].getNgaysinh().split("/");
-
-            // Kiểm tra chuỗi có đúng định dạng dd/MM/yyyy không
-            if (parts.length == 3) {
-                try {
-                    int thangSinh = Integer.parseInt(parts[1]);
-                    if (thangSinh == thangNhap) {
-                        nv[i].xuat(); // in ra thông tin khách hàng
-                        dem++;
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Loi dinh dang ngaysinh cua nhan vien thu " + (i + 1));
-                }
-            } else {
-                System.out.println("Ngaysinh cua nhan vien thu " + (i + 1) + " khong dung dinh dang dd/MM/yyyy!");
-            }
-        }
-
-        if (dem == 0) {
-            System.out.println("Khong co nhan vien nao co ngaysinh trong thang nay.");
-        } else {
-            System.out.println("Tong cong co " + dem + " nhan vien co ngaysinh trong thang nay.");
-        }
-    }
     
     //----Hàm menu----
     public void menu() {
@@ -277,7 +240,6 @@ public class Danhsachnhanvien {
             System.out.println("7. Tim theo Ho");
             System.out.println("8. Thong ke theo nhom tuoi cua Nhan vien");
             System.out.println("9. Thong ke theo Ten cua Nhan vien");
-            System.out.println("10. Thong ke Nhan vien co sinh nhat trong thang hien tai");
             System.out.println("0. Thoat");
             System.out.print("Lua chon: ");
             chon = sc.nextInt();
@@ -293,7 +255,6 @@ public class Danhsachnhanvien {
             case 7: timTheoho(); break;
             case 8: Thongketheonhomtuoi(); break;
             case 9: Thongketheoten(); break;
-            case 10: Thongkesinhnhattrongthanghientai(); break;
             case 0: System.out.println("Thoat!"); break;
             default: System.out.println("Lua chon khong hop le!");
         }
