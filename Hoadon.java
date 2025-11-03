@@ -9,7 +9,7 @@ public class Hoadon {
     private String maHD;
     private LocalDate ngayLapHD;
     private Khachhang khachHang; 
-    private Nhanvien nhanVien;   
+    private NhanVien nhanVien;   
     
     private ChiTietHoaDon[] dsChiTiet; 
     private int soLuongChiTiet;      
@@ -20,7 +20,7 @@ public class Hoadon {
         this.soLuongChiTiet = 0;
     }
 
-    public Hoadon(String maHD, LocalDate ngayLapHD, Khachhang khachHang, Nhanvien nhanVien) {
+    public Hoadon(String maHD, LocalDate ngayLapHD, Khachhang khachHang, NhanVien nhanVien) {
         this.maHD = maHD;
         this.ngayLapHD = ngayLapHD;
         this.khachHang = khachHang;
@@ -30,7 +30,7 @@ public class Hoadon {
     }
 
     // --- PHƯƠNG THỨC NHẬP/XUẤT ---
-    public void nhap(Scanner sc) {
+    public void nhap(Scanner sc, DanhSachKhachHang dskh, Danhsachnhanvien dsnv) {
         System.out.print("Nhap ma hoa don: ");
         this.maHD = sc.nextLine();
 
@@ -48,27 +48,44 @@ public class Hoadon {
         }
         
         
-         System.out.println("Nhap ma Khach Hang: ");
-         String maKH = sc.nextLine();
-         this.khachHang = danhSachKhachHang.timKiem(maKH);
-         System.out.println("Nhap ma Nhan vien: ");
-         String maNV = sc.nextLine();
-         this.Nhanvien= danhSachNhanvien.timKiem(maNV);
+        // --- LOGIC TÌM KIẾM ĐÃ SỬA ---
+        this.khachHang = null;
+        while (this.khachHang == null) {
+            System.out.print("Nhap ma Khach Hang: ");
+            long maKH = sc.nextLong();
+            this.khachHang = dskh.timKhachHangTheoMa(maKH); // Gọi hàm helper đã tạo
+            if (this.khachHang == null) {
+                System.out.println("Loi: Khong tim thay Khach Hang voi ma " + maKH + ". Vui long nhap lai.");
+            } else {
+                System.out.println("Da chon Khach Hang: " + this.khachHang.getHo() + " " + this.khachHang.getTen());
+            }
+        }
         
-
+        this.nhanVien = null;
+        while (this.nhanVien == null) {
+            System.out.print("Nhap ma Nhan vien: ");
+            long maNV = sc.nextLong();
+            this.nhanVien = dsnv.timNhanVienTheoMa(maNV); // Gọi hàm helper đã tạo
+            if (this.nhanVien == null) {
+                System.out.println("Loi: Khong tim thay Nhan vien voi ma " + maNV + ". Vui long nhap lai.");
+            } else {
+                System.out.println("Da chon Nhan Vien: " + this.nhanVien.getHo() + " " + this.nhanVien.getTen());
+            }
+        }
+        sc.nextLine(); // Hấp thụ phím Enter thừa
         
+        // --- Phần nhập chi tiết giữ nguyên ---
         System.out.print("Ban muon mua bao nhieu loai sach? ");
         this.soLuongChiTiet = sc.nextInt();
         sc.nextLine();
         
-
         this.dsChiTiet = new ChiTietHoaDon[this.soLuongChiTiet];
         
         System.out.println("--- Bat dau nhap chi tiet hoa don ---");
         for (int i = 0; i < this.soLuongChiTiet; i++) {
             System.out.println("Nhap thong tin sach thu " + (i + 1) + ":");
             this.dsChiTiet[i] = new ChiTietHoaDon();
-            this.dsChiTiet[i].nhap(sc); // Gọi hàm nhap() của ChiTietHoaDon
+            this.dsChiTiet[i].nhap(sc); 
         }
     }
 

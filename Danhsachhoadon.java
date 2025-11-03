@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.Scanner;
-import java.time.Year;
 
 class Danhsachhoadon {
     private Hoadon[] ds;
@@ -11,7 +10,7 @@ class Danhsachhoadon {
         this.siso = 0;
     }
 
-    public void nhapds(Scanner sc) {
+    public void nhapds(Scanner sc, DanhSachKhachHang dskh, Danhsachnhanvien dsnv) {
         System.out.print("Nhap so luong hoa don: ");
         int n = sc.nextInt(); sc.nextLine();
         ds = new Hoadon[n];
@@ -19,8 +18,15 @@ class Danhsachhoadon {
         for (int i = 0; i < n; i++) {
             System.out.println("Nhap Hoa don thu " + (i + 1) + ":");
             ds[i] = new Hoadon();
-            ds[i].nhap(sc);
+            ds[i].nhap(sc, dskh, dsnv); // Truyền danh sách xuống
         }
+    }
+    public void themvaodanhsach(Scanner sc, DanhSachKhachHang dskh, Danhsachnhanvien dsnv) {
+        Hoadon hd = new Hoadon();
+        hd.nhap(sc, dskh, dsnv); // Truyền danh sách xuống
+        ds = Arrays.copyOf(ds, siso + 1);
+        ds[siso] = hd;
+        siso++;
     }
 
     public void xuatds() {
@@ -35,15 +41,7 @@ class Danhsachhoadon {
         }
     }
 
-    public void themvaodanhsach(Scanner sc) {
-        Hoadon hd = new Hoadon();
-        hd.nhap(sc);
-        ds = Arrays.copyOf(ds, siso + 1);
-        ds[siso] = hd;
-        siso++;
-    }
-
-    public void xoasv(Scanner sc) {
+    public void xoahd(Scanner sc) {
         System.out.print("Nhap ma hoa don muon xoa: ");
         String maxoa = sc.nextLine();
         int vitri = -1;
@@ -77,4 +75,47 @@ class Danhsachhoadon {
         }
         System.out.println("Khong tim thay hoa don!");
     }
+    // ----- Thêm vào file Danhsachhoadon.java -----
+
+public void menu(Scanner sc, DanhSachKhachHang dskh, Danhsachnhanvien dsnv) {
+    int chon;
+    do {
+        System.out.println("\n---- MENU QUAN LY HOA DON ----");
+        System.out.println("1. Them hoa don moi");
+        System.out.println("2. Xuat danh sach hoa don");
+        System.out.println("3. Xoa hoa don (theo ma)");
+        System.out.println("4. Tim hoa don (theo ma)");
+        System.out.println("5. Nhap lai toan bo danh sach hoa don");
+        System.out.println("0. Quay lai menu chinh");
+        System.out.print("Lua chon cua ban: ");
+        
+        chon = sc.nextInt();
+        sc.nextLine(); // Hấp thụ phím Enter
+
+        switch (chon) {
+            case 1:
+                // Phải truyền cả 3 tham số
+                themvaodanhsach(sc, dskh, dsnv);
+                break;
+            case 2:
+                xuatds();
+                break;
+            case 3:
+                xoahd(sc);
+                break;
+            case 4:
+                tim(sc);
+                break;
+            case 5:
+                // Phải truyền cả 3 tham số
+                nhapds(sc, dskh, dsnv);
+                break;
+            case 0:
+                System.out.println("Quay lai menu chinh...");
+                break;
+            default:
+                System.out.println("Lua chon khong hop le!");
+        }
+    } while (chon != 0);
+}
 }
