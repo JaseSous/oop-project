@@ -281,7 +281,7 @@ public class DanhSachKhachHang {
         }
     
         // In kết quả
-        System.out.println("----- Thong ke theo Ho -----");
+        System.out.println("----- Thong ke theo Ten -----");
         for (int i = 0; i < cacTen.length; i++) {
             System.out.println(cacTen[i] + ": " + demTen[i] + " khach hang");
         }
@@ -318,6 +318,76 @@ public class DanhSachKhachHang {
             System.out.println("Khong co khach hang nao co sinh nhat trong thang nay.");
         } else {
             System.out.println("Tong cong co " + dem + " khach hang co sinh nhat trong thang nay.");
+        }
+    }
+
+    //----thống kê khách hàng theo quý----
+    public void Thongketheoquy(){
+        int quy1 = 0; // Q1: Tháng 1, 2, 3
+        int quy2 = 0; // Q2: Tháng 4, 5, 6
+        int quy3 = 0; // Q3: Tháng 7, 8, 9
+        int quy4 = 0; // Q4: Tháng 10, 11, 12
+        int loi = 0;  // Đếm số ngày sinh bị lỗi định dạng
+
+        for (int i = 0; i < soluong; i++) {
+            // Lấy chuỗi ngày sinh, tách ra phần tháng
+            String[] parts = kh[i].getNgaysinh().split("/");
+
+            // Kiểm tra chuỗi có đúng định dạng dd/MM/yyyy không
+            if (parts.length == 3) {
+                try {
+                    int thangSinh = Integer.parseInt(parts[1]);
+                    
+                    // Phân loại tháng sinh vào quý tương ứng
+                    switch (thangSinh) {
+                        case 1:
+                        case 2:
+                        case 3:
+                            quy1++;
+                            break;
+                        case 4:
+                        case 5:
+                        case 6:
+                            quy2++;
+                            break;
+                        case 7:
+                        case 8:
+                        case 9:
+                            quy3++;
+                            break;
+                        case 10:
+                        case 11:
+                        case 12:
+                            quy4++;
+                            break;
+                        default:
+                            // Trường hợp tháng không hợp lệ (ví dụ: 0, 13...)
+                            System.out.println("Phat hien thang sinh khong hop le (" + thangSinh + ") cua khach hang: " + kh[i].getMakh());
+                            loi++;
+                            break;
+                    }
+
+                } catch (NumberFormatException e) {
+                    // Lỗi nếu phần tháng không phải là số (ví dụ: "dd/aa/yyyy")
+                    System.out.println("Loi dinh dang ngay sinh (thang khong phai so) cua khach hang: " + kh[i].getMakh());
+                    loi++;
+                }
+            } else {
+                // Lỗi nếu ngày sinh không có cấu trúc dd/MM/yyyy
+                System.out.println("Loi dinh dang ngay sinh (sai cau truc) cua khach hang: " + kh[i].getMakh());
+                loi++;
+            }
+        }
+
+        // In kết quả thống kê
+        System.out.println("----- THONG KE SINH NHAT THEO QUY -----");
+        System.out.println("Quy 1 (Thang 1-3):   " + quy1 + " khach hang");
+        System.out.println("Quy 2 (Thang 4-6):   " + quy2 + " khach hang");
+        System.out.println("Quy 3 (Thang 7-9):   " + quy3 + " khach hang");
+        System.out.println("Quy 4 (Thang 10-12): " + quy4 + " khach hang");
+        
+        if (loi > 0) {
+            System.out.println("Khong the thong ke " + loi + " khach hang do loi dinh dang ngay sinh.");
         }
     }
     
