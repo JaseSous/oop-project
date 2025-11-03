@@ -1,6 +1,5 @@
 package Tacgia;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -165,22 +164,6 @@ public class DanhSachTacGia {
         System.out.println("khong tim thay tac gia nao co ho phu hop!");
     }
 
-    //----Ham tim tac gia theo sdt----
-    public void timTheosdt() {
-        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap so dien thoai tac gia muon tim: ");
-        int sdttim = sc.nextInt();
-        for (int i = 0; i < soluong; i++) {
-            if (tg[i].getMatg() == sdttim) {
-                System.out.println("Tim thay tac gia:");
-                tg[i].xuat();
-                System.out.println("---------------------------");
-            }
-        }
-        System.out.println("khong tim thay tac gia!");
-    }
-
     //---------CÁC HÀM THỐNG KÊ----------
 
     //----hàm thống kê tac gia theo tuổi----
@@ -271,38 +254,4 @@ public class DanhSachTacGia {
         }
     }
 
-    //----thống kê tac gia có sinh nhật trong tháng này----
-    public void thongKeSinhNhatTrongThangHienTai() {
-        int thangHienTai = LocalDate.now().getMonthValue(); // Lấy tháng hiện tại (1–12)
-        int dem = 0;
-
-        System.out.println("----- Danh sach tac gia co sinh nhat trong thang " + thangHienTai + " -----");
-
-        for (int i = 0; i < soluong; i++) {
-            // Lấy chuỗi ngày sinh, tách ra phần tháng
-            String[] parts = tg[i].getNgaysinh().split("/");
-
-            // Kiểm tra chuỗi có đúng định dạng dd/MM/yyyy tgông
-            if (parts.length == 3) {
-                try {
-                    int thangSinh = Integer.parseInt(parts[1]);
-                    if (thangSinh == thangHienTai) {
-                        tg[i].xuat(); // in ra thông tin tac gia
-                        dem++;
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Loi dinh dang ngay sinh cua tac gia thu " + (i + 1));
-                }
-            } else {
-                System.out.println("Ngay sinh cua tac gia thu " + (i + 1) + " khong dung dinh dang dd/MM/yyyy!");
-            }
-        }
-
-        if (dem == 0) {
-            System.out.println("khong co tac gia nao co sinh nhat trong thang nay.");
-        } else {
-            System.out.println("Tong cong co " + dem + " tac gia co sinh nhat trong thang nay.");
-        }
-    }
-    
 }
