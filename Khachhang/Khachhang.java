@@ -76,7 +76,7 @@ public class Khachhang {
     public String getTen(){
         return ten;
     }
-    public String getDiachi(){
+    public String getDchi(){
         return dchi;
     }
     public long getSdt(){
@@ -95,7 +95,7 @@ public class Khachhang {
     public void setTen(String ten_x){
         ten=ten_x;
     }
-    public void setDiachi(String dchi_x){
+    public void setDchi(String dchi_x){
         dchi=dchi_x;
     }
     public void setSdt(long sdt_x){
