@@ -321,74 +321,70 @@ public class DanhSachKhachHang {
         }
     }
 
-    //----thống kê khách hàng theo quý----
-    public void Thongketheoquy(){
-        int quy1 = 0; // Q1: Tháng 1, 2, 3
-        int quy2 = 0; // Q2: Tháng 4, 5, 6
-        int quy3 = 0; // Q3: Tháng 7, 8, 9
-        int quy4 = 0; // Q4: Tháng 10, 11, 12
-        int loi = 0;  // Đếm số ngày sinh bị lỗi định dạng
+    //----Hàm thống kê theo Năm Sinh----
+    public void thongKeTheoNamSinhBangMang() {
+        
+        // Tạo một mảng tạm với kích thước tối đa là 'soluong'
+        String[] mangNamTam = new String[soluong]; 
+        int soLuongNamHopLe = 0; // Biến đếm số năm hợp lệ tìm được
+        int loi = 0; // Biến đếm số ngày sinh bị lỗi
 
         for (int i = 0; i < soluong; i++) {
-            // Lấy chuỗi ngày sinh, tách ra phần tháng
-            String[] parts = kh[i].getNgaysinh().split("/");
-
-            // Kiểm tra chuỗi có đúng định dạng dd/MM/yyyy không
-            if (parts.length == 3) {
-                try {
-                    int thangSinh = Integer.parseInt(parts[1]);
+            try {
+                String[] parts = kh[i].getNgaysinh().split("/");
+                if (parts.length == 3) {
+                    String namSinh = parts[2].trim();
+                    // Thử đổi sang số để chắc chắn nó là năm hợp lệ
+                    Integer.parseInt(namSinh); 
                     
-                    // Phân loại tháng sinh vào quý tương ứng
-                    switch (thangSinh) {
-                        case 1:
-                        case 2:
-                        case 3:
-                            quy1++;
-                            break;
-                        case 4:
-                        case 5:
-                        case 6:
-                            quy2++;
-                            break;
-                        case 7:
-                        case 8:
-                        case 9:
-                            quy3++;
-                            break;
-                        case 10:
-                        case 11:
-                        case 12:
-                            quy4++;
-                            break;
-                        default:
-                            // Trường hợp tháng không hợp lệ (ví dụ: 0, 13...)
-                            System.out.println("Phat hien thang sinh khong hop le (" + thangSinh + ") cua khach hang: " + kh[i].getMakh());
-                            loi++;
-                            break;
-                    }
-
-                } catch (NumberFormatException e) {
-                    // Lỗi nếu phần tháng không phải là số (ví dụ: "dd/aa/yyyy")
-                    System.out.println("Loi dinh dang ngay sinh (thang khong phai so) cua khach hang: " + kh[i].getMakh());
-                    loi++;
+                    // Nếu hợp lệ, thêm vào mảng tạm và tăng số đếm
+                    mangNamTam[soLuongNamHopLe] = namSinh;
+                    soLuongNamHopLe++; // Rất quan trọng
+                } else {
+                    loi++; // Lỗi định dạng (ví dụ: 12-05-1990)
                 }
-            } else {
-                // Lỗi nếu ngày sinh không có cấu trúc dd/MM/yyyy
-                System.out.println("Loi dinh dang ngay sinh (sai cau truc) cua khach hang: " + kh[i].getMakh());
-                loi++;
+            } catch (Exception e) {
+                // Lỗi năm không phải là số (ví dụ: 12/05/abcd)
+                loi++; 
             }
         }
 
-        // In kết quả thống kê
-        System.out.println("----- THONG KE SINH NHAT THEO QUY -----");
-        System.out.println("Quy 1 (Thang 1-3):   " + quy1 + " khach hang");
-        System.out.println("Quy 2 (Thang 4-6):   " + quy2 + " khach hang");
-        System.out.println("Quy 3 (Thang 7-9):   " + quy3 + " khach hang");
-        System.out.println("Quy 4 (Thang 10-12): " + quy4 + " khach hang");
+        // --- Cắt mảng tạm về đúng kích thước ---
+        String[] tatCaCacNam = Arrays.copyOf(mangNamTam, soLuongNamHopLe);
+
+        // Dùng hàm sắp xếp có sẵn của Java cho mảng
+        Arrays.sort(tatCaCacNam);
+
+        System.out.println("----- Thong ke theo Nam Sinh -----");
         
+        // Kiểm tra xem có gì để đếm không
+        if (tatCaCacNam.length == 0) {
+            System.out.println("Khong co du lieu nam sinh hop le de thong ke.");
+        } else {
+            String namHienTai = tatCaCacNam[0];
+            int dem = 0;
+
+            for (int i = 0; i < tatCaCacNam.length; i++) {
+                if (tatCaCacNam[i].equals(namHienTai)) {
+                    // 1. Nếu vẫn là năm đó, tăng biến đếm
+                    dem++;
+                } else {
+                    // 2. Nếu là NĂM MỚI, in kết quả của năm cũ
+                    System.out.println("Nam " + namHienTai + ": " + dem + " khach hang");
+                    
+                    // 3. Bắt đầu đếm cho năm mới
+                    namHienTai = tatCaCacNam[i];
+                    dem = 1; // Reset biến đếm về 1
+                }
+            }
+
+            // 4. In kết quả
+            System.out.println("Nam " + namHienTai + ": " + dem + " khach hang");
+        }
+
+        // In số lượng bị lỗi
         if (loi > 0) {
             System.out.println("Khong the thong ke " + loi + " khach hang do loi dinh dang ngay sinh.");
         }
     }
-    
 }
