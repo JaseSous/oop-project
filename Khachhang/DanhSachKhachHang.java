@@ -121,7 +121,7 @@ public class DanhSachKhachHang {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma Khach Hang muon tim: ");
-        int matim = sc.nextInt();
+        long matim = sc.nextLong();
         for (int i = 0; i < soluong; i++) {
             if (kh[i].getMakh() == matim) {
                 System.out.println("Tim thay khach hang:");
@@ -173,7 +173,7 @@ public class DanhSachKhachHang {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap so dien thoai Khach Hang muon tim: ");
-        int sdttim = sc.nextInt();
+        long sdttim = sc.nextLong();
         for (int i = 0; i < soluong; i++) {
             if (kh[i].getMakh() == sdttim) {
                 System.out.println("Tim thay khach hang:");
