@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
-public class sach {
+public class Sach {
     // Thuoc tinh
-    String masach, tensach, matheloai, matg, manxb;
-    int soluong, gia;
+    private String masach, tensach, matheloai, matg, manxb;
+    private int soluong, gia;
 
     // Constructor
-    public sach(){
+    public Sach(){
         masach = "";
         tensach = "";
         matheloai = "";
@@ -17,7 +17,7 @@ public class sach {
         gia = 0;
     }
 
-    public sach(String masach, String tensach, String matheloai, String matg, String manxb, int soluong, int gia){
+    public Sach(String masach, String tensach, String matheloai, String matg, String manxb, int soluong, int gia){
         this.masach = masach;
         this.tensach = tensach;
         this.matheloai = matheloai;
@@ -28,7 +28,7 @@ public class sach {
         this.gia = gia;
     }
 
-    public sach(sach other){
+    public Sach(Sach other){
         this.masach = other.masach;
         this.tensach = other.tensach;
         this.matheloai = other.matheloai;
