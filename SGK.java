@@ -1,26 +1,26 @@
 import java.util.Scanner;
 
-public class sachgiaokhoa extends sach {
+public class SGK extends Sach {
     // Thuoc tinh
-    String monhoc;
-    int lop;
+    private String monhoc;
+    private int lop;
 
     // Constructor
-    public sachgiaokhoa(){
+    public SGK(){
         super();
 
         monhoc = "";
         lop = 1;
     }
 
-    public sachgiaokhoa(String masach, String tensach, String matheloai, String matg, String manxb, int soluong, int gia, String monhoc, int lop){
+    public SGK(String masach, String tensach, String matheloai, String matg, String manxb, int soluong, int gia, String monhoc, int lop){
         super(masach, tensach, matheloai, matg, manxb, soluong, gia);
 
         this.monhoc = monhoc;
         this.lop = lop;
     }
 
-    public sachgiaokhoa(sachgiaokhoa other){
+    public SGK(SGK other){
         super(other);
 
         this.monhoc = other.monhoc;
