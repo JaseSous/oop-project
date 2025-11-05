@@ -40,8 +40,9 @@ public class HeThong {
         
         switch (choice){
             case 1: // Quản lý sản phẩm
-                // QLBH qlsp = new QLSP();
-                // qlsp.menuChinh();
+                QLBH qlsp = new QLSP();
+                qlsp.loadFileDSSach();
+                qlsp.menuChinh();
                 break;
             case 2: // Quản lý hóa đơn
 
