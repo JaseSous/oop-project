@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class HeThong {
+    QLBH qlbh = new QLBH();
+
+    public void menuChinh(){
+        // Xóa màn hình
+        ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
+        pb.inheritIO();
+
+        // Menu chính
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("===[Chương trình quản lý cửa hàng sách]===");
+        System.out.println("\nHãy chọn menu quản lý");
+        System.out.println("\t1) Quản lý sản phẩm");
+        System.out.println("\t2) Quản lý hóa đơn");
+        System.out.println("\t3) Quản lý phiếu nhập hàng");
+        System.out.println("\t4) Quản lý khách hàng");
+        System.out.println("\t5) Quản lý nhân viên");
+        
+        System.out.print("Hãy nhập số của menu bạn muốn chọn (1-5): ");
+
+        int choice = 0;
+
+        // Kiểm tra hợp lệ
+        while (true){
+            try{
+                choice = Integer.parseInt(sc.nextLine().trim());
+                if (choice < 1 || choice > 5)
+                    System.out.print("Vui lòng nhập số từ khoảng 1-5: ");
+                else
+                    break;
+            }
+            catch (NumberFormatException e){
+                System.out.print("Hãy nhập số hợp lệ: ");
+            }
+        }
+        //
+        
+        switch (choice){
+            case 1: // Quản lý sản phẩm
+                // QLBH qlsp = new QLSP();
+                // qlsp.menuChinh();
+                break;
+            case 2: // Quản lý hóa đơn
+
+                break;
+            case 3: // Quản lý phiếu nhập hàng
+
+                break;
+            case 4: // Quản lý khách hàng
+
+                break;
+            case 5: // Quản lý nhân viên
+
+                break;
+        }
+    }
+}
