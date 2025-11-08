@@ -2,10 +2,6 @@ import java.util.Scanner;
 
 public class QLSP extends QLBH {
     @Override public void menuChinh(){
-        // Xóa màn hình
-        ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
-        pb.inheritIO();
-
         // Menu chính
         System.out.println("\n===[Giao diện quản lý danh sách sản phẩm]===\n");
 

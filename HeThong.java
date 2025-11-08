@@ -4,10 +4,6 @@ public class HeThong {
     QLBH qlbh = new QLBH();
 
     public void menuChinh(){
-        // Xóa màn hình
-        ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
-        pb.inheritIO();
-
         // Menu chính
         Scanner sc = new Scanner(System.in);
 
