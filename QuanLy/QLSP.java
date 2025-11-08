@@ -16,13 +16,25 @@ public class QLSP extends QLBH {
         System.out.println("5) Tìm kiếm");
         System.out.println("6) Thống kê");
 
-        System.out.print("\nHãy nhập số 1-6 tương ứng với thao tác bạn muốn thực hiện: ");
+        System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (1-6): ");
         Scanner sc = new Scanner(System.in);
-        int choice;
+        
+        int choice = 0;
 
-        while (!sc.hasNextInt()){
-            System.out.print("Vui lòng nhập số của thao tác hợp lệ (1-6): ");
+        // Kiểm tra hợp lệ
+        while (true){
+            try{
+                choice = Integer.parseInt(sc.nextLine().trim());
+                if (choice < 1 || choice > 6)
+                    System.out.print("Vui lòng nhập số từ khoảng 1-6: ");
+                else
+                    break;
+            }
+            catch (NumberFormatException e){
+                System.out.print("Hãy nhập số hợp lệ: ");
+            }
         }
+        //
 
         choice = sc.nextInt();
         switch (choice){
