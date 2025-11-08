@@ -27,7 +27,7 @@ public class QLSP extends QLBH {
         choice = sc.nextInt();
         switch (choice){
             case 1: // Xem danh sách
-
+                ds_Sach.xem();
                 break;
             case 2: // Thêm
 
