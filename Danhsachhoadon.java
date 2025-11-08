@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.Scanner;
-import java.time.Year;
 
 class Danhsachhoadon {
     private Hoadon[] ds;
@@ -43,7 +42,7 @@ class Danhsachhoadon {
         siso++;
     }
 
-    public void xoasv(Scanner sc) {
+    public void xoahd(Scanner sc) {
         System.out.print("Nhap ma hoa don muon xoa: ");
         String maxoa = sc.nextLine();
         int vitri = -1;
