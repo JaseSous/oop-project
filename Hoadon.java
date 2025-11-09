@@ -77,4 +77,20 @@ public class Hoadon {
     public DanhsachChiTietHoaDon getDsChiTiet() {
     return this.dsChiTiet;
     }
+    
+    public void setMaHD(String maHD) {
+        this.maHD = maHD;
+    }
+
+    public void setNgayLapHD(LocalDate ngayLapHD) {
+        this.ngayLapHD = ngayLapHD;
+    }
+
+    public void setKhachHang(Khachhang khachHang) {
+        this.khachHang = khachHang;
+    }
+
+    public void setNhanVien(Nhanvien nhanVien) {
+        this.nhanVien = nhanVien;
+    }
 }
