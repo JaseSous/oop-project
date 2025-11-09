@@ -27,15 +27,13 @@ public class QLHD extends QLBH {
                     ds_HD.xuatds();
                     break;
                 case 2:
-                    // Truyền các biến static vào hàm themvaodanhsach
-                    // Lưu ý: ds_Sach chính là danh sách bạn muốn dùng để check mã sách
+                    //ds_Sach là danh sách dùng để check mã sách
                     ds_HD.themvaodanhsach(sc, ds_KhachHang, ds_NhanVien, ds_Sach);
                     break;
                 case 3:
                     ds_HD.xoahd(sc);
                     break;
                 case 4:
-                     // Sửa cũng cần truyền đủ 3 danh sách để nhập lại thông tin
                     ds_HD.suahd(sc, ds_KhachHang, ds_NhanVien, ds_Sach);
                     break;
                 case 5:
