@@ -1,57 +1,55 @@
 import java.util.Scanner;
 
 public class QLHD extends QLBH {
-    @Override public void menuChinh(){
-        // Menu chính
-        System.out.println("\n===[Giao diện quản lý danh sách hóa đơn]===\n");
-
-        System.out.println("1) Xem danh sách");
-        System.out.println("2) Thêm");
-        System.out.println("3) Xóa");
-        System.out.println("4) Sửa");
-        System.out.println("5) Tìm kiếm");
-        System.out.println("6) Thống kê");
-
-        System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (1-6): ");
+    @Override public void menuChinh() {
         Scanner sc = new Scanner(System.in);
-        
         int choice = 0;
 
-        // Kiểm tra hợp lệ
-        while (true){
-            try{
-                choice = Integer.parseInt(sc.nextLine().trim());
-                if (choice < 1 || choice > 6)
-                    System.out.print("Vui lòng nhập số từ khoảng 1-6: ");
-                else
-                    break;
-            }
-            catch (NumberFormatException e){
-                System.out.print("Hãy nhập số hợp lệ: ");
-            }
-        }
-        //
+        do {
+            System.out.println("\n===[Giao diện quản lý danh sách hóa đơn]===\n");
+            System.out.println("1) Xem danh sách");
+            System.out.println("2) Thêm");
+            System.out.println("3) Xóa");
+            System.out.println("4) Sửa");
+            System.out.println("5) Tìm kiếm");
+            System.out.println("6) Thống kê theo năm");
+            System.out.println("0) Thoát");
+            System.out.print("Lựa chọn của bạn: ");
 
-        switch (choice){
-            case 1: // Xem danh sách
-                ds_HD.xuatds();
-                break;
-            case 2: // Thêm
-                ds_HD.themvaodanhsach(sc);
-                break;
-            case 3: // Xóa
-                ds_HD.xoahd(sc);
-                break;
-            case 4: // Sửa
-                ds_HD.suaHD(sc);
-                break;
-            case 5: // Tìm kiếm
-                ds_HD.timKiemtheoma(sc);
-                break;
-            case 6: // Thống kê
-                ds_HD.thongkeHDtheonam(sc);
-                break;
-        }
+            try {
+                choice = Integer.parseInt(sc.nextLine().trim());
+            } catch (NumberFormatException e) {
+                choice = -1;
+            }
+
+            switch (choice) {
+                case 1:
+                    ds_HD.xuatds();
+                    break;
+                case 2:
+                    // Truyền các biến static vào hàm themvaodanhsach
+                    // Lưu ý: ds_Sach chính là danh sách bạn muốn dùng để check mã sách
+                    ds_HD.themvaodanhsach(sc, ds_KhachHang, ds_NhanVien, ds_Sach);
+                    break;
+                case 3:
+                    ds_HD.xoahd(sc);
+                    break;
+                case 4:
+                     // Sửa cũng cần truyền đủ 3 danh sách để nhập lại thông tin
+                    ds_HD.suahd(sc, ds_KhachHang, ds_NhanVien, ds_Sach);
+                    break;
+                case 5:
+                    ds_HD.tim(sc);
+                    break;
+                case 6:
+                    ds_HD.thongkeHDtheonam(sc);
+                    break;
+                case 0:
+                    System.out.println("Đã thoát menu hóa đơn.");
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ!");
+            }
+        } while (choice != 0);
     }
 }
-
