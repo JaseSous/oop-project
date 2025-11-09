@@ -56,23 +56,14 @@ public class DS_Sach {
         }
     }
 
-    public void them() {
-        String masach, tensach, matheloai, matg, manxb;
-        int soluong, gia;
-        
+    public void them() {        
         Scanner sc = new Scanner(System.in);
         
         System.out.println("Nhập thông tin sách để thêm vào danh sách sản phẩm:");
-        System.out.print("\t- Mã sách: "); masach = sc.nextLine();
-        System.out.print("\t- Tên sách: "); tensach = sc.nextLine();
-        System.out.print("\t- Mã thể loại: "); matheloai = sc.nextLine();
-        System.out.print("\t- Mã tác giả: "); matg = sc.nextLine();
-        System.out.print("\t- Mã nhà xuất bản: "); manxb = sc.nextLine();
-        System.out.print("\t- Số lượng: "); soluong = sc.nextInt(); sc.nextLine();
-        System.out.print("\t- Giá: "); gia = sc.nextInt(); sc.nextLine();
         
         dsSach = Arrays.copyOf(dsSach, dsSach.length + 1);
-        dsSach[soLuongSach] = new Sach(masach, tensach, matheloai, matg, manxb, soluong, gia);
+        dsSach[soLuongSach] = new Sach();
+        dsSach[soLuongSach].nhap();
         soLuongSach++;
     }
 

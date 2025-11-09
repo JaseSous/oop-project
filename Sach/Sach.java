@@ -105,8 +105,8 @@ public class Sach {
         System.out.print("\tMã thể loại: "); matheloai = sc.nextLine();
         System.out.print("\tMã tác giả: "); matg = sc.nextLine();
         System.out.print("\tMã nhà xuất bản: "); manxb = sc.nextLine();
-        System.out.print("\tSố lượng: "); soluong = sc.nextInt();
-        System.out.print("\tGiá: "); gia = sc.nextInt();        
+        System.out.print("\tSố lượng: "); soluong = sc.nextInt(); sc.nextLine();
+        System.out.print("\tGiá: "); gia = sc.nextInt(); sc.nextLine();
     }
 
     public void xuat(){
