@@ -1,5 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 class Danhsachhoadon {
     private Hoadon[] ds;
@@ -78,24 +80,106 @@ class Danhsachhoadon {
         System.out.println("Khong tim thay hoa don!");
     }
 
-    public void suahd(Scanner sc, DanhsachKhachhang dskh, DanhsachNhanvien dsnv,DS_Sach dss) {
-        System.out.print("Nhap ma hoa don muon sua: ");
-        String masua = sc.nextLine();
+    public void suahd(Scanner sc, DanhsachKhachhang dskh, DanhsachNhanvien dsnv, DS_Sach dss) {
+        System.out.print("Nhap ma hoa don can sua: ");
+        String maSua = sc.nextLine();
+        int vitri = -1;
         for (int i = 0; i < siso; i++) {
-            if (ds[i].getMaHD().equals(masua)) {
-                System.out.println("Nhap thong tin hoa don moi:");
-                ds[i].nhap(sc, dskh, dsnv, dss);
-                System.out.println("Sua thanh cong!");
-                return;
+            if (ds[i].getMaHD().equals(maSua)) {
+                vitri = i;
+                break;
             }
         }
-        System.out.println("Khong tim thay hoa don!");
+
+        if (vitri == -1) {
+            System.out.println("Khong tim thay hoa don voi ma da cho.");
+            return;
+        }
+
+        boolean dangfix = true;
+        while (dangfix) {
+            System.out.println("\n--- BAN MUON SUA THONG TIN GI CUA HOA DON " + maSua + "? ---");
+            System.out.println("1. Ngay lap hoa don");
+            System.out.println("2. Khach hang (Ma KH)");
+            System.out.println("3. Nhan vien lap (Ma NV)");
+            System.out.println("4. Sua danh sach chi tiet sach (Nhap lai toan bo)");
+            System.out.println("0. Thoat che do sua");
+            System.out.print("Lua chon cua ban: ");
+            
+            int choice;
+            try {
+                choice = Integer.parseInt(sc.nextLine().trim());
+            } catch (NumberFormatException e) {
+                choice = -1;
+            }
+
+            switch (choice) {
+                case 1: // Sửa ngày lập
+                    boolean ngayHopLe = false;
+                    while (!ngayHopLe) {
+                        try {
+                            System.out.print("Nhap Ngay lap moi (dd/MM/yyyy): ");
+                            String ngayStr = sc.nextLine();
+                            ds[vitri].setNgayLapHD(LocalDate.parse(ngayStr, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                            System.out.println("Da cap nhat ngay lap.");
+                            ngayHopLe = true;
+                        } catch (Exception e) {
+                            System.out.println("Dinh dang ngay khong hop le! Vui long nhap lai.");
+                        }
+                    }
+                    break;
+                case 2: // Sửa khách hàng
+                    System.out.print("Nhap ma Khach Hang moi: ");
+                    String maKH = sc.nextLine();
+                    Khachhang khMoi = dskh.timKiem(maKH);
+                    if (khMoi != null) {
+                        ds[vitri].setKhachHang(khMoi);
+                        System.out.println("Da cap nhat khach hang: " + khMoi.getTenkh());
+                    } else {
+                        System.out.println("Khong tim thay khach hang co ma: " + maKH);
+                    }
+                    break;
+                case 3: // Sửa nhân viên
+                    System.out.print("Nhap ma Nhan Vien moi: ");
+                    String maNV = sc.nextLine();
+                    Nhanvien nvMoi = dsnv.timKiem(maNV);
+                    if (nvMoi != null) {
+                        ds[vitri].setNhanVien(nvMoi);
+                        System.out.println("Da cap nhat nhan vien: " + nvMoi.getTennv());
+                    } else {
+                        System.out.println("Khong tim thay nhan vien co ma: " + maNV);
+                    }
+                    break;
+                case 4: // Sửa chi tiết (Nhập lại từ đầu)
+                    System.out.println("Ban da chon nhap lai toan bo chi tiet hoa don nay.");
+                    System.out.print("Ban co chac chan khong? (y/n): ");
+                    String confirm = sc.nextLine();
+                    if (confirm.equalsIgnoreCase("y")) {
+                        ds[vitri] = new Hoadon(); // Reset hóa đơn này (cẩn thận: sẽ mất cả mã HD cũ nếu không set lại)
+                        // HOẶC cách tốt hơn là chỉ reset phần chi tiết:
+                        // ds[vitri].getDsChiTiet().reset(); // Nếu bạn viết thêm hàm reset() cho DanhsachChiTiet
+                        
+                        // Cách đơn giản nhất hiện tại để giữ mã HD cũ:
+                        String maHDCu = ds[vitri].getMaHD();
+                        System.out.println("--- Nhap lai thong tin ---");
+                        ds[vitri].nhap(sc, dskh, dsnv, dss);
+                        ds[vitri].setMaHD(maHDCu); // Khôi phục mã HD cũ nếu lỡ nhập mã mới khác
+                    }
+                    break;
+                case 0:
+                    dangfix = false;
+                    System.out.println("Da thoat che do sua.");
+                    break;
+                default:
+                    System.out.println("Lua chon khong hop le.");
+            }
+        }
     }
 
     public void thongkeHDtheonam(Scanner sc) {
         System.out.print("Nhap nam muon thong ke: ");
         int namCanTim = sc.nextInt();
-        sc.nextLine(); // Đọc bỏ dòng thừa sau khi nhập số
+        sc.nextLine();
 
         double tongDoanhThuNam = 0;
         int soLuongHDNam = 0;
