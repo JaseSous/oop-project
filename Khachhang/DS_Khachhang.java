@@ -1,55 +1,105 @@
 package Khachhang;
 
-import java.time.LocalDate;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Formatter;
 
-public class DanhSachKhachHang {
+public class DS_Khachhang {
     private Khachhang[] kh;
     private int soluong;
 
     //----Ham thiet lap----
-    public DanhSachKhachHang(){
+    public DS_Khachhang(){
         this.kh=new Khachhang[0];
         this.soluong=0;
     }
-    
-    //----Ham nhap----
-    public void nhapkh(){
-        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap so luong Khach hang: ");
-        int n = sc.nextInt(); sc.nextLine();
-        kh = new Khachhang[n];
-        soluong = n;
-        for (int i = 0; i < n; i++){
-            System.out.println("Nhap khach hang thu " + (i + 1) + ":");
-            kh[i] = new Khachhang();
-            kh[i].nhap();
-        }
+    public DS_Khachhang(DS_Khachhang other) {
+        this.soluong = other.soluong;
+        kh = Arrays.copyOf(other.kh, other.soluong);
     }
+    // Phương thức
+    public void loadFile(){
+        try {
+            String FilePath = "DATA/DS_Khachhang.dat";
 
-    //----Ham xuat----
-    public void xuatkh(){
-        if (soluong == 0) {
-            System.out.println("Danh sach rong!");
+            // Kiểm tra file rỗng hoặc ko tồn tại
+            Path path = Paths.get(FilePath);
+
+            if (!Files.exists(path) || !Files.isRegularFile(path) || Files.size(path) == 0) {
+                return;
+            }
+
+            // Đọc file
+            BufferedReader reader = new BufferedReader(new FileReader(FilePath));
+            int n = Integer.parseInt(reader.readLine().trim());
+            
+            for (int i = 0; i < n; i++){
+                // Đọc các thuộc tính của khách hàng 
+                long makh = Long.parseLong(reader.readLine().trim()); 
+                String ho = reader.readLine().trim();
+                String ten = reader.readLine().trim();
+                String dchi = reader.readLine().trim();
+                long sdt = Long.parseLong(reader.readLine().trim()); 
+                String ngaysinh = reader.readLine().trim();
+                String ngaymuahang = reader.readLine().trim();
+
+                // them vào danh sách khách hàng
+                this.them(makh, ho, ten, dchi, sdt, ngaysinh,ngaymuahang);
+            }
+
+            reader.close();
+        } catch (IOException e) {
             return;
         }
-        System.out.println("----- DANH SACH KHACH HANG -----");
-        for (int i = 0; i < soluong; i++) {
-            kh[i].xuat();
-            System.out.println("--------------------");
+    }
+    public void xem() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachKhachHang.txt")); // Đổi tên file cho đúng ngữ cảnh
+             Formatter formatter = new Formatter(writer)) {
+                
+            formatter.format("===[Danh sách Khách hàng]===\n"); // Đổi tiêu đề
+            formatter.format("Số lượng: " + soluong + "\n\n");
+    
+            if (soluong > 0){
+                formatter.format("-".repeat(122)); 
+                formatter.format("\n| %-3s | %-7s | %-15s | %-10s | %-15s | %-10s | %-15s | %-15s\n", // 7 cột
+                                     "STT", "Mã KH", "Họ", "Tên", "SĐT", "Địa chỉ", "Ngày sinh","Ngày mua hàng"); 
+                formatter.format("-".repeat(122) + "\n"); 
+    
+                for (int i = 0; i < soluong; i++){
+                    formatter.format("| %-3s | %-7s | %-15s | %-10s | %-15s | %-10s | %-15s | %-15s\n",
+                                    i+1,
+                                    kh[i].getMakh(),
+                                    kh[i].getHo(),
+                                    kh[i].getTen(),
+                                    kh[i].getSdt(),
+                                    kh[i].getDchi(),
+                                    kh[i].getNgaysinh(),
+                                    kh[i].getNgaymuahang());
+                }
+                formatter.format("-".repeat(122));
+            }
+    
+            System.out.println("Đã ghi dữ liệu vào file: DanhSachKhachHang.txt"); // Đổi tên file
+    
+        } catch (IOException e) {
+            System.err.println("Lỗi I/O: " + e.getMessage());
         }
     }
-
-    //----Ham them khach hang----
-    public void themvaodanhsach() {
-        Khachhang khach = new Khachhang();
-        khach.nhap();
-        kh = Arrays.copyOf(kh, soluong + 1);
-        kh[soluong] = khach;
+    
+    public void them(long makh, String ho, String ten, String dchi,long sdt, String ngaysinh,String ngaymuahang ) {
+        kh = Arrays.copyOf(kh, kh.length + 1);
+        kh[soluong] = new Khachhang(makh, ho, ten, dchi,sdt, ngaysinh, ngaymuahang);
         soluong++;
     }
+
 
     //----Ham xoa khach hang----
     public void xoakh(){
@@ -78,7 +128,7 @@ public class DanhSachKhachHang {
     }
     
     //----Ham sua khach hang----
-    public void suasv() {
+    public void suakh() {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma KH muon sua: ");
@@ -108,8 +158,10 @@ public class DanhSachKhachHang {
         sc.nextLine();
         System.out.print("Nhap ngay sinh moi(dd/MM/yyyy): ");
         String ngaysinh = sc.nextLine();
+        System.out.print("Nhap ngay mua hang moi(dd/MM/yyyy): ");
+        String ngaymuahang = sc.nextLine();
 
-        kh[vitri] = new Khachhang(makh,ho,ten,dchi,sdt,ngaysinh);
+        kh[vitri] = new Khachhang(makh,ho,ten,dchi,sdt,ngaysinh,ngaymuahang);
 
         System.out.println("Sua thong tin thanh cong!");
     }
@@ -186,9 +238,9 @@ public class DanhSachKhachHang {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap so dien thoai Khach Hang muon tim: ");
-        int sdttim = sc.nextInt();
+        long sdttim = sc.nextInt();
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getMakh() == sdttim) {
+            if (kh[i].getSdt() == sdttim) {
                 System.out.println("Tim thay khach hang:");
                 kh[i].xuat();
                 System.out.println("---------------------------");
@@ -206,7 +258,7 @@ public class DanhSachKhachHang {
         int tren30 = 0;
     
         for (int i = 0; i < soluong; i++) {
-            int tuoi = kh[i].age();  // Gọi hàm age() của từng sinh viên
+            int tuoi = kh[i].age();  // Gọi hàm age() của từng Khách hàng
     
             if (tuoi < 20) {
                 duoi20++;
@@ -287,104 +339,50 @@ public class DanhSachKhachHang {
         }
     }
 
-    //----thống kê khách hàng có sinh nhật trong tháng này----
-    public void thongKeSinhNhatTrongThangHienTai() {
-        int thangHienTai = LocalDate.now().getMonthValue(); // Lấy tháng hiện tại (1–12)
-        int dem = 0;
-
-        System.out.println("----- Danh sach khach hang co sinh nhat trong thang " + thangHienTai + " -----");
-
-        for (int i = 0; i < soluong; i++) {
-            // Lấy chuỗi ngày sinh, tách ra phần tháng
-            String[] parts = kh[i].getNgaysinh().split("/");
-
-            // Kiểm tra chuỗi có đúng định dạng dd/MM/yyyy không
-            if (parts.length == 3) {
-                try {
-                    int thangSinh = Integer.parseInt(parts[1]);
-                    if (thangSinh == thangHienTai) {
-                        kh[i].xuat(); // in ra thông tin khách hàng
-                        dem++;
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Loi dinh dang ngay sinh cua khach hang thu " + (i + 1));
-                }
-            } else {
-                System.out.println("Ngay sinh cua khach hang thu " + (i + 1) + " khong dung dinh dang dd/MM/yyyy!");
-            }
-        }
-
-        if (dem == 0) {
-            System.out.println("Khong co khach hang nao co sinh nhat trong thang nay.");
-        } else {
-            System.out.println("Tong cong co " + dem + " khach hang co sinh nhat trong thang nay.");
-        }
-    }
-
-    //----Hàm thống kê theo Năm Sinh----
-    public void thongKeTheoNamSinhBangMang() {
-        
-        // Tạo một mảng tạm với kích thước tối đa là 'soluong'
-        String[] mangNamTam = new String[soluong]; 
-        int soLuongNamHopLe = 0; // Biến đếm số năm hợp lệ tìm được
-        int loi = 0; // Biến đếm số ngày sinh bị lỗi
+    //----Hàm thống kê khách hàng theo Quý (dựa trên ngày mua hàng)----
+    public void thongKeTheoQuy() {
+        int[] dem = new int[4];// quý 1->4
+        int loi = 0; // Đếm các ngày mua hàng bị lỗi định dạng
 
         for (int i = 0; i < soluong; i++) {
             try {
-                String[] parts = kh[i].getNgaysinh().split("/");
+                // Lấy chuỗi ngày mua hàng, ví dụ: "25/10/2025"
+                String ngayMuaStr = kh[i].getNgaymuahang(); 
+                
+                // Tách chuỗi bằng dấu "/"
+                String[] parts = ngayMuaStr.split("/"); // parts = ["25", "10", "2025"]
+                
                 if (parts.length == 3) {
-                    String namSinh = parts[2].trim();
-                    // Thử đổi sang số để chắc chắn nó là năm hợp lệ
-                    Integer.parseInt(namSinh); 
+                    // 1. Lấy tháng từ chuỗi (tương đương p.getNgaynhap().getMonthValue())
+                    int month = Integer.parseInt(parts[1]); // Lấy "10" -> 10
                     
-                    // Nếu hợp lệ, thêm vào mảng tạm và tăng số đếm
-                    mangNamTam[soLuongNamHopLe] = namSinh;
-                    soLuongNamHopLe++; // Rất quan trọng
+                    // 2. Áp dụng chính xác logic của bạn
+                    int quy = (month - 1) / 3; // (10 - 1) / 3 = 9 / 3 = 3
+
+                    // 3. Tăng biến đếm (cần kiểm tra để tránh tháng > 12)
+                    if (quy >= 0 && quy < 4) {
+                        dem[quy]++; // Tăng dem[3] (Quý 4)
+                    } else {
+                        loi++; // Lỗi nếu tháng là 0 hoặc > 12
+                    }
                 } else {
-                    loi++; // Lỗi định dạng (ví dụ: 12-05-1990)
+                    loi++; // Lỗi định dạng (ví dụ: "12-05-2025")
                 }
             } catch (Exception e) {
-                // Lỗi năm không phải là số (ví dụ: 12/05/abcd)
+                // Lỗi nếu ngày mua hàng rỗng, null, hoặc "MM" không phải là số
                 loi++; 
             }
         }
 
-        // --- Cắt mảng tạm về đúng kích thước ---
-        String[] tatCaCacNam = Arrays.copyOf(mangNamTam, soLuongNamHopLe);
+        // In kết quả thống kê
+        System.out.println("----- Thong ke khach hang theo quy mua hang -----");
+        System.out.println("Quy 1 (Thang 1-3): " + dem[0] + " khach hang");
+        System.out.println("Quy 2 (Thang 4-6): " + dem[1] + " khach hang");
+        System.out.println("Quy 3 (Thang 7-9): " + dem[2] + " khach hang");
+        System.out.println("Quy 4 (Thang 10-12): " + dem[3] + " khach hang");
 
-        // Dùng hàm sắp xếp có sẵn của Java cho mảng
-        Arrays.sort(tatCaCacNam);
-
-        System.out.println("----- Thong ke theo Nam Sinh -----");
-        
-        // Kiểm tra xem có gì để đếm không
-        if (tatCaCacNam.length == 0) {
-            System.out.println("Khong co du lieu nam sinh hop le de thong ke.");
-        } else {
-            String namHienTai = tatCaCacNam[0];
-            int dem = 0;
-
-            for (int i = 0; i < tatCaCacNam.length; i++) {
-                if (tatCaCacNam[i].equals(namHienTai)) {
-                    // 1. Nếu vẫn là năm đó, tăng biến đếm
-                    dem++;
-                } else {
-                    // 2. Nếu là NĂM MỚI, in kết quả của năm cũ
-                    System.out.println("Nam " + namHienTai + ": " + dem + " khach hang");
-                    
-                    // 3. Bắt đầu đếm cho năm mới
-                    namHienTai = tatCaCacNam[i];
-                    dem = 1; // Reset biến đếm về 1
-                }
-            }
-
-            // 4. In kết quả
-            System.out.println("Nam " + namHienTai + ": " + dem + " khach hang");
-        }
-
-        // In số lượng bị lỗi
         if (loi > 0) {
-            System.out.println("Khong the thong ke " + loi + " khach hang do loi dinh dang ngay sinh.");
+            System.out.println("(!) Khong the thong ke " + loi + " khach hang do loi dinh dang ngay mua hang.");
         }
     }
 }

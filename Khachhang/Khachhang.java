@@ -12,6 +12,7 @@ public class Khachhang {
     private String dchi;
     private long sdt;
     private String ngaysinh;
+    private String ngaymuahang;
 
     public Khachhang(){
         this.makh=0;
@@ -20,14 +21,16 @@ public class Khachhang {
         this.dchi="";
         this.sdt=0;
         this.ngaysinh="";
+        this.ngaymuahang="";
     }
-    public Khachhang(long makh,String ho,String ten,String dchi,long sdt,String ngaysinh){
+    public Khachhang(long makh,String ho,String ten,String dchi,long sdt,String ngaysinh,String ngaymuahang){
         this.makh=makh;
         this.ho=ho;
         this.ten=ten;
         this.dchi=dchi;
         this.sdt=sdt;
         this.ngaysinh=ngaysinh;
+        this.ngaymuahang=ngaymuahang;
     }
     
     public void nhap(){
@@ -48,22 +51,26 @@ public class Khachhang {
         sc.nextLine();
         System.out.print("Ngay sinh (dd/MM/yyyy): ");
         ngaysinh = sc.nextLine();
+        System.out.print("Ngay mua hang (dd/MM/yyyy): ");
+        ngaymuahang = sc.nextLine();
     }
     
 
     public void xuat(){
-        System.out.printf("%-10d %-10s %-5s %-10s %-10d %-10s",
-        makh,ho,ten,dchi,sdt,ngaysinh);
-
-        System.out.println("Tuoi cua khach hang: " + age());
+        System.out.printf("%-10d %-10s %-5s %-10s %-10d %-10s %-10s %-10s",
+        makh,ho,ten,dchi,sdt,ngaysinh,ngaymuahang,age());
     }
 
     //----Hàm Tính Tuổi----
     public int age(){
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate birthDate = LocalDate.parse(ngaysinh, df);
-        LocalDate today = LocalDate.now();
-        return Period.between(birthDate, today).getYears();
+        try {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate birthDate = LocalDate.parse(ngaysinh, df);
+            LocalDate today = LocalDate.now();
+            return Period.between(birthDate, today).getYears();
+        } catch (Exception e) {
+            return 0; // Trả về 0 nếu ngày sinh không hợp lệ
+        }
     }
 
     //----Hàm get/set----
@@ -85,6 +92,9 @@ public class Khachhang {
     public String getNgaysinh(){
         return ngaysinh;
     }
+    public String getNgaymuahang(){
+        return ngaymuahang;
+    }
 
     public void setMakh(long makh_x){
         makh=makh_x;
@@ -103,5 +113,8 @@ public class Khachhang {
     }
     public void setNgaysinh(String ngaysinh_x){
         ngaysinh=ngaysinh_x;
+    }
+    public void setNgaymuahang(String ngaymuahang_x){
+        ngaymuahang=ngaymuahang_x;
     }
 }
