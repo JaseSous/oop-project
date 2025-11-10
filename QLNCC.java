@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class QLNCC extends QLBH {
 
 @Override
-    public void menu()
+    public void menuChinh()
     {
         Scanner sc = new Scanner(System.in);
         int choice;

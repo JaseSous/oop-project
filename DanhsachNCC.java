@@ -48,8 +48,8 @@ public class DanhsachNCC {
         try{
             BufferedWriter bw=new BufferedWriter(new FileWriter("OUTPUT/DSNCC.txt"));
             BufferedWriter wb=new BufferedWriter(new FileWriter("INPUT/DSNCC.txt"));
-            bw.write(String.format("%-10s %-20s %-20s%n", "Ma NCC", "Ten NCC", "Dia Chi"));
-            bw.write("------------------------------------\n");
+            bw.write(String.format("%-10s | %-20s |  %-20s%n", "Ma NCC", "Ten NCC", "Dia Chi"));
+            bw.write("--------------------------------------------------\n");
 
             wb.write(String.valueOf(soluongNCC));
             wb.newLine();
@@ -206,7 +206,7 @@ public class DanhsachNCC {
                 Nhacungcap NCC = timtheomaNCC(ma);
                 if (NCC != null) {
                     System.out.println("\nKQ:");
-                    System.out.printf("%-10s %-20s %-20s%n", "Ma NCC", "Ten NCC", "Đia chi");
+                    System.out.printf("%-10s | %-20s | %-20s%n", "Ma NCC", "Ten NCC", "Đia chi");
                     NCC.xuat();
                 } else {
                     System.out.println(" Khong tim thay ma NCC: " + ma);
