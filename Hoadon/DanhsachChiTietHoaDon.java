@@ -1,6 +1,8 @@
 package Hoadon;
+import Sach.DS_Sach;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Formatter;
 
 public class DanhsachChiTietHoaDon {
     private ChiTietHoaDon[] ds;

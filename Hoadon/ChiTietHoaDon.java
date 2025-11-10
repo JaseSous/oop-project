@@ -27,14 +27,14 @@ public class ChiTietHoaDon {
             System.out.print("Nhap ma sach: ");
             String maTam = sc.nextLine();
             
-            sachTimThay = dss.timKiem(maTam); // Gọi hàm tìm kiếm bên danh sách sách
+            sachTimThay = dss.timKiemTheoMaSach(maTam); // Gọi hàm tìm kiếm bên danh sách sách
             
             if (sachTimThay == null) {
                 System.out.println("⚠️ Ma sach khong ton tai trong kho! Vui long nhap lai.");
             } else {
                 this.maSach = maTam;
-                this.dongia = sachTimThay.getGiaBan(); 
-                System.out.println("✅ Da chon: " + sachTimThay.getTenSach());
+                this.dongia = sachTimThay.getGia(); 
+                System.out.println("✅ Da chon: " + sachTimThay.getTensach());
             }
         } while (sachTimThay == null);
         System.out.print("Nhap so luong: ");
