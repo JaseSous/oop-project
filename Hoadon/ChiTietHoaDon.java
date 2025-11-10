@@ -19,16 +19,24 @@ public class ChiTietHoaDon {
 
     // --- PHƯƠNG THỨC NHẬP/XUẤT ---
     
-    public void nhap(Scanner sc) {
-        System.out.print("Nhap ma sach: ");
-        this.maSach = sc.nextLine();
-        
+    public void nhap(Scanner sc,DS_Sach dss) {
+        Sach sachTimThay = null;
+        do {
+            System.out.print("Nhap ma sach: ");
+            String maTam = sc.nextLine();
+            
+            sachTimThay = dss.timKiem(maTam); // Gọi hàm tìm kiếm bên danh sách sách
+            
+            if (sachTimThay == null) {
+                System.out.println("⚠️ Ma sach khong ton tai trong kho! Vui long nhap lai.");
+            } else {
+                this.maSach = maTam;
+                this.dongia = sachTimThay.getGiaBan(); 
+                System.out.println("✅ Da chon: " + sachTimThay.getTenSach());
+            }
+        } while (sachTimThay == null);
         System.out.print("Nhap so luong: ");
         this.soLuong = sc.nextInt();
-        
-        System.out.print("Nhap don gia (giá tại thời điểm bán): ");
-        this.dongia = sc.nextFloat();
-        sc.nextLine();
     }
 
     public void xuat() {
