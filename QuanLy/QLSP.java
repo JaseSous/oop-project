@@ -10,8 +10,9 @@ public class QLSP extends QLBH {
         System.out.println("3) Xóa");
         System.out.println("4) Sửa");
         System.out.println("5) Tìm kiếm theo mã sách");
-        System.out.println("6) Thống kê");
-        System.out.println("7) Lưu và thoát");
+        System.out.println("6) Tìm kiếm theo mã thể loại");
+        System.out.println("7) Thống kê");
+        System.out.println("8) Lưu và thoát");
 
         Scanner sc = new Scanner(System.in);
         
@@ -19,13 +20,13 @@ public class QLSP extends QLBH {
         boolean running = true;
         
         while (running){
-            System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (1-7): ");
+            System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (1-8): ");
             // Kiểm tra hợp lệ
             while (true){
                 try{
                     choice = Integer.parseInt(sc.nextLine().trim());
-                    if (choice < 1 || choice > 7)
-                        System.out.print("Vui lòng nhập số từ khoảng 1-7: ");
+                    if (choice < 1 || choice > 8)
+                        System.out.print("Vui lòng nhập số từ khoảng 1-8: ");
                     else
                         break;
                 }
@@ -41,21 +42,23 @@ public class QLSP extends QLBH {
                     break;
                 case 2: // Thêm
                     ds_Sach.them();
-                    System.out.println("Đã thêm thành công sách vào danh sách sản phẩm");
                     break;
                 case 3: // Xóa
-
+                    ds_Sach.xoa();
                     break;
                 case 4: // Sửa
+                    ds_Sach.sua();
+                    break;
+                case 5: // Tìm kiếm theo mã sách
+                    ds_Sach.timKiemTheoMaSach();
+                    break;
+                case 6: // Tìm kiếm theo mã thể loại
+                    ds_Sach.timKiemTheoMaTheLoai();
+                    break;
+                case 7: // Thống kê
 
                     break;
-                case 5: // Tìm kiếm
-
-                    break;
-                case 6: // Thống kê
-
-                    break;
-                case 7:
+                case 8:
                     running = false;
                     break;
             }
