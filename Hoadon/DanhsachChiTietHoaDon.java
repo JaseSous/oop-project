@@ -54,6 +54,13 @@ public class DanhsachChiTietHoaDon {
         }
         return tong;
     }
+
+    public ChiTietHoaDon getChiTiet(int index) {
+    if (index >= 0 && index < n) {
+        return ds[index];
+    }
+    return null;
+}
     
     public int getSoLuong() {
         return n;

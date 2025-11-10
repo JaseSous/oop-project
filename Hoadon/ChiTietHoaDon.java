@@ -52,11 +52,11 @@ public class ChiTietHoaDon {
     }
 
     public float getDongia() {
-    return dongia;
+    return this.dongia;
     }
 
     public String getMaSach() {
-        return maSach;
+        return this.maSach;
     }
 
     public void setMaSach(String maSach) {
@@ -64,7 +64,7 @@ public class ChiTietHoaDon {
     }
 
     public int getSoLuong() {
-        return soLuong;
+        return this.soLuong;
     }
 
 }

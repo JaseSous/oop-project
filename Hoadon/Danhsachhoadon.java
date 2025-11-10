@@ -66,7 +66,7 @@ public class Danhsachhoadon {
         }
     }
 
-    public void xuatFile() {
+    public void xem() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachHoaDon.txt"));
              Formatter formatter = new Formatter(writer)) {
 
@@ -240,6 +240,47 @@ public class Danhsachhoadon {
                      isEditing = false;
                      break;
             }
+        }
+    }
+
+    public void saveFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("DATA/DS_HoaDon.txt"))) {
+            // Ghi tổng số lượng hóa đơn
+            writer.write(String.valueOf(siso));
+            writer.newLine();
+
+            for (int i = 0; i < siso; i++) {
+                Hoadon hd = ds[i];
+                // Ghi thông tin chung của hóa đơn
+                writer.write(hd.getMaHD());
+                writer.newLine();
+                // Lưu ngày dưới dạng dd/MM/yyyy để khớp với loadFile
+                writer.write(hd.getNgayLapHD().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                writer.newLine();
+                writer.write(hd.getKhachHang().getMakh()); // Chỉ cần lưu mã KH
+                writer.newLine();
+                writer.write(hd.getNhanVien().getManv()); // Chỉ cần lưu mã NV
+                writer.newLine();
+
+                // Ghi danh sách chi tiết
+                DanhsachChiTietHoaDon dsct = hd.getDsChiTiet();
+                writer.write(String.valueOf(dsct.getSoLuong())); // Ghi số lượng chi tiết
+                writer.newLine();
+
+                for (int j = 0; j < dsct.getSoLuong(); j++) {
+                    ChiTietHoaDon ct = dsct.getChiTiet(j); // Cần có phương thức getChiTiet(index)
+                    writer.write(ct.getMaSach());
+                    writer.newLine();
+                    writer.write(String.valueOf(ct.getSoLuong()));
+                    writer.newLine();
+                    // Lưu đơn giá dạng số thực (có thể dùng String.valueOf hoặc định dạng)
+                    writer.write(String.valueOf(ct.getDongia())); 
+                    writer.newLine();
+                }
+            }
+            System.out.println("✅ Đã lưu danh sách hóa đơn vào file: DATA/DS_HoaDon.txt");
+        } catch (IOException e) {
+            System.err.println("❌ Lỗi khi lưu file hóa đơn: " + e.getMessage());
         }
     }
     
