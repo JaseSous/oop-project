@@ -243,21 +243,27 @@ public class Danhsachhoadon {
         }
     }
     
-    public void thongkeHDtheonam(Scanner sc) {
-        System.out.print("Nhap nam muon thong ke: ");
-        int nam = sc.nextInt();
-        sc.nextLine();
-        double tongDoanhThu = 0;
-        int count = 0;
-        System.out.println("\n--- HOA DON NAM " + nam + " ---");
-        for(int i=0; i<siso; i++) {
-            if(ds[i].getNgayLapHD().getYear() == nam) {
-                ds[i].xuat();
-                tongDoanhThu += ds[i].getDsChiTiet().tinhTongTien();
-                count++;
-            }
+   public void thongkeHDtheoQuy() {
+        // Mảng lưu số lượng và doanh thu cho 4 quý
+        int[] soLuong = new int[4];
+        double[] doanhThu = new double[4];
+
+        // Duyệt hết toàn bộ danh sách hóa đơn
+        for (int i = 0; i < siso; i++) {
+            // Lấy tháng ra (1 đến 12)
+            int thang = ds[i].getNgayLapHD().getMonthValue();
+            // Tính quý (0 đến 3)
+            int quy = (thang - 1) / 3;          
+            // Cộng dồn vào quý tương ứng
+            soLuong[quy]++;
+            doanhThu[quy] += ds[i].getDsChiTiet().tinhTongTien();
         }
-        System.out.println("Tong so hoa don: " + count);
-        System.out.printf("Tong doanh thu nam %d: %,.0f VND\n", nam, tongDoanhThu);
+
+        // Xuất kết quả
+        System.out.println("\n--- THONG KE THEO QUY (TAT CA DU LIEU) ---");
+        for (int i = 0; i < 4; i++) {
+            System.out.printf("Quy %d: %d hoa don - Doanh thu: %,.0f VND\n", 
+                              (i + 1), soLuong[i], doanhThu[i]);
+        }
     }
 }
