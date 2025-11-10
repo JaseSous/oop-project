@@ -1,3 +1,4 @@
+package Hoadon;
 // Tên file: ChiTietHoaDon.java
 import java.util.Scanner;
 

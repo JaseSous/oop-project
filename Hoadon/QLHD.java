@@ -1,3 +1,4 @@
+package Hoadon;
 import java.util.Scanner;
 
 public class QLHD extends QLBH {
