@@ -11,7 +11,7 @@ public class QLSP extends QLBH {
         System.out.println("4) Sửa");
         System.out.println("5) Tìm kiếm theo mã sách");
         System.out.println("6) Tìm kiếm theo mã thể loại");
-        System.out.println("7) Thống kê");
+        System.out.println("7) Thống kê theo số lượng loại sách");
         System.out.println("8) Lưu và thoát");
 
         Scanner sc = new Scanner(System.in);
@@ -56,9 +56,10 @@ public class QLSP extends QLBH {
                     ds_Sach.timKiemTheoMaTheLoai();
                     break;
                 case 7: // Thống kê
-
+                    ds_Sach.thongKeLoaiSach();
                     break;
-                case 8:
+                case 8: // Lưu và thoát
+                    ds_Sach.saveFile();
                     running = false;
                     break;
             }
