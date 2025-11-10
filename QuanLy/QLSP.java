@@ -55,7 +55,7 @@ public class QLSP extends QLBH {
                 case 6: // Tìm kiếm theo mã thể loại
                     ds_Sach.timKiemTheoMaTheLoai();
                     break;
-                case 7: // Thống kê
+                case 7: // Thống kê theo số lượng loại sách
                     ds_Sach.thongKeLoaiSach();
                     break;
                 case 8: // Lưu và thoát
