@@ -161,7 +161,6 @@ public class DanhsachNCC {
                     System.out.println("Lua chon khong hop le. Vui long chon lai.");
             }
         } while (choice != 0);
-        sc.close();
     }
     // ===== Tìm theo mã =====
     public Nhacungcap timtheomaNCC(String maNCC) {
@@ -236,7 +235,7 @@ public class DanhsachNCC {
                 break;
             }
         } while (chon != 0);
-        sc.close();
+  
     }
     //------------------thong ke ------------------------
     public void ThongkekhuvucNCC (){
