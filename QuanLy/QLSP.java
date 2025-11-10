@@ -9,7 +9,7 @@ public class QLSP extends QLBH {
         System.out.println("2) Thêm");
         System.out.println("3) Xóa");
         System.out.println("4) Sửa");
-        System.out.println("5) Tìm kiếm");
+        System.out.println("5) Tìm kiếm theo mã sách");
         System.out.println("6) Thống kê");
         System.out.println("7) Lưu và thoát");
 
