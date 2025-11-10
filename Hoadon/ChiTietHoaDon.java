@@ -1,5 +1,6 @@
 package Hoadon;
-// Tên file: ChiTietHoaDon.java
+import Sach.Sach;
+import Sach.DS_Sach;
 import java.util.Scanner;
 
 public class ChiTietHoaDon {
@@ -48,6 +49,10 @@ public class ChiTietHoaDon {
 
     public float getThanhTien() {
         return this.soLuong * this.dongia;
+    }
+
+    public float getDongia() {
+    return dongia;
     }
 
     public String getMaSach() {

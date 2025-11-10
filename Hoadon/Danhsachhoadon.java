@@ -1,8 +1,24 @@
 package Hoadon;
+
+import Khachhang.DanhsachKhachhang;
+import Khachhang.Khachhang;
+import Nhanvien.DanhsachNhanvien;
+import Nhanvien.Nhanvien;
+import Sach.DS_Sach;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
-class Danhsachhoadon {
+public class Danhsachhoadon {
     private Hoadon[] ds;
     private int siso;
 
@@ -11,23 +27,117 @@ class Danhsachhoadon {
         this.siso = 0;
     }
 
-    public void nhapds(Scanner sc, DanhSachKhachHang dskh, Danhsachnhanvien dsnv) {
-        System.out.print("Nhap so luong hoa don: ");
-        int n = sc.nextInt(); sc.nextLine();
-        ds = new Hoadon[n];
-        siso = n;
-        for (int i = 0; i < n; i++) {
-            System.out.println("Nhap Hoa don thu " + (i + 1) + ":");
-            ds[i] = new Hoadon();
-            ds[i].nhap(sc, dskh, dsnv); // Truyền danh sách xuống
+    public void loadFile(DanhsachKhachhang dskh, DanhsachNhanvien dsnv) {
+        try {
+            String filePath = "DATA/DS_HoaDon.txt";
+            Path path = Paths.get(filePath);
+
+            if (!Files.exists(path) || Files.size(path) == 0) {
+                return;
+            }
+
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            String line = reader.readLine();
+            if (line == null) return;
+            
+            int soLuongHD = Integer.parseInt(line.trim());
+
+            for (int i = 0; i < soLuongHD; i++) {
+                Hoadon hd = new Hoadon();
+                hd.setMaHD(reader.readLine().trim());
+                hd.setNgayLapHD(LocalDate.parse(reader.readLine().trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                hd.setKhachHang(dskh.timKiem(reader.readLine().trim()));
+                hd.setNhanVien(dsnv.timKiem(reader.readLine().trim()));
+
+                int soLuongChiTiet = Integer.parseInt(reader.readLine().trim());
+                for (int j = 0; j < soLuongChiTiet; j++) {
+                    String maSach = reader.readLine().trim();
+                    int soLuong = Integer.parseInt(reader.readLine().trim());
+                    float donGia = Float.parseFloat(reader.readLine().trim());
+                    hd.getDsChiTiet().them(new ChiTietHoaDon(maSach, soLuong, donGia));
+                }
+                this.them(hd);
+            }
+            reader.close();
+            System.out.println("--> Da tai " + siso + " hoa don tu file.");
+        } catch (IOException | NumberFormatException | NullPointerException e) {
+            System.err.println("Loi khi doc file hoa don: " + e.getMessage());
         }
     }
-    public void themvaodanhsach(Scanner sc, DanhSachKhachHang dskh, Danhsachnhanvien dsnv) {
-        Hoadon hd = new Hoadon();
-        hd.nhap(sc, dskh, dsnv); // Truyền danh sách xuống
+
+    public void xuatFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachHoaDon.txt"));
+             Formatter formatter = new Formatter(writer)) {
+
+            formatter.format("===[DANH SÁCH HÓA ĐƠN]===\n");
+            formatter.format("Tổng số hóa đơn: %d\n\n", siso);
+
+            if (siso > 0) {
+                for (int i = 0; i < siso; i++) {
+                    Hoadon hd = ds[i];
+                    // In thông tin chung của hóa đơn
+                    formatter.format("------------------------------------------------------------\n");
+                    formatter.format("HÓA ĐƠN SỐ: %s\n", hd.getMaHD());
+                    
+                    // Định dạng ngày tháng
+                    String ngayLap = "N/A";
+                    if (hd.getNgayLapHD() != null) {
+                         ngayLap = hd.getNgayLapHD().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    }
+                    formatter.format("Ngày lập: %s\n", ngayLap);
+
+                    // In thông tin khách hàng và nhân viên
+                    if (hd.getKhachHang() != null) {
+                        formatter.format("Khách hàng: %s (%s)\n", hd.getKhachHang().getTenkh(), hd.getKhachHang().getMakh());
+                    }
+                    if (hd.getNhanVien() != null) {
+                        formatter.format("Nhân viên lập: %s (%s)\n", hd.getNhanVien().getTennv(), hd.getNhanVien().getManv());
+                    }
+
+                    formatter.format("\n--- Chi tiết đơn hàng ---\n");
+                    // In bảng chi tiết sản phẩm
+                    formatter.format("| %-10s | %-8s | %-11s | %-13s |\n", "Mã sách", "SL", "Đơn giá", "Thành tiền");
+                    formatter.format("|------------|----------|-------------|---------------|\n");
+
+                    // Duyệt và in từng dòng chi tiết
+                    DanhsachChiTietHoaDon dsct = hd.getDsChiTiet();
+                    hd.getDsChiTiet().xuatFile(formatter);
+
+                    formatter.format("|-----------------------------------------------------|\n");
+                    formatter.format("%43s: %,.0f VND\n", "TỔNG CỘNG", dsct.tinhTongTien());
+                    formatter.format("\n"); // Dòng trống ngăn cách các hóa đơn
+                }
+                formatter.format("============================================================\n");
+            }
+
+            System.out.println("✅ Đã xuất danh sách hóa đơn ra file: OUTPUT/DanhSachHoaDon.txt");
+
+        } catch (IOException e) {
+            System.err.println("❌ Lỗi khi ghi file: " + e.getMessage());
+        }
+    }
+
+    public void them(Hoadon hd) {
         ds = Arrays.copyOf(ds, siso + 1);
         ds[siso] = hd;
         siso++;
+    }
+
+    public void themvaodanhsach(Scanner sc, DanhsachKhachhang dskh, DanhsachNhanvien dsnv, DS_Sach dss) {
+        Hoadon hd = new Hoadon();
+        hd.nhap(sc, dskh, dsnv, dss);
+        them(hd);
+        System.out.println("Them hoa don thanh cong!");
+    }
+
+    public void nhapds(Scanner sc, DanhsachKhachhang dskh, DanhsachNhanvien dsnv, DS_Sach dss) {
+        System.out.print("Nhap so luong hoa don: ");
+        int n = sc.nextInt();
+        sc.nextLine();
+        for (int i = 0; i < n; i++) {
+            System.out.println("Nhap thong tin hoa don thu " + (i + 1) + ":");
+            themvaodanhsach(sc, dskh, dsnv, dss);
+        }
     }
 
     public void xuatds() {
@@ -38,7 +148,7 @@ class Danhsachhoadon {
         System.out.println("----- DANH SACH HOA DON -----");
         for (int i = 0; i < siso; i++) {
             ds[i].xuat();
-            System.out.println("--------------------");
+            System.out.println("\n");
         }
     }
 
@@ -64,57 +174,89 @@ class Danhsachhoadon {
         System.out.println("Xoa thanh cong!");
     }
 
-
     public void tim(Scanner sc) {
         System.out.print("Nhap ma hoa don muon tim: ");
         String matim = sc.nextLine();
+        boolean timThay = false;
         for (int i = 0; i < siso; i++) {
             if (ds[i].getMaHD().equals(matim)) {
                 ds[i].xuat();
-                return;
+                timThay = true;
+                break;
             }
         }
-        System.out.println("Khong tim thay hoa don!");
-    }
-public void menu(Scanner sc, DanhSachKhachHang dskh, Danhsachnhanvien dsnv) {
-    int chon;
-    do {
-        System.out.println("\n---- MENU QUAN LY HOA DON ----");
-        System.out.println("1. Them hoa don moi");
-        System.out.println("2. Xuat danh sach hoa don");
-        System.out.println("3. Xoa hoa don (theo ma)");
-        System.out.println("4. Tim hoa don (theo ma)");
-        System.out.println("5. Nhap lai toan bo danh sach hoa don");
-        System.out.println("0. Quay lai menu chinh");
-        System.out.print("Lua chon cua ban: ");
-        
-        chon = sc.nextInt();
-        sc.nextLine(); // Hấp thụ phím Enter
-
-        switch (chon) {
-            case 1:
-                // Phải truyền cả 3 tham số
-                themvaodanhsach(sc, dskh, dsnv);
-                break;
-            case 2:
-                xuatds();
-                break;
-            case 3:
-                xoahd(sc);
-                break;
-            case 4:
-                tim(sc);
-                break;
-            case 5:
-                // Phải truyền cả 3 tham số
-                nhapds(sc, dskh, dsnv);
-                break;
-            case 0:
-                System.out.println("Quay lai menu chinh...");
-                break;
-            default:
-                System.out.println("Lua chon khong hop le!");
+        if (!timThay) {
+            System.out.println("Khong tim thay hoa don!");
         }
-    } while (chon != 0);
-}
+    }
+
+    public void suahd(Scanner sc, DanhsachKhachhang dskh, DanhsachNhanvien dsnv, DS_Sach dss) {
+        System.out.print("Nhap ma hoa don can sua: ");
+        String maSua = sc.nextLine();
+        int vitri = -1;
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getMaHD().equals(maSua)) {
+                vitri = i;
+                break;
+            }
+        }
+        if (vitri == -1) {
+            System.out.println("Khong tim thay hoa don!");
+            return;
+        }
+
+        boolean isEditing = true;
+        while (isEditing) {
+            System.out.println("\n--- SUA HOA DON " + maSua + " ---");
+            System.out.println("1. Ngay lap");
+            System.out.println("2. Khach hang");
+            System.out.println("3. Nhan vien");
+            System.out.println("4. Nhap lai toan bo chi tiet");
+            System.out.println("0. Thoat");
+            System.out.print("Lua chon: ");
+            int choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+                     System.out.print("Nhap Ngay lap moi (dd/MM/yyyy): ");
+                     ds[vitri].setNgayLapHD(LocalDate.parse(sc.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                     break;
+                case 2:
+                     System.out.print("Nhap ma Khach Hang moi: ");
+                     ds[vitri].setKhachHang(dskh.timKiem(sc.nextLine()));
+                     break;
+                case 3:
+                     System.out.print("Nhap ma Nhan Vien moi: ");
+                     ds[vitri].setNhanVien(dsnv.timKiem(sc.nextLine()));
+                     break;
+                case 4:
+                     String maHDCu = ds[vitri].getMaHD();
+                     ds[vitri] = new Hoadon();
+                     ds[vitri].nhap(sc, dskh, dsnv, dss);
+                     ds[vitri].setMaHD(maHDCu);
+                     break;
+                case 0:
+                     isEditing = false;
+                     break;
+            }
+        }
+    }
+    
+    public void thongkeHDtheonam(Scanner sc) {
+        System.out.print("Nhap nam muon thong ke: ");
+        int nam = sc.nextInt();
+        sc.nextLine();
+        double tongDoanhThu = 0;
+        int count = 0;
+        System.out.println("\n--- HOA DON NAM " + nam + " ---");
+        for(int i=0; i<siso; i++) {
+            if(ds[i].getNgayLapHD().getYear() == nam) {
+                ds[i].xuat();
+                tongDoanhThu += ds[i].getDsChiTiet().tinhTongTien();
+                count++;
+            }
+        }
+        System.out.println("Tong so hoa don: " + count);
+        System.out.printf("Tong doanh thu nam %d: %,.0f VND\n", nam, tongDoanhThu);
+    }
 }

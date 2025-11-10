@@ -38,6 +38,13 @@ public class DanhsachChiTietHoaDon {
         }
         System.out.println("  |--------------------------------------------------|");
     }
+
+    public void xuatFile(java.util.Formatter formatter) {
+        for (int i = 0; i < n; i++) {
+            formatter.format("| %-10s | %-8d | %,11.0f | %,13.0f |\n",
+                    ds[i].getMaSach(), ds[i].getSoLuong(), ds[i].getDongia(), ds[i].getThanhTien());
+        }
+    }
     public float tinhTongTien() {
         float tong = 0;
         for (int i = 0; i < n; i++) {

@@ -29,13 +29,13 @@ public class QLHD extends QLBH {
                     break;
                 case 2:
                     //ds_Sach là danh sách dùng để check mã sách
-                    ds_HD.themvaodanhsach(sc, ds_KhachHang, ds_NhanVien, ds_Sach);
+                    ds_HD.themvaodanhsach(sc, dskh, dsnv, dss);
                     break;
                 case 3:
                     ds_HD.xoahd(sc);
                     break;
                 case 4:
-                    ds_HD.suahd(sc, ds_KhachHang, ds_NhanVien, ds_Sach);
+                    ds_HD.suahd(sc, dskh, dsnv, dss);
                     break;
                 case 5:
                     ds_HD.tim(sc);
