@@ -13,7 +13,7 @@ public class QLHD extends QLBH {
             System.out.println("3) Xóa");
             System.out.println("4) Sửa");
             System.out.println("5) Tìm kiếm");
-            System.out.println("6) Thống kê theo năm");
+            System.out.println("6) Thống kê theo quý");
             System.out.println("0) Thoát");
             System.out.print("Lựa chọn của bạn: ");
 
@@ -41,7 +41,7 @@ public class QLHD extends QLBH {
                     ds_HD.tim(sc);
                     break;
                 case 6:
-                    ds_HD.thongkeHDtheonam(sc);
+                    ds_HD.thongkeHDtheoQuy();
                     break;
                 case 0:
                     System.out.println("Đã thoát menu hóa đơn.");
