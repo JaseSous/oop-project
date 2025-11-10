@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class Phieunhaphang {
     private String MaPN;
-    private LocalDate ngaynhap;
     private String MaNCC;
+    private LocalDate ngaynhap;
 
     // Constructor mặc định
     public Phieunhaphang() {
@@ -19,8 +19,8 @@ public class Phieunhaphang {
     // Constructor đầy đủ
     public Phieunhaphang(String MaPN, LocalDate ngaynhap, String MaNCC) {
         this.MaPN = MaPN;
-        this.ngaynhap = ngaynhap;
         this.MaNCC=MaNCC;
+        this.ngaynhap = ngaynhap;
     }
 
     // Constructor sao chép
@@ -42,10 +42,10 @@ public class Phieunhaphang {
        Scanner sc=new Scanner(System.in);
         System.out.print("Nhap ma phieu nhap: ");
         MaPN = sc.nextLine();
-        System.out.print("Nhap ngay nhap (yyyy-mm-dd): ");
-        ngaynhap = LocalDate.parse(sc.nextLine());
         System.out.print("Nhap ma nha cung cap: ");
         MaNCC=sc.nextLine();
+        System.out.print("Nhap ngay nhap (yyyy-mm-dd): ");
+        ngaynhap = LocalDate.parse(sc.nextLine());
     }
     public void xuat() {
         System.out.printf("Ma PN: %s | Ngay: %s | MaNCC: %s%n", MaPN, ngaynhap,MaNCC);
