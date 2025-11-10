@@ -2,9 +2,8 @@ import java.util.Scanner;
 
 public class QLTL extends QLBH {
 
-    private DanhsachTL dsTL = new DanhsachTL();
-
-    public void menu() {
+    @Override
+    public void menuChinh() {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
@@ -44,8 +43,5 @@ public class QLTL extends QLBH {
         } while (choice != 0);
     }
 
-    public static void main(String[] args) {
-        QLTL ql = new QLTL();
-        ql.menu();
-    }
+
 }

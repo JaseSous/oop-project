@@ -30,8 +30,9 @@ public class DanhsachTL {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("OUTPUT/DSTL.txt"));
             BufferedWriter wb = new BufferedWriter(new FileWriter("INPUT/DSTL.txt"));
-
-            bw.write(String.format("%-10s %-20s%n", "Ma TL", "Ten The Loai"));
+            bw.write ("\tDanh sach the loai\n");
+            bw.write("-----------------------------\n");
+            bw.write(String.format("%-10s | %-20s%n", "Ma TL", "Ten The Loai"));
             bw.write("-----------------------------\n");
 
             wb.write(String.valueOf(soluongTL));
