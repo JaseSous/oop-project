@@ -57,7 +57,7 @@ public class CTPNH {
     }
 
     public void ghiFile(BufferedWriter bw) throws IOException  {
-        bw.write(String.format("%-10s %-10s %-10d %-10.2f %-10.2f",
+        bw.write(String.format("%-10s | %-10s | %-10d | %-10.2f | %-10.2f",
                 MaPN, MaSP, soluonghangnhap, dongia, tinhthanhtien()));
         bw.newLine();
     }

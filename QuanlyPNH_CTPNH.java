@@ -5,17 +5,17 @@ public class QuanlyPNH_CTPNH extends QLBH{
     public void xuatthongtinhphieu(){
         for(Phieunhaphang p :dsPN.getds())
         {
+            System.out.println("----------------------------------------------------\n");
             p.xuat();
-            System.out.println("----chi tiet phieu ----");
+            System.out.println("----------------Xuat thong tin phieu nhap nhang----------------");
             for (CTPNH c:dsCT.getds())
             {
                 if(c.getMaPN().equals(p.getMaPN()))
                 {
                     c.xuat();
                 }
-
+                
             }
-            System.out.println("--------------------------\n");
         }
     }
 
@@ -155,14 +155,14 @@ public class QuanlyPNH_CTPNH extends QLBH{
     } 
 
     @Override
-    public void menu() {
+    public void menuChinh() {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
             System.out.println("\n===== MENU QUAN LY PHIEU NHAP HANG =====");
             System.out.println("1. Them Phieu Nhap Hang moi (Bao gom Chi Tiet)");
             System.out.println("2. Xuat thong tin tat ca Phieu Nhap va Chi Tiet");
-            System.out.println("3. Thong ke tong tien nhap hang theo Quy");
+            System.out.println("3. Thong ke");
             System.out.println("4. Tim kiem Phieu Nhap");
             System.out.println("5. Xoa Phieu Nhap");
             System.out.println("6. Sua thong tin ");
@@ -178,12 +178,33 @@ public class QuanlyPNH_CTPNH extends QLBH{
                     xuatthongtinhphieu();
                     break;
                 case 3:
-                    double[] tongTien = ThongkeTiennhaphang();
-                    System.out.println("--- THONG KE TONG TIEN NHAP HANG THEO QUY ---");
-                    for (int i = 0; i < tongTien.length; i++) {
-                        System.out.printf("Quy %d: %.2f VND%n", (i + 1), tongTien[i]);
-                    }
-                    break;
+                    int chon;
+                    do{
+                        System.out.println("-------------Chon thong tin thong ke-------------");
+                        System.out.println("1. Thong ke tong tien nhap hang theo Quy");
+                        System.out.println("2. Thong ke so phieu nhap theo quy ");
+                         chon=sc.nextInt();
+                        sc.nextLine();
+                    switch (chon) {
+                        case 1:
+                        double[] tongTien = ThongkeTiennhaphang();
+                        System.out.println("--- THONG KE TONG TIEN NHAP HANG THEO QUY ---");
+                        for (int i = 0; i < tongTien.length; i++) {
+                            System.out.printf("Quy %d: %.2f VND%n", (i + 1), tongTien[i]);
+                            }
+                            break;
+                        case 2:
+                                int[] sp = dsPN.ThongkesophieunhapTheoQuy();
+                            System.out.println("--- THONG KE SO PHIEU NHAP HANG THEO QUY ---");
+                        for (int i = 0; i < sp.length; i++) {
+                            System.out.printf("Quy %d: %02d Phieu%n", (i + 1), sp[i]);
+                            }
+                            break;
+                        default:
+                            break;
+                    }}while (chon!=0);
+            
+                break;
                 case 4:
                     menuTimKiemPN();
                     break;
@@ -205,10 +226,5 @@ public class QuanlyPNH_CTPNH extends QLBH{
             }
         } while (choice != 0);
         sc.close();
-    }
-
-    public static void main(String[] args) {
-        QLBH quanly = new QuanlyPNH_CTPNH();
-        quanly.menu();
     }
 }

@@ -57,9 +57,11 @@ public class Danhsachphieunhap {
         BufferedWriter bw = new BufferedWriter(new FileWriter("OUTPUT/DSPNH.txt"));
         BufferedWriter wb =new BufferedWriter(new FileWriter("INPUT/DSPNH.txt"));
         // Ghi file output danh sach
-        bw.write("MaPN\tNgayNhap\tMaNCC");
+        bw.write("-----------Danh Sach Phieu Nhap Hang-----------");
         bw.newLine();
-        bw.write("----------------------------");
+        bw.write("\t\tMaPN |\t NgayNhap \t\t| MaNCC");
+        bw.newLine();
+        bw.write("-----------------------------------------------");
         bw.newLine();
         //cap nhat so luong  phieu
         wb.write(String.valueOf(soluongphieunhap));

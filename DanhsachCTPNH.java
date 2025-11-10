@@ -51,10 +51,10 @@ public class DanhsachCTPNH {
     public void xem() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("OUTPUT/DSCTPN.txt"))) {
 
-            bw.write(String.format("%-10s %-10s %-10s %-10s %-10s",
+            bw.write(String.format("%-10s | %-10s | %-10s | %-10s | %-10s",
                     "MaPN", "MaSP", "SoLuong", "DonGia", "ThanhTien"));
             bw.newLine();
-            bw.write("----------------------------------------------------------");
+            bw.write("--------------------------------------------------------------");
             bw.newLine();
 
             for (int i = 0; i < soluongchitiet; i++) {

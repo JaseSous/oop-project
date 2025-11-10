@@ -52,7 +52,7 @@ public class Phieunhaphang {
     }
 
     public void ghiFile(BufferedWriter bw, BufferedWriter wb) throws IOException {
-        bw.write(MaPN + "\t" + ngaynhap + "\t" + MaNCC);
+        bw.write("\t\t"+MaPN + "|\t" + ngaynhap + "\t\t|" + MaNCC);
         bw.newLine();
 
         wb.write(MaPN);
