@@ -90,7 +90,7 @@ public class Danhsachphieunhap {
     public void xoa(String mapn) {
         int vitri = -1;
         for (int i = 0; i < soluongphieunhap; i++) {
-            if (ds[i].getMaPN().equalsIgnoreCase(mapn)) {
+            if (ds[i].getMaPN().equals(mapn)) {
                 vitri = i;
                 break;
             }

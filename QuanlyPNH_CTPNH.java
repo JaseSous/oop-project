@@ -5,17 +5,20 @@ public class QuanlyPNH_CTPNH extends QLBH{
     public void xuatthongtinhphieu(){
         for(Phieunhaphang p :dsPN.getds())
         {
-            System.out.println("----------------------------------------------------\n");
+            double  tongtiennhap1phieu=0.0;
             p.xuat();
             System.out.println("----------------Xuat thong tin phieu nhap nhang----------------");
+            System.out.printf("%-20s | %-10s | %-20s | %-20s%n","MaSP","So luong","Don gia","Tong tien");
             for (CTPNH c:dsCT.getds())
             {
                 if(c.getMaPN().equals(p.getMaPN()))
                 {
                     c.xuat();
+                    tongtiennhap1phieu+=c.tinhthanhtien();
                 }
-                
             }
+            System.out.printf("Tong tien phieu nhap hang: %,.0f VND%n", tongtiennhap1phieu);
+            System.out.println("----------------------------------------------------------\n");
         }
     }
 
@@ -182,6 +185,7 @@ public class QuanlyPNH_CTPNH extends QLBH{
                     do{
                         System.out.println("-------------Chon thong tin thong ke-------------");
                         System.out.println("1. Thong ke tong tien nhap hang theo Quy");
+                        System.out.println("2. Thong ke so phieu nhap theo quy ");
                         System.out.println("2. Thong ke so phieu nhap theo quy ");
                          chon=sc.nextInt();
                         sc.nextLine();
