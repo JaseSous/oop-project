@@ -67,10 +67,15 @@ public class NhanVien {
 
     //----Hàm Tính Tuổi----
     public int age(){
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");//lệnh để dịch dòng String thành định dạng localdate
-        LocalDate birthDate = LocalDate.parse(ngaysinh, df);//lưu ngày vừa dịch vô cho biến birthdate
-        LocalDate today = LocalDate.now();
-        return Period.between(birthDate, today).getYears();//lệnh cho biết khoảng tgian giữa 2 đơn vi thời gian 
+        try { //Thêm try
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate birthDate = LocalDate.parse(ngaysinh, df);
+            LocalDate today = LocalDate.now();
+            return Period.between(birthDate, today).getYears();
+        } catch (Exception e) { //Thêm catch
+            // Nếu ngày sinh bị lỗi (sai định dạng, ngày không tồn tại), trả về 0
+            return 0; 
+        } 
     }
 
     //----Hàm get/set----

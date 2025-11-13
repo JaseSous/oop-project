@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class QLNV extends QLBH {
     @Override public void menuChinh(){
+
+        ds_Nhanvien.loadFile();
+   
         // Menu chính
         System.out.println("\n===[Giao diện quản lý danh sách Nhân Viên]===\n");
 
