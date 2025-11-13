@@ -1,7 +1,16 @@
 package Nhanvien;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Formatter;
 
 public class DS_Nhanvien {
     //----Thuoc tinh----
@@ -13,43 +22,125 @@ public class DS_Nhanvien {
         this.nv= new NhanVien[0];
         this.soluong=0;
     }
-
-    //----ham nhap----
-    public void nhapnv(){
-        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap so luong Nhan vien: ");
-        int n = sc.nextInt(); sc.nextLine();
-        nv = new NhanVien[n];
-        soluong = n;
-        for (int i = 0; i < n; i++){
-            System.out.println("Nhap Nhan vien thu " + (i + 1) + ":");
-            nv[i] = new NhanVien();
-            nv[i].nhap();
-        }
+    public DS_Nhanvien(DS_Nhanvien other) {
+        this.soluong = other.soluong;
+        nv = Arrays.copyOf(other.nv, other.soluong);
     }
 
-    //----ham xuat----
-    public void xuatkh(){
-        if (soluong == 0) {
-            System.out.println("Danh sach rong!");
+    // Phương thức
+    public void loadFile(){
+        try {
+            String FilePath = "DATA/DS_Nhanvien.dat";
+
+            // Kiểm tra file rỗng hoặc ko tồn tại
+            Path path = Paths.get(FilePath);
+
+            if (!Files.exists(path) || !Files.isRegularFile(path) || Files.size(path) == 0) {
+                return;
+            }
+
+            // Đọc file
+            BufferedReader reader = new BufferedReader(new FileReader(FilePath));
+            int n = Integer.parseInt(reader.readLine().trim());
+            
+            for (int i = 0; i < n; i++){
+                // Đọc các thuộc tính của class
+                long manv = Long.parseLong(reader.readLine().trim());
+                String ho = reader.readLine().trim();
+                String ten = reader.readLine().trim();
+                String ngaysinh = reader.readLine().trim();
+                long luongthang = Long.parseLong(reader.readLine().trim());
+                
+                // Thêm vào ds
+                this.them(manv, ho, ten, ngaysinh, luongthang);
+            }
+
+            reader.close();
+        } catch (IOException e) {
             return;
         }
-        System.out.println("----- DANH SACH NHAN VIEN -----");
-        for (int i = 0; i < soluong; i++) {
-            nv[i].xuat();
-            System.out.println("--------------------");
+    }
+    public void saveFile(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("DATA/DS_Nhanvien.dat"))) {
+            writer.write(String.valueOf(soluong));
+            for (int i = 0; i < soluong; i++){
+                NhanVien nhanVien = nv[i];
+                writer.newLine();
+                writer.write(String.valueOf(nhanVien.getManv()));
+                
+                writer.newLine();
+                writer.write(nhanVien.getHo());
+                
+                writer.newLine();
+                writer.write(nhanVien.getTen());
+                
+                writer.newLine();
+                writer.write(nhanVien.getNgaysinh());
+                
+                writer.newLine();
+                writer.write(String.valueOf(nhanVien.getLuongthang()));
+            }
+            
+            System.out.println("Đã lưu dữ liệu vào file: DS_Nhanvien.dat");
+        } catch (IOException e) {
+            System.err.println("Lỗi khi lưu danh sách nhân viên vào file: " + e.getMessage());
         }
     }
+    public void xem() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachNhanVien.txt"));
+            Formatter formatter = new Formatter(writer)) {
+            
+                formatter.format("===[Danh sách Nhân viên]===\n");
+                formatter.format("Số lượng: " + soluong + "\n\n");
 
-    //----ham them vao danh sach----
-    public void themvaodanhsach() {
-        NhanVien nhanvien = new NhanVien();
-        nhanvien.nhap();
+                if (soluong > 0){
+                    formatter.format("-".repeat(94));
+                    formatter.format("\n| %-3s | %-10s | %-20s | %-10s | %-15s | %-15s |\n",
+                                     "STT", "Mã NV", "Họ", "Tên", "Ngày sinh", "Lương tháng");
+                    formatter.format("-".repeat(94) + "\n");
+
+                    for (int i = 0; i < soluong; i++){
+                        NhanVien nhanVien = nv[i]; // Lấy nhân viên
+                        formatter.format("| %-3s | %-10s | %-20s | %-10s | %-15s | %-15s |\n",
+                                        i+1,
+                                        nhanVien.getManv(),
+                                        nhanVien.getHo(),
+                                        nhanVien.getTen(),
+                                        nhanVien.getNgaysinh(),
+                                        nhanVien.getLuongthang() + " ₫"); // Thêm ₫ cho đẹp
+                    }
+                    formatter.format("-".repeat(94));
+            }
+
+            System.out.println("Đã ghi dữ liệu vào file: DanhSachNhanVien.txt");
+
+        } catch (IOException e) {
+            System.err.println("Lỗi I/O khi xuất danh sách nhân viên: " + e.getMessage());
+        }
+    }
+    public void them() {
+        System.out.println("===[ Thêm Nhân Viên Mới ]===");
+        
+        // 1. Tạo một nhân viên mới
+        NhanVien nvMoi = new NhanVien();
+        
+        nvMoi.nhap(); 
+
+        // 3. Thêm nhân viên mới này vào mảng
         nv = Arrays.copyOf(nv, soluong + 1);
-        nv[soluong] = nhanvien;
+        nv[soluong] = nvMoi;
+        soluong++;
+
+        System.out.println("Đã thêm nhân viên " + nvMoi.getTen() + " vào danh sách.");
+    }
+
+    public void them(long manv, String ho, String ten, String ngaysinh, long luongthang) {
+        nv = Arrays.copyOf(nv, soluong + 1);
+        nv[soluong] = new NhanVien(manv, ho, ten, ngaysinh, luongthang);
         soluong++;
     }
+
+
 
     //----ham xoa nhan vien----
     public void xoanv(){
@@ -95,7 +186,7 @@ public class DS_Nhanvien {
             return;
         }
         System.out.print("\nNhap ma nhan vien moi: ");
-        long makh = sc.nextLong();
+        long manv = sc.nextLong();
         sc.nextLine();
         System.out.print("Nhap ho moi: ");
         String ho = sc.nextLine();
@@ -106,7 +197,7 @@ public class DS_Nhanvien {
         System.out.print("Nhap luong thang moi: ");
         long luongthang = sc.nextLong();
 
-        nv[vitri] = new NhanVien(makh,ho,ten,ngaysinh,luongthang);
+        nv[vitri] = new NhanVien(manv,ho,ten,ngaysinh,luongthang);
 
         System.out.println("Sua thong tin thanh cong!");
     }
@@ -147,16 +238,20 @@ public class DS_Nhanvien {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ten (hoac ten mot phan) cua nhan vien muon tim: ");
         String tentim = sc.nextLine().toLowerCase();
+        boolean timThay = false; // Thêm cờ
 
         for (int i = 0; i < soluong; i++) {
             if (nv[i].getTen().toLowerCase().contains(tentim)) {
-                // dùng contains để tìm gần đúng
                 System.out.println("Tim thay nhan vien:");
-                nv[i].xuat();
+                nv[i].xuat(); 
                 System.out.println("---------------------------");
+                timThay = true;
             }
         }
-        System.out.println("Khong tim thay nhan vien nao co ten phu hop!");
+    
+        if (!timThay) { // Chỉ in nếu không tìm thấy
+            System.out.println("Khong tim thay nhan vien nao co ten phu hop!");
+        }
     }
 
     //----Ham tim nhan vien theo ho----
@@ -165,16 +260,20 @@ public class DS_Nhanvien {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ho (hoac ten mot phan) cua nhan vien muon tim: ");
         String hotim = sc.nextLine().toLowerCase();
+        boolean timThay = false; // Thêm cờ
 
         for (int i = 0; i < soluong; i++) {
             if (nv[i].getHo().toLowerCase().contains(hotim)) {
-                // dùng contains để tìm gần đúng
                 System.out.println("Tim thay nhan vien:");
-                nv[i].xuat();
+                nv[i].xuat(); 
                 System.out.println("---------------------------");
+                timThay = true; // Đánh dấu đã tìm thấy
             }
         }
-        System.out.println("Khong tim thay nhan vien nao co ho phu hop!");
+    
+        if (!timThay) { // Chỉ in nếu không tìm thấy
+            System.out.println("Khong tim thay nhan vien nao co ho phu hop!");
+        }
     }
 
     //---------CÁC HÀM THỐNG KÊ----------
@@ -229,48 +328,10 @@ public class DS_Nhanvien {
         }
     
         // In kết quả
-        System.out.println("----- Thong ke theo Ho -----");
+        System.out.println("----- Thong ke theo Ten -----");
         for (int i = 0; i < cacTen.length; i++) {
             System.out.println(cacTen[i] + ": " + demTen[i] + " nhan vien");
         }
     }
     
-    //----Hàm menu----
-    public void menu() {
-        nhapnv(); // nhập danh sách ban đầu (nếu bạn muốn)
-
-        int chon;
-        do {
-            @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
-            Scanner sc = new Scanner(System.in);
-            System.out.println("\n---- MENU ----");
-            System.out.println("1. Xuat danh sach");
-            System.out.println("2. Them Nhan vien");
-            System.out.println("3. Xoa Nhan vien");
-            System.out.println("4. Sua Nhan vien");
-            System.out.println("5. Tim theo nv theo Ma Nhan vien");
-            System.out.println("6. Tim theo Ten");
-            System.out.println("7. Tim theo Ho");
-            System.out.println("8. Thong ke theo nhom tuoi cua Nhan vien");
-            System.out.println("9. Thong ke theo Ten cua Nhan vien");
-            System.out.println("0. Thoat");
-            System.out.print("Lua chon: ");
-            chon = sc.nextInt();
-            sc.nextLine();
-            
-        switch (chon) {
-            case 1: xuatkh(); break;
-            case 2: themvaodanhsach(); break;
-            case 3: xoanv(); break;
-            case 4: suasv(); break;
-            case 5: timTheoma(); break;
-            case 6: timTheoten(); break;
-            case 7: timTheoho(); break;
-            case 8: Thongketheonhomtuoi(); break;
-            case 9: Thongketheoten(); break;
-            case 0: System.out.println("Thoat!"); break;
-            default: System.out.println("Lua chon khong hop le!");
-        }
-    } while (chon != 0);
-    }
 }
