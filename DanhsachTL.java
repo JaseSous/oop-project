@@ -17,7 +17,8 @@ public class DanhsachTL {
             dsTL = new Theloai[soluongTL];
             for (int i = 0; i < soluongTL; i++) {
                 dsTL[i] = new Theloai();
-                dsTL[i].nhapTL(br);
+                dsTL[i].setMaTL(br.readLine().trim());
+                dsTL[i].setTenTL(br.readLine().trim());
             }
             System.out.println("Da doc du lieu the loai thanh cong!");
         } catch (Exception e) {
@@ -74,7 +75,7 @@ public class DanhsachTL {
     public void xoaTL(String maTLmuonxoa) {
         int vitri = -1;
         for (int i = 0; i < soluongTL; i++) {
-            if (dsTL[i].getMaTL().equalsIgnoreCase(maTLmuonxoa)) {
+            if (dsTL[i].getMaTL().equals(maTLmuonxoa)) {
                 vitri = i;
                 break;
             }

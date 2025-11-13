@@ -29,18 +29,13 @@ public class Theloai {
     public String getTenTL() { return tenTL; }
     public void setTenTL(String tenTL) { this.tenTL = tenTL; }
 
-    // Nhập từ file
-    public void nhapTL(BufferedReader br) throws IOException {
-        maTL = br.readLine().trim();
-        tenTL = br.readLine().trim();
-    }
 
     // Nhập từ bàn phím
     public void themTL() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã thể loại: ");
+        System.out.print("Nhap ma the loai: ");
         maTL = sc.nextLine();
-        System.out.print("Nhập tên thể loại: ");
+        System.out.print("Nhap ten the loai: ");
         tenTL = sc.nextLine();
     }
 
