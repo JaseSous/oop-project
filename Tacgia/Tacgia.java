@@ -26,6 +26,13 @@ public class Tacgia {
         this.trinhdo=trinhdo;
         this.ngaysinh=ngaysinh;
     }
+    public Tacgia(Tacgia other){
+        this.matg = other.matg;
+        this.ho = other.ho;
+        this.ten = other.ten;
+        this.trinhdo = other.trinhdo;
+        this.ngaysinh = other.ngaysinh;
+    }
     
     public void nhap(){
         @SuppressWarnings("resource")
@@ -46,16 +53,27 @@ public class Tacgia {
     
 
     public void xuat(){
-        System.out.printf("%-10d %-10s %-5s %-10s %-10s %-10d",
-        matg,ho,ten,trinhdo,ngaysinh,age());
+        System.out.println("---------------------------------------------------------");
+        System.out.printf("| Mã TG: %-10d | Họ Tên: %-15s %-10s |\n",
+                matg, ho, ten);
+        System.out.printf("| Ngày sinh: %-12s | Tuổi: %-3d                 |\n",
+                ngaysinh, age());
+        System.out.printf("| Trình độ: %-15s                           |\n",
+                trinhdo);
+        System.out.println("---------------------------------------------------------");
     }
 
     //----Hàm Tính Tuổi----
     public int age(){
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate birthDate = LocalDate.parse(ngaysinh, df);
-        LocalDate today = LocalDate.now();
-        return Period.between(birthDate, today).getYears();
+        try {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate birthDate = LocalDate.parse(ngaysinh, df);
+            LocalDate today = LocalDate.now();
+            return Period.between(birthDate, today).getYears();
+        } catch (Exception e) { 
+            // Nếu ngày sinh bị lỗi, trả về 0
+            return 0; 
+        }
     }
 
     //----Hàm get/set----
