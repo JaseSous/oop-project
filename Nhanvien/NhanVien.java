@@ -53,12 +53,16 @@ public class NhanVien {
         luongthang = sc.nextLong();
     }
 
-    //----Hàm xuất----
+    //----Hàm xuất ----
     public void xuat(){
-        System.out.printf("%-10d %-10s %-5s %-10s %-10d",
-        manv,ho,ten,ngaysinh,luongthang);
-
-        System.out.println("Tuoi cua nhan vien: " + age());
+        System.out.println("----------------------------------------------------------");
+        System.out.printf("| Mã NV: %-10d | Họ Tên: %-15s %-10s |\n",
+                manv, ho, ten);
+        System.out.printf("| Ngày sinh: %-12s | Tuổi: %-3d                 |\n",
+                ngaysinh, age());
+        System.out.printf("| Lương tháng: %-15d ₫                           |\n",
+                luongthang);
+        System.out.println("----------------------------------------------------------");
     }
 
     //----Hàm Tính Tuổi----
