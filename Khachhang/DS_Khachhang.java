@@ -93,6 +93,60 @@ public class DS_Khachhang {
             System.err.println("Lỗi I/O: " + e.getMessage());
         }
     }
+
+    public void saveFile(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("DATA/DS_Khachhang.dat"))) {
+    
+            // 1. Ghi tổng số lượng
+            writer.write(String.valueOf(soluong));
+    
+            // 2. Lặp qua mảng và ghi 7 thuộc tính
+            for (int i = 0; i < soluong; i++){
+                Khachhang khach = kh[i]; 
+    
+                writer.newLine();
+                writer.write(String.valueOf(khach.getMakh()));
+    
+                writer.newLine();
+                writer.write(khach.getHo());
+    
+                writer.newLine();
+                writer.write(khach.getTen());
+    
+                writer.newLine();
+                writer.write(khach.getDchi());
+    
+                writer.newLine();
+                writer.write(String.valueOf(khach.getSdt()));
+    
+                writer.newLine();
+                writer.write(khach.getNgaysinh());
+    
+                writer.newLine();
+                writer.write(khach.getNgaymuahang());
+            }
+    
+            System.out.println("Đã lưu dữ liệu vào file: DS_Khachhang.dat");
+    
+        } catch (IOException e) {
+            System.err.println("Lỗi khi lưu danh sách khách hàng vào file: " + e.getMessage());
+        }
+    }
+
+    public void them() {
+        System.out.println("===[ Thêm Khách Hàng Mới ]===");
+    
+        // 1. Tạo một khách hàng mới
+        Khachhang khMoi = new Khachhang();
+        khMoi.nhap(); 
+    
+        // 3. Thêm khách hàng mới này vào mảng
+        kh = Arrays.copyOf(kh, soluong + 1);
+        kh[soluong] = khMoi;
+        soluong++;
+    
+        System.out.println("Đã thêm khách hàng " + khMoi.getTen() + " vào danh sách.");
+    }
     
     public void them(long makh, String ho, String ten, String dchi,long sdt, String ngaysinh,String ngaymuahang ) {
         kh = Arrays.copyOf(kh, kh.length + 1);
@@ -100,6 +154,21 @@ public class DS_Khachhang {
         soluong++;
     }
 
+    //-----Hàm xuất ra console----
+    public void xuat() {
+        if (soluong == 0) {
+            System.out.println("Danh sách khách hàng rỗng.");
+            return;
+        }
+        System.out.println("\n----- DANH SÁCH KHÁCH HÀNG -----");
+        for (int i = 0; i < soluong; i++) {
+            System.out.println("--- Khách hàng " + (i + 1) + " ---");
+            // Gọi hàm xuat() của lớp Khachhang
+            // (Hàm này đã được dùng trong timTheoma() nên chắc chắn đã có)
+            kh[i].xuat(); 
+            System.out.println("\n-----------------------------");
+        }
+    }
 
     //----Ham xoa khach hang----
     public void xoakh(){
@@ -129,40 +198,29 @@ public class DS_Khachhang {
     
     //----Ham sua khach hang----
     public void suakh() {
-        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma KH muon sua: ");
         long masua = sc.nextLong();
         int vitri = -1;
+    
+        // 1. Tìm vị trí
         for (int i = 0; i < soluong; i++) {
             if (kh[i].getMakh() == masua) {
                 vitri = i;
                 break;
             }
         }
+    
         if (vitri == -1) {
             System.out.println("Khong tim thay khach hang!");
             return;
         }
-        System.out.print("\nNhap ma khach hang moi: ");
-        long makh = sc.nextLong();
-        sc.nextLine();
-        System.out.print("Nhap ho moi: ");
-        String ho = sc.nextLine();
-        System.out.print("Nhap ten moi: ");
-        String ten = sc.nextLine();
-        System.out.print("Nhap dia chi moi: ");
-        String dchi = sc.nextLine();
-        System.out.print("Nhap so dien thoai moi: ");
-        long sdt = sc.nextLong();
-        sc.nextLine();
-        System.out.print("Nhap ngay sinh moi(dd/MM/yyyy): ");
-        String ngaysinh = sc.nextLine();
-        System.out.print("Nhap ngay mua hang moi(dd/MM/yyyy): ");
-        String ngaymuahang = sc.nextLine();
-
-        kh[vitri] = new Khachhang(makh,ho,ten,dchi,sdt,ngaysinh,ngaymuahang);
-
+    
+        // 2. Gọi hàm nhap() của chính đối tượng đó
+        System.out.println("Tim thay! Vui long nhap thong tin moi:");
+        kh[vitri].nhap();
+    
         System.out.println("Sua thong tin thanh cong!");
     }
     
@@ -203,16 +261,21 @@ public class DS_Khachhang {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ten (hoac ten mot phan) cua khach hang muon tim: ");
         String tentim = sc.nextLine().toLowerCase();
+        boolean timThay = false; // Thêm cờ
 
         for (int i = 0; i < soluong; i++) {
             if (kh[i].getTen().toLowerCase().contains(tentim)) {
-                // dùng contains để tìm gần đúng
                 System.out.println("Tim thay khach hang:");
+
                 kh[i].xuat();
+
                 System.out.println("---------------------------");
+                timThay = true;//Đánh dấu đã tìm thấy
             }
         }
-        System.out.println("Khong tim thay khach hang nao co ten phu hop!");
+        if (!timThay) {
+            System.out.println("Khong tim thay khach hang nao co ten phu hop!");
+        }
     }
 
     //----Ham tim khach hang theo ho----
@@ -221,16 +284,21 @@ public class DS_Khachhang {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ho (hoac ten mot phan) cua khach hang muon tim: ");
         String hotim = sc.nextLine().toLowerCase();
+        boolean timThay = false; // Thêm cờ
 
         for (int i = 0; i < soluong; i++) {
             if (kh[i].getHo().toLowerCase().contains(hotim)) {
-                // dùng contains để tìm gần đúng
                 System.out.println("Tim thay khach hang:");
+
                 kh[i].xuat();
+
                 System.out.println("---------------------------");
+                timThay = true;//Đánh dấu đã tìm thấy
             }
         }
-        System.out.println("Khong tim thay khach hang nao co ho phu hop!");
+        if (!timThay) {
+            System.out.println("Khong tim thay khach hang nao co ho phu hop!");
+        }
     }
 
     //----Ham tim khach hang theo sdt----
@@ -238,15 +306,23 @@ public class DS_Khachhang {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap so dien thoai Khach Hang muon tim: ");
-        long sdttim = sc.nextInt();
+        
+        long sdttim = sc.nextLong();
+        boolean timThay = false;// Thêm cờ
+
         for (int i = 0; i < soluong; i++) {
             if (kh[i].getSdt() == sdttim) {
                 System.out.println("Tim thay khach hang:");
                 kh[i].xuat();
                 System.out.println("---------------------------");
+                timThay = true;// Đánh dấu đã tìm thấy
             }
         }
-        System.out.println("Khong tim thay Khach Hang!");
+        
+        //Chỉ thông báo khi không tìm thấy
+        if (!timThay) {
+            System.out.println("Khong tim thay Khach Hang!");
+        }
     }
 
     //---------CÁC HÀM THỐNG KÊ----------

@@ -57,8 +57,11 @@ public class Khachhang {
     
 
     public void xuat(){
-        System.out.printf("%-10d %-10s %-5s %-10s %-10d %-10s %-10s %-10s",
-        makh,ho,ten,dchi,sdt,ngaysinh,ngaymuahang,age());
+        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.printf("| Mã KH: %-10d | Họ: %-15s | Tên: %-10s | Tuổi: %-3d |\n", makh, ho, ten, age());
+        System.out.printf("| SĐT: %-10d   | Địa chỉ: %-48s |\n", sdt, dchi);
+        System.out.printf("| Ngày sinh: %-10s | Ngày mua: %-47s |\n", ngaysinh, ngaymuahang);
+        System.out.println("-----------------------------------------------------------------------------------------");
     }
 
     //----Hàm Tính Tuổi----
