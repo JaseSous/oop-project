@@ -3,13 +3,13 @@ package Nhanvien;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Danhsachnhanvien {
+public class DS_Nhanvien {
     //----Thuoc tinh----
     private NhanVien[] nv;
     private int soluong;
 
     //----Ham thiet lap----
-    public Danhsachnhanvien(){
+    public DS_Nhanvien(){
         this.nv= new NhanVien[0];
         this.soluong=0;
     }
