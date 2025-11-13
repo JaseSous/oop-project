@@ -135,7 +135,7 @@ public class DanhsachNCC {
         do {
             System.out.println("\n===== MENU QUAN LY NHA CUNG CAP =====");
             System.out.println("1. Sua ten NCC  ");
-            System.out.println("1. Sua dia chi  ");
+            System.out.println("2. Sua dia chi  ");
             System.out.println("0. Thoat chuc nang ");
             System.out.println("=========================================");
                 choice = sc.nextInt();
@@ -220,7 +220,7 @@ public class DanhsachNCC {
                 if (ds.length == 0) {
                     System.out.println("ko tim thay ten : " + ten);
                 } else {
-                    System.out.printf("%-10s %-20s %-20s%n", "Ma NCC", "Ten NCC", "Đia chi");
+                    System.out.printf("%-10s %-20s %-20s%n", "Ma NCC", "Ten NCC", "Dia chi");
                     for (Nhacungcap n : ds)
                         n.xuat();
                 }
