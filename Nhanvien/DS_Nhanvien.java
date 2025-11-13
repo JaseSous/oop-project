@@ -140,6 +140,20 @@ public class DS_Nhanvien {
         soluong++;
     }
 
+    //-----Hàm xuất console----
+    public void xuat() {
+        if (soluong == 0) {
+            System.out.println("Danh sách nhân viên rỗng.");
+            return;
+        }
+        System.out.println("\n----- DANH SÁCH NHÂN VIÊN -----");
+        for (int i = 0; i < soluong; i++) {
+            System.out.println("--- Nhân viên " + (i + 1) + " ---");
+            // Gọi hàm xuat() của lớp NhanVien
+            nv[i].xuat(); 
+            System.out.println("\n-----------------------------");
+        }
+    }
 
 
     //----ham xoa nhan vien----
@@ -185,22 +199,12 @@ public class DS_Nhanvien {
             System.out.println("Khong tim thay nhan vien!");
             return;
         }
-        System.out.print("\nNhap ma nhan vien moi: ");
-        long manv = sc.nextLong();
-        sc.nextLine();
-        System.out.print("Nhap ho moi: ");
-        String ho = sc.nextLine();
-        System.out.print("Nhap ten moi: ");
-        String ten = sc.nextLine();
-        System.out.print("Nhap ngay sinh moi(dd/MM/yyyy): ");
-        String ngaysinh = sc.nextLine();
-        System.out.print("Nhap luong thang moi: ");
-        long luongthang = sc.nextLong();
-
-        nv[vitri] = new NhanVien(manv,ho,ten,ngaysinh,luongthang);
+        System.out.println("Tim thay nhan vien. Vui long nhap thong tin moi:");
+        nv[vitri].nhap(); 
 
         System.out.println("Sua thong tin thanh cong!");
     }
+
     //----CÁC HÀM TÌM-----
 
     //----ham tim nhan vien theo manv----
@@ -285,7 +289,7 @@ public class DS_Nhanvien {
         int tren30 = 0;
     
         for (int i = 0; i < soluong; i++) {
-            int tuoi = nv[i].age();  // Gọi hàm age() của từng sinh viên
+            int tuoi = nv[i].age();  // Gọi hàm age() của từng nhân viên
     
             if (tuoi < 20) {
                 duoi20++;
@@ -297,9 +301,9 @@ public class DS_Nhanvien {
         }
     
         System.out.println("----- Thong ke theo nhom tuoi -----");
-        System.out.println("Duoi 20 tuoi: " + duoi20 + " sinh vien");
-        System.out.println("Tu 20 den 29 tuoi: " + tu20den29 + " sinh vien");
-        System.out.println("Tu 30 tuoi tro len: " + tren30 + " sinh vien");
+        System.out.println("Duoi 20 tuoi: " + duoi20 + " nhan vien");
+        System.out.println("Tu 20 den 29 tuoi: " + tu20den29 + " nhan vien");
+        System.out.println("Tu 30 tuoi tro len: " + tren30 + " nhan vien");
     }
 
     //----Hàm thống kê theo Tên----
