@@ -186,6 +186,7 @@ public class QuanlyPNH_CTPNH extends QLBH{
                         System.out.println("-------------Chon thong tin thong ke-------------");
                         System.out.println("1. Thong ke tong tien nhap hang theo Quy");
                         System.out.println("2. Thong ke so phieu nhap theo quy ");
+                        System.out.println("0. Thoat chuc nang ");
                          chon=sc.nextInt();
                         sc.nextLine();
                     switch (chon) {
