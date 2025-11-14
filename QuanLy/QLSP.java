@@ -1,6 +1,7 @@
 package QuanLy;
 
 import java.util.Scanner;
+import Sach.Sach;
 
 public class QLSP extends QLBH {
     @Override public void menuChinh(){
@@ -52,13 +53,41 @@ public class QLSP extends QLBH {
                     ds_Sach.sua();
                     break;
                 case 5: // Tìm kiếm theo mã sách
-                    ds_Sach.timKiemTheoMaSach();
+                
+                    System.out.print("Hãy nhập mã sách cần tim kiếm: "); String masachcantim = sc.nextLine().trim();
+                    
+                    Sach resultsearchmasach = ds_Sach.timKiemTheoMaSach(masachcantim);
+                    if (masachcantim != null){
+                        System.out.println("Đã tìm thấy sách cần tìm, thông tin sách:");
+                        resultsearchmasach.xuat();
+                    }
+                    else
+                        System.out.println("Không tìm thấy sách cần tìm.");
+                    
                     break;
                 case 6: // Tìm kiếm theo mã thể loại
-                    ds_Sach.timKiemTheoMaTheLoai();
+
+                    System.out.print("Hãy nhập mã thể loại cần tim kiếm: "); String matheloaicantim = sc.nextLine().trim();
+                    
+                    Sach[] resultsearchmatheloai = ds_Sach.timKiemTheoMaTheLoai(matheloaicantim);
+                    if (resultsearchmatheloai.length > 0){
+                        System.out.println("Đã tìm thấy " + resultsearchmatheloai.length + " sách có mã thể loại " + matheloaicantim + ":");
+                        for (int i = 0; i < resultsearchmatheloai.length; i++){
+                            System.out.println("Sách thứ " + (i+1) + ":");
+                            resultsearchmatheloai[i].xuat();
+                        }
+                    }
+                    else
+                        System.out.println("Không tìm thấy sách cần tìm.");
+                        
                     break;
                 case 7: // Thống kê theo số lượng loại sách
-                    ds_Sach.thongKeLoaiSach();
+
+                    int[] resultthongkeloaisach = ds_Sach.thongKeLoaiSach();
+                    System.out.println("Thống kê theo số lượng loại sách:");
+                    System.out.println("\tSách giáo khoa: " + resultthongkeloaisach[0]);
+                    System.out.println("\tSách nghiên cứu: " + resultthongkeloaisach[1]);
+
                     break;
                 case 8: // Lưu và thoát
                     ds_Sach.saveFile();

@@ -252,60 +252,44 @@ public class DS_Sach {
         System.out.println("Không tìm thấy sách cần sửa.");
     }
 
-    public void timKiemTheoMaSach(){
+    public Sach timKiemTheoMaSach(String maSachCanTim){
         Scanner sc = new Scanner(System.in);
-
-        System.out.print("Hãy nhập mã sách cần tim kiếm: "); String maSachCanTim = sc.nextLine().trim();
 
         for (Sach sach : dsSach){
             if (sach.getMasach().equals(maSachCanTim)){
-                System.out.println("Đã tìm thấy sách cần tìm, thông tin sách:");
-                sach.xuat();
-                return;
+                return sach;
             }
         }
 
-        System.out.println("Không tìm thấy sách cần tìm.");
+        return null;
     }
 
-    public void timKiemTheoMaTheLoai(){
+    public Sach[] timKiemTheoMaTheLoai(String matheloaicantim){
         Sach[] result = new Sach[0];
         
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Hãy nhập mã thể loại cần tim kiếm: "); String maTheLoaiCanTim = sc.nextLine().trim();
-
         for (Sach sach : dsSach){
-            if (sach.getMatheloai().equals(maTheLoaiCanTim)){
+            if (sach.getMatheloai().equals(matheloaicantim)){
                 result = Arrays.copyOf(result, result.length+1);
                 result[result.length-1] = new Sach(sach);
             }
         }
 
-        if (result.length > 0){
-            System.out.println("Đã tìm thấy " + result.length + " sách có mã thể loại " + maTheLoaiCanTim + ":");
-
-            for (int i = 0; i < result.length; i++){
-                System.out.println("Sách thứ " + (i+1) + ":");
-                result[i].xuat();
-            }
-        }
-        else
-            System.out.println("Không tìm thấy sách cần tìm.");
+        return result;
     }
 
-    public void thongKeLoaiSach(){
-        int sl_sgk = 0, sl_snc = 0;
+    public int[] thongKeLoaiSach(){
+        //result[0] là sgk, result[1] là snc
+        int[] result = new int[2];
         
-        for (int i = 0; i < soLuongSach; i++){
-            if (dsSach[i] instanceof SGK)
-                sl_sgk++;
-            else if (dsSach[i] instanceof SNC)
-                sl_snc++;
+        for (Sach sach : dsSach){
+            if (sach instanceof SGK)
+                result[0]++;
+            else if (sach instanceof SNC)
+                result[1]++;
         }
 
-        System.out.println("Thống kê theo số lượng loại sách:");
-        System.out.println("\tSách giáo khoa: " + sl_sgk);
-        System.out.println("\tSách nghiên cứu: " + sl_snc);
+        return result;
     }
 }
