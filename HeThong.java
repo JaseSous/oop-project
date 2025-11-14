@@ -53,7 +53,8 @@ public class HeThong {
                 qlkh.menuChinh();
                 break;
             case 5: // Quản lý nhân viên
-
+                QLBH qlnv = new QLNV();
+                qlnv.menuChinh();
                 break;
         }
     }
