@@ -1,3 +1,5 @@
+package Sach;
+
 import java.util.Scanner;
 
 public class SNC extends Sach {

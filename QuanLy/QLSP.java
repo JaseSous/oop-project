@@ -1,3 +1,5 @@
+package QuanLy;
+
 import java.util.Scanner;
 
 public class QLSP extends QLBH {

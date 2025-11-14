@@ -1,3 +1,5 @@
+import QuanLy.*;
+
 import java.util.Scanner;
 
 public class HeThong {

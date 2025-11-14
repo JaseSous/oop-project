@@ -1,4 +1,5 @@
-package Khachhang;
+package QuanLy;
+
 import java.util.Scanner;
 
 public class QLKH extends QLBH {
