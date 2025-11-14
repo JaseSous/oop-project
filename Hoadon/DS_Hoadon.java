@@ -1,9 +1,9 @@
 package Hoadon;
 
-import Khachhang.DanhsachKhachhang;
+import Khachhang.DS_Khachhang;
 import Khachhang.Khachhang;
-import Nhanvien.DanhsachNhanvien;
-import Nhanvien.Nhanvien;
+import Nhanvien.DS_Nhanvien;
+import Nhanvien.NhanVien;
 import Sach.DS_Sach;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -19,16 +19,16 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Formatter;
 
-public class Danhsachhoadon {
+public class DS_Hoadon {
     private Hoadon[] ds;
     private int siso;
 
-    public Danhsachhoadon() {
+    public DS_Hoadon() {
         this.ds = new Hoadon[0];
         this.siso = 0;
     }
 
-    public void loadFile(DanhsachKhachhang dskh, DanhsachNhanvien dsnv) {
+    public void loadFile(DS_Khachhang dskh, DS_Nhanvien dsnv) {
         try {
             String filePath = "DATA/DS_HoaDon.txt";
             Path path = Paths.get(filePath);
@@ -124,14 +124,14 @@ public class Danhsachhoadon {
         siso++;
     }
 
-    public void themvaodanhsach(Scanner sc, DanhsachKhachhang dskh, DanhsachNhanvien dsnv, DS_Sach dss) {
+    public void themvaodanhsach(Scanner sc, DS_Khachhang dskh, DS_Nhanvien dsnv, DS_Sach dss) {
         Hoadon hd = new Hoadon();
         hd.nhap(sc, dskh, dsnv, dss);
         them(hd);
         System.out.println("Them hoa don thanh cong!");
     }
 
-    public void nhapds(Scanner sc, DanhsachKhachhang dskh, DanhsachNhanvien dsnv, DS_Sach dss) {
+    public void nhapds(Scanner sc, DS_Khachhang dskh, DS_Nhanvien dsnv, DS_Sach dss) {
         System.out.print("Nhap so luong hoa don: ");
         int n = sc.nextInt();
         sc.nextLine();
@@ -191,7 +191,7 @@ public class Danhsachhoadon {
         }
     }
 
-    public void suahd(Scanner sc, DanhsachKhachhang dskh, DanhsachNhanvien dsnv, DS_Sach dss) {
+    public void suahd(Scanner sc, DS_Khachhang dskh, DS_Nhanvien dsnv, DS_Sach dss) {
         System.out.print("Nhap ma hoa don can sua: ");
         String maSua = sc.nextLine();
         int vitri = -1;

@@ -1,4 +1,4 @@
-package Hoadon;
+package QuanLy;
 import java.util.Scanner;
 
 public class QLHD extends QLBH {
@@ -26,26 +26,26 @@ public class QLHD extends QLBH {
 
             switch (choice) {
                 case 1:
-                    ds_HD.xuatds();
+                    ds_Hoadon.xuatds();
                     break;
                 case 2:
                     //ds_Sach là danh sách dùng để check mã sách
-                    ds_HD.themvaodanhsach(sc, dskh, dsnv, dss);
+                    ds_Hoadon.themvaodanhsach(sc, ds_Khachhang, ds_Nhanvien, ds_Sach);
                     break;
                 case 3:
-                    ds_HD.xoahd(sc);
+                    ds_Hoadon.xoahd(sc);
                     break;
                 case 4:
-                    ds_HD.suahd(sc, dskh, dsnv, dss);
+                    ds_Hoadon.suahd(sc, ds_Khachhang, ds_Nhanvien, ds_Sach);
                     break;
                 case 5:
-                    ds_HD.tim(sc);
+                    ds_Hoadon.tim(sc);
                     break;
                 case 6:
-                    ds_HD.thongkeHDtheoQuy();
+                    ds_Hoadon.thongkeHDtheoQuy();
                     break;
                 case 7:
-                    ds_HD.saveFile();
+                    ds_Hoadon.saveFile();
                     break;
                 case 0:
                     System.out.println("Đã thoát menu hóa đơn.");
