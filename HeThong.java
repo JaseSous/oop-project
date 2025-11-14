@@ -54,4 +54,10 @@ public class HeThong {
                 break;
         }
     }
+
+    public static void main(String args[]){
+        HeThong hethong = new HeThong();
+
+        hethong.menuChinh();
+    }
 }
