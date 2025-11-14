@@ -28,7 +28,7 @@ public class DS_Khachhang {
     // Phương thức
     public void loadFile(){
         try {
-            String FilePath = "../DATA/DS_Khachhang.dat";
+            String FilePath = "DATA/DS_Khachhang.dat";
 
             // Kiểm tra file rỗng hoặc ko tồn tại
             Path path = Paths.get(FilePath);
@@ -61,7 +61,7 @@ public class DS_Khachhang {
         }
     }
     public void xem() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("../OUTPUT/DanhSachKhachHang.txt")); // Đổi tên file cho đúng ngữ cảnh
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachKhachHang.txt")); // Đổi tên file cho đúng ngữ cảnh
              Formatter formatter = new Formatter(writer)) {
                 
             formatter.format("===[Danh sách Khách hàng]===\n"); // Đổi tiêu đề

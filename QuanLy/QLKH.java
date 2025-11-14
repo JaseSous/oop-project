@@ -4,10 +4,6 @@ import java.util.Scanner;
 
 public class QLKH extends QLBH {
     @Override public void menuChinh(){
-        
-        // 1. Tải dữ liệu khi bắt đầu
-        ds_Khachhang.loadFile();
-
         // Menu chính
         System.out.println("\n===[Giao diện quản lý danh sách khách hàng]===\n");
 

@@ -49,7 +49,8 @@ public class HeThong {
 
                 break;
             case 4: // Quản lý khách hàng
-
+                QLBH qlkh = new QLKH();
+                qlkh.menuChinh();
                 break;
             case 5: // Quản lý nhân viên
 
