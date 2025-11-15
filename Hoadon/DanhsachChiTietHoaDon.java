@@ -1,68 +1,116 @@
 package Hoadon;
-import Sach.DS_Sach;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.Formatter;
 
 public class DanhsachChiTietHoaDon {
     private ChiTietHoaDon[] ds;
-    private int n; // Số lượng chi tiết hiện có
+    private int n; // Tổng số lượng chi tiết
 
     public DanhsachChiTietHoaDon() {
         ds = new ChiTietHoaDon[0];
         n = 0;
     }
 
-    public void them(ChiTietHoaDon ct) {
-        ds = Arrays.copyOf(ds, n + 1);
-        ds[n] = ct;
-        n++;
+    public ChiTietHoaDon[] getds() {
+        return ds;
     }
-    
-    public void nhap(Scanner sc, int soLuongCanNhap,DS_Sach dss) {
-        for (int i = 0; i < soLuongCanNhap; i++) {
-            System.out.println("Nhap thong tin sach thu " + (i + 1) + ":");
-            ChiTietHoaDon ct = new ChiTietHoaDon();
-            ct.nhap(sc,dss);
-            them(ct);
-        }
-    }
-
-    public void xuat() {
-        System.out.println("  | Ma Sach    | So Luong | Don Gia    | Thanh Tien |");
-        System.out.println("  |------------|----------|------------|------------|");
-        if (n == 0) {
-            System.out.println("  (Hoa don rong)");
-        } else {
-            for (int i = 0; i < n; i++) {
-                ds[i].xuat();
-            }
-        }
-        System.out.println("  |--------------------------------------------------|");
-    }
-
-    public void xuatFile(java.util.Formatter formatter) {
-        for (int i = 0; i < n; i++) {
-            formatter.format("| %-10s | %-8d | %,11.0f | %,13.0f |\n",
-                    ds[i].getMaSach(), ds[i].getSoLuong(), ds[i].getDongia(), ds[i].getThanhTien());
-        }
-    }
-    public float tinhTongTien() {
-        float tong = 0;
-        for (int i = 0; i < n; i++) {
-            tong += ds[i].getThanhTien();
-        }
-        return tong;
-    }
-
-    public ChiTietHoaDon getChiTiet(int index) {
-    if (index >= 0 && index < n) {
-        return ds[index];
-    }
-    return null;
-}
-    
     public int getSoLuong() {
         return n;
+    }
+
+    // --- LOAD FILE ---
+    public void loadFile() {
+        try {
+            String filePath = "DATA/DS_ChiTietHoaDon.dat";
+            Path path = Paths.get(filePath);
+            if (!Files.exists(path) || Files.size(path) == 0) return;
+
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            n = Integer.parseInt(reader.readLine().trim());
+            ds = new ChiTietHoaDon[n]; // Cấp phát mảng
+
+            for (int i = 0; i < n; i++) {
+                String maHD = reader.readLine().trim();
+                String maSach = reader.readLine().trim();
+                int soLuong = Integer.parseInt(reader.readLine().trim());
+                float donGia = Float.parseFloat(reader.readLine().trim());
+                ds[i] = new ChiTietHoaDon(maHD, maSach, soLuong, donGia);
+            }
+            reader.close();
+            System.out.println("--> Da tai " + n + " chi tiet hoa don.");
+        } catch (Exception e) {
+            System.err.println("Loi khi doc file DS_ChiTietHoaDon.dat: " + e.getMessage());
+        }
+    }
+
+    // --- SAVE FILE ---
+    public void saveFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("DATA/DS_ChiTietHoaDon.dat"))) {
+            writer.write(String.valueOf(n)); // Ghi tổng số lượng
+            writer.newLine();
+
+            for (int i = 0; i < n; i++) {
+                ds[i].ghiFile(writer); // Gọi hàm ghi file của ChiTietHoaDon
+            }
+        } catch (IOException e) {
+            System.err.println("Lỗi khi lưu file DS_ChiTietHoaDon.dat: " + e.getMessage());
+        }
+    }
+
+    // Thêm
+    public void themvaodanhsach(ChiTietHoaDon ct) {
+        ds = Arrays.copyOf(ds, n + 1);
+        ds[n++] = new ChiTietHoaDon(ct.getMaHD(), ct.getMaSach(), ct.getSoLuong(), ct.getDongia());
+    }
+
+    // Xóa theo mã HD
+    public void xoatheoMaHD(String maHD) {
+        for (int i = 0; i < n;) {
+            if (ds[i].getMaHD().equals(maHD)) {
+                for (int j = i; j < n - 1; j++) {
+                    ds[j] = ds[j + 1];
+                }
+                n--;
+                ds = Arrays.copyOf(ds, n);
+                // Không tăng i vì phần tử mới đã dồn lên vị trí i
+            } else {
+                i++; // Chỉ tăng i nếu không xóa
+            }
+        }
+        System.out.println("Da xoa cac chi tiet thuoc HD: " + maHD);
+    }
+
+    // Sửa
+    public void suaDonGia(String maHD, String maSach, float donGiaMoi) {
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getMaHD().equals(maHD) && ds[i].getMaSach().equals(maSach)) {
+                ds[i].setDongia(donGiaMoi);
+                found = true;
+            }
+        }
+        if (found) System.out.println("Da sua don gia cho SP " + maSach + " trong HD " + maHD);
+        else System.out.println("Khong tim thay chi tiet de sua!");
+    }
+    
+    public void suaSoLuong(String maHD, String maSach, int soLuongMoi) {
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getMaHD().equals(maHD) && ds[i].getMaSach().equals(maSach)) {
+                ds[i].setSoLuong(soLuongMoi);
+                found = true;
+            }
+        }
+        if (found) System.out.println("Da sua so luong cho SP " + maSach + " trong HD " + maHD);
+        else System.out.println("Khong tim thay chi tiet de sua!");
     }
 }
