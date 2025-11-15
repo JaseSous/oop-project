@@ -3,21 +3,21 @@ package QuanLy;
 import java.util.Scanner;
 import Sach.Sach;
 
-public class QLSP extends QLBH {
-    Scanner sc = new Scanner(System.in);
-
+public class QLSP extends QLBH implements IQuanLy {
     @Override public void menuChinh(){
         // Menu chính
         System.out.println("\n===[Giao diện quản lý danh sách sản phẩm]===\n");
-        System.out.println("1) Ghi danh sách ra màn hình");
-        System.out.println("2) Ghi danh sách ra file");
-        System.out.println("3) Thêm");
-        System.out.println("4) Xóa");
-        System.out.println("5) Sửa");
-        System.out.println("6) Tìm kiếm theo mã sách");
-        System.out.println("7) Tìm kiếm theo mã thể loại");
-        System.out.println("8) Thống kê theo số lượng loại sách");
-        System.out.println("0) Lưu và thoát");
+
+        System.out.println("1) Xem danh sách");
+        System.out.println("2) Thêm");
+        System.out.println("3) Xóa");
+        System.out.println("4) Sửa");
+        System.out.println("5) Tìm kiếm theo mã sách");
+        System.out.println("6) Tìm kiếm theo mã thể loại");
+        System.out.println("7) Thống kê theo số lượng loại sách");
+        System.out.println("8) Lưu và thoát");
+
+        Scanner sc = new Scanner(System.in);
         
         int choice = 0;
         boolean running = true;
@@ -40,22 +40,19 @@ public class QLSP extends QLBH {
             //
 
             switch (choice){
-                case 1: // Xuất màn hình
-                    ds_Sach.xuat();
+                case 1: // Xem danh sách
+                    ds_Sach.xem();
                     break;
-                case 2: // Xuất file
-                    ds_Sach.ghiFile();
-                    break;
-                case 3: // Thêm
+                case 2: // Thêm
                     ds_Sach.them();
                     break;
-                case 4: // Xóa
+                case 3: // Xóa
                     ds_Sach.xoa();
                     break;
-                case 5: // Sửa
+                case 4: // Sửa
                     ds_Sach.sua();
                     break;
-                case 6: // Tìm kiếm theo mã sách
+                case 5: // Tìm kiếm theo mã sách
                 
                     System.out.print("Hãy nhập mã sách cần tim kiếm: "); String masachcantim = sc.nextLine().trim();
                     
@@ -68,7 +65,7 @@ public class QLSP extends QLBH {
                         System.out.println("Không tìm thấy sách cần tìm.");
                     
                     break;
-                case 7: // Tìm kiếm theo mã thể loại
+                case 6: // Tìm kiếm theo mã thể loại
 
                     System.out.print("Hãy nhập mã thể loại cần tim kiếm: "); String matheloaicantim = sc.nextLine().trim();
                     
@@ -84,7 +81,7 @@ public class QLSP extends QLBH {
                         System.out.println("Không tìm thấy sách cần tìm.");
                         
                     break;
-                case 8: // Thống kê theo số lượng loại sách
+                case 7: // Thống kê theo số lượng loại sách
 
                     int[] resultthongkeloaisach = ds_Sach.thongKeLoaiSach();
                     System.out.println("Thống kê theo số lượng loại sách:");
@@ -92,7 +89,7 @@ public class QLSP extends QLBH {
                     System.out.println("\tSách nghiên cứu: " + resultthongkeloaisach[1]);
 
                     break;
-                case 0: // Lưu và thoát
+                case 8: // Lưu và thoát
                     ds_Sach.saveFile();
                     running = false;
                     break;
