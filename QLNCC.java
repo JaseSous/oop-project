@@ -22,7 +22,9 @@ public class QLNCC extends QLBH {
                 sc.nextLine();
             switch (choice) {
                 case 1:
-                    dsNCC.themNCC();
+                    Nhacungcap temp = new Nhacungcap();
+                    temp.them();
+                    dsNCC.themNCC(temp);
                     break;
                 case 2:
                     dsNCC.xuatNCC();

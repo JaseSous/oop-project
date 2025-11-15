@@ -75,9 +75,7 @@ public class DanhsachNCC {
     }
 
     // ===== Thêm nhà cung cấp =====
-    public void themNCC() {
-        Nhacungcap temp = new Nhacungcap();
-        temp.them();
+    public void themNCC(Nhacungcap temp) {
         dsNCC = Arrays.copyOf(dsNCC, soluongNCC + 1);
         dsNCC[soluongNCC] = temp;
         soluongNCC++;
