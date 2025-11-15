@@ -9,13 +9,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class DanhsachChiTietHoaDon {
+public class DS_ChiTietHoaDon {
     private ChiTietHoaDon[] ds;
     private int n; // Tổng số lượng chi tiết
 
-    public DanhsachChiTietHoaDon() {
+    public DS_ChiTietHoaDon() {
         ds = new ChiTietHoaDon[0];
         n = 0;
     }

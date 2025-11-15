@@ -45,7 +45,7 @@ public class DS_Nhanvien {
             
             for (int i = 0; i < n; i++){
                 // Đọc các thuộc tính của class
-                long manv = Long.parseLong(reader.readLine().trim());
+                String manv = reader.readLine().trim();
                 String ho = reader.readLine().trim();
                 String ten = reader.readLine().trim();
                 String ngaysinh = reader.readLine().trim();
@@ -66,7 +66,7 @@ public class DS_Nhanvien {
             for (int i = 0; i < soluong; i++){
                 NhanVien nhanVien = nv[i];
                 writer.newLine();
-                writer.write(String.valueOf(nhanVien.getManv()));
+                writer.write(nhanVien.getManv());
                 
                 writer.newLine();
                 writer.write(nhanVien.getHo());
@@ -124,7 +124,7 @@ public class DS_Nhanvien {
         // 1. Tạo một nhân viên mới
         NhanVien nvMoi = new NhanVien();
         
-        nvMoi.nhap(); 
+        nvMoi.nhap();
 
         // 3. Thêm nhân viên mới này vào mảng
         nv = Arrays.copyOf(nv, soluong + 1);
@@ -134,7 +134,7 @@ public class DS_Nhanvien {
         System.out.println("Đã thêm nhân viên " + nvMoi.getTen() + " vào danh sách.");
     }
 
-    public void them(long manv, String ho, String ten, String ngaysinh, long luongthang) {
+    public void them(String manv, String ho, String ten, String ngaysinh, long luongthang) {
         nv = Arrays.copyOf(nv, soluong + 1);
         nv[soluong] = new NhanVien(manv, ho, ten, ngaysinh, luongthang);
         soluong++;
@@ -161,11 +161,11 @@ public class DS_Nhanvien {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma NV muon xoa: ");
-        long maxoa = sc.nextLong();
+        String maxoa = sc.nextLine().trim();
         
         int vitri = -1;
         for (int i = 0; i < soluong; i++) {
-            if (nv[i].getManv() == maxoa) {
+            if (nv[i].getManv().equals(maxoa)) {
                 vitri = i;
                 break;
             }
@@ -187,10 +187,10 @@ public class DS_Nhanvien {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma NV muon sua: ");
-        long masua = sc.nextLong();
+        String masua = sc.nextLine();
         int vitri = -1;
         for (int i = 0; i < soluong; i++) {
-            if (nv[i].getManv() == masua) {
+            if (nv[i].getManv().equals(masua)) {
                 vitri = i;
                 break;
             }
@@ -212,7 +212,7 @@ public class DS_Nhanvien {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma Nhan vien muon tim: ");
-        long matim = sc.nextInt();
+        String matim = sc.nextLine();
         
         // Gọi hàm helper bên dưới
         NhanVien nv_tim = timNhanVienTheoMa(matim);
@@ -227,9 +227,9 @@ public class DS_Nhanvien {
     }
 
     //---- HÀM HELPER MỚI: Dùng để trả về đối tượng NhanVien ----
-    public NhanVien timNhanVienTheoMa(long maNV) {
+    public NhanVien timNhanVienTheoMa(String maNV) {
         for (int i = 0; i < soluong; i++) {
-            if (nv[i].getManv() == maNV) {
+            if (nv[i].getManv().equals(maNV)) {
                 return nv[i];
             }
         }

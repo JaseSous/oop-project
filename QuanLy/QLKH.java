@@ -3,11 +3,12 @@ package QuanLy;
 import java.util.Scanner;
 
 public class QLKH extends QLBH {
+    Scanner sc = new Scanner(System.in);
+    
     @Override public void menuChinh(){
         // Menu chính
         System.out.println("\n===[Giao diện quản lý danh sách khách hàng]===\n");
 
-        Scanner sc = new Scanner(System.in);
         int choice = 0;
         boolean running = true;
         

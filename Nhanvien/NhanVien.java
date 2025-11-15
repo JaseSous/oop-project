@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class NhanVien {
     //----Thuộc tính----
-    private long manv;
+    private String manv;
     private String ho;
     private String ten;
     private String ngaysinh;
@@ -15,13 +15,13 @@ public class NhanVien {
 
     //----Hàm thiết lập----
     public NhanVien(){
-        manv=0;
+        manv="";
         ho="";
         ten="";
         ngaysinh="";
         luongthang=0;
     }
-    public NhanVien(long manv, String ho, String ten, String ngaysinh, long luongthang){
+    public NhanVien(String manv, String ho, String ten, String ngaysinh, long luongthang){
         this.manv=manv;
         this.ho=ho;
         this.ten=ten;
@@ -41,8 +41,7 @@ public class NhanVien {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("\nMa Nhan Vien: ");
-        manv = sc.nextLong();
-        sc.nextLine();
+        manv = sc.nextLine();
         System.out.print("\nHo: ");
         ho = sc.nextLine();
         System.out.print("\nTen: ");
@@ -51,12 +50,13 @@ public class NhanVien {
         ngaysinh = sc.nextLine();
         System.out.print("\nLuong thang nay: ");
         luongthang = sc.nextLong();
+        sc.nextLine();
     }
 
     //----Hàm xuất ----
     public void xuat(){
         System.out.println("----------------------------------------------------------");
-        System.out.printf("| Mã NV: %-10d | Họ Tên: %-15s %-10s |\n",
+        System.out.printf("| Mã NV: %-10s | Họ Tên: %-15s %-10s |\n",
                 manv, ho, ten);
         System.out.printf("| Ngày sinh: %-12s | Tuổi: %-3d                 |\n",
                 ngaysinh, age());
@@ -79,7 +79,7 @@ public class NhanVien {
     }
 
     //----Hàm get/set----
-    public long getManv(){
+    public String getManv(){
         return manv;
     }
     public String getHo(){
@@ -95,7 +95,7 @@ public class NhanVien {
         return luongthang;
     }
 
-    public void setManv(long manv_x){
+    public void setManv(String manv_x){
         manv=manv_x;
     }
     public void setHo(String ho_x){

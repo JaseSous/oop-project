@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Khachhang {
-    private long makh;
+    private String makh;
     private String ho;
     private String ten;
     private String dchi;
@@ -15,7 +15,7 @@ public class Khachhang {
     private String ngaymuahang;
 
     public Khachhang(){
-        this.makh=0;
+        this.makh="";
         this.ho="";
         this.ten="";
         this.dchi="";
@@ -23,7 +23,8 @@ public class Khachhang {
         this.ngaysinh="";
         this.ngaymuahang="";
     }
-    public Khachhang(long makh,String ho,String ten,String dchi,long sdt,String ngaysinh,String ngaymuahang){
+
+    public Khachhang(String makh,String ho,String ten,String dchi,long sdt,String ngaysinh,String ngaymuahang){
         this.makh=makh;
         this.ho=ho;
         this.ten=ten;
@@ -36,10 +37,9 @@ public class Khachhang {
     public void nhap(){
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-    
+
         System.out.print("\nMa Khach Hang: ");
-        makh = sc.nextLong();
-        sc.nextLine(); // bỏ dòng trống còn lại sau khi nhập số
+        makh = sc.nextLine();
         System.out.print("Ho: ");
         ho = sc.nextLine();
         System.out.print("Ten: ");
@@ -58,7 +58,7 @@ public class Khachhang {
 
     public void xuat(){
         System.out.println("-----------------------------------------------------------------------------------------");
-        System.out.printf("| Mã KH: %-10d | Họ: %-15s | Tên: %-10s | Tuổi: %-3d |\n", makh, ho, ten, age());
+        System.out.printf("| Mã KH: %-10s | Họ: %-15s | Tên: %-10s | Tuổi: %-3d |\n", makh, ho, ten, age());
         System.out.printf("| SĐT: %-10d   | Địa chỉ: %-48s |\n", sdt, dchi);
         System.out.printf("| Ngày sinh: %-10s | Ngày mua: %-47s |\n", ngaysinh, ngaymuahang);
         System.out.println("-----------------------------------------------------------------------------------------");
@@ -77,7 +77,7 @@ public class Khachhang {
     }
 
     //----Hàm get/set----
-    public long getMakh(){
+    public String getMakh(){
         return makh;
     }
     public String getHo(){
@@ -99,7 +99,7 @@ public class Khachhang {
         return ngaymuahang;
     }
 
-    public void setMakh(long makh_x){
+    public void setMakh(String makh_x){
         makh=makh_x;
     }
     public void setHo(String ho_x){
@@ -120,4 +120,5 @@ public class Khachhang {
     public void setNgaymuahang(String ngaymuahang_x){
         ngaymuahang=ngaymuahang_x;
     }
+
 }

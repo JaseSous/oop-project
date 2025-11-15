@@ -44,8 +44,8 @@ public class HeThong {
                 qlsp.menuChinh();
                 break;
             case 2: // Quản lý hóa đơn
-                //QLBH qlhd = new QLHD();
-                //qlhd.menuChinh();
+                QLBH qlhd = new QLHD();
+                qlhd.menuChinh();
                 break;
             case 3: // Quản lý phiếu nhập hàng
                 QLBH qlpnh_ctpnh = new QLPNH_CTPNH();
