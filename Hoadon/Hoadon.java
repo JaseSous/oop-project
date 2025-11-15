@@ -59,13 +59,15 @@ public class Hoadon {
 
         while (this.khachHang == null) {
             System.out.print("Nhap ma Khach Hang: ");
-            this.khachHang = dskh.timKhachHangTheoMa(sc.nextLine());
+            String maKH = sc.nextLine();
+            this.khachHang = dskh.timKhachHangTheoMa(maKH);
             if (this.khachHang == null) System.out.println("Ma KH khong ton tai!");
         }
-
+        
         while (this.nhanVien == null) {
             System.out.print("Nhap ma Nhan vien: ");
-            this.nhanVien = dsnv.timNhanVienTheoMa(sc.nextLine());
+            String maNV = sc.nextLine();
+            this.nhanVien = dsnv.timNhanVienTheoMa(maNV);
             if (this.nhanVien == null) System.out.println("Ma NV khong ton tai!");
         }
     }

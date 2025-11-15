@@ -15,7 +15,7 @@ public class Khachhang {
     private String ngaymuahang;
 
     public Khachhang(){
-        this.makh=" ";
+        this.makh="";
         this.ho="";
         this.ten="";
         this.dchi="";
@@ -37,10 +37,9 @@ public class Khachhang {
     public void nhap(){
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-    
+
         System.out.print("\nMa Khach Hang: ");
         makh = sc.nextLine();
-        sc.nextLine(); // bỏ dòng trống còn lại sau khi nhập số
         System.out.print("Ho: ");
         ho = sc.nextLine();
         System.out.print("Ten: ");
@@ -59,7 +58,7 @@ public class Khachhang {
 
     public void xuat(){
         System.out.println("-----------------------------------------------------------------------------------------");
-        System.out.printf("| Mã KH: %-10d | Họ: %-15s | Tên: %-10s | Tuổi: %-3d |\n", makh, ho, ten, age());
+        System.out.printf("| Mã KH: %-10s | Họ: %-15s | Tên: %-10s | Tuổi: %-3d |\n", makh, ho, ten, age());
         System.out.printf("| SĐT: %-10d   | Địa chỉ: %-48s |\n", sdt, dchi);
         System.out.printf("| Ngày sinh: %-10s | Ngày mua: %-47s |\n", ngaysinh, ngaymuahang);
         System.out.println("-----------------------------------------------------------------------------------------");
@@ -121,4 +120,5 @@ public class Khachhang {
     public void setNgaymuahang(String ngaymuahang_x){
         ngaymuahang=ngaymuahang_x;
     }
+
 }

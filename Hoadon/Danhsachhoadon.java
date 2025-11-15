@@ -49,8 +49,10 @@ public class Danhsachhoadon {
                 String maHD = reader.readLine().trim();
                 LocalDate ngayLap = LocalDate.parse(reader.readLine().trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 // Đọc mã KH/NV và tìm kiếm đối tượng tương ứng
-                Khachhang kh = dskh.timKhachHangTheoMa(reader.readLine().trim());
-                NhanVien nv = dsnv.timNhanVienTheoMa(reader.readLine().trim());
+                String maKH_str = reader.readLine().trim();
+                String maNV_str = reader.readLine().trim();
+                Khachhang kh = dskh.timKhachHangTheoMa(maKH_str);
+                NhanVien nv = dsnv.timNhanVienTheoMa(maNV_str);
                 ds[i] = new Hoadon(maHD, ngayLap, kh, nv);
             }
             reader.close();

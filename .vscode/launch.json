@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "DS_Khachhang",
+            "request": "launch",
+            "mainClass": "Khachhang.DS_Khachhang",
+            "projectName": "oop-project_b6dff0c8"
+        },
+        {
+            "type": "java",
+            "name": "Khachhang",
+            "request": "launch",
+            "mainClass": "Khachhang.Khachhang",
+            "projectName": "oop-project_b6dff0c8"
+        },
+        {
+            "type": "java",
             "name": "HeThong",
             "request": "launch",
             "mainClass": "HeThong",

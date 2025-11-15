@@ -42,7 +42,6 @@ public class NhanVien {
         Scanner sc = new Scanner(System.in);
         System.out.print("\nMa Nhan Vien: ");
         manv = sc.nextLine();
-        sc.nextLine();
         System.out.print("\nHo: ");
         ho = sc.nextLine();
         System.out.print("\nTen: ");
@@ -57,7 +56,7 @@ public class NhanVien {
     //----Hàm xuất ----
     public void xuat(){
         System.out.println("----------------------------------------------------------");
-        System.out.printf("| Mã NV: %-10d | Họ Tên: %-15s %-10s |\n",
+        System.out.printf("| Mã NV: %-10s | Họ Tên: %-15s %-10s |\n",
                 manv, ho, ten);
         System.out.printf("| Ngày sinh: %-12s | Tuổi: %-3d                 |\n",
                 ngaysinh, age());

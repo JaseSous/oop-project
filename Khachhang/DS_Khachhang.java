@@ -461,4 +461,11 @@ public class DS_Khachhang {
             System.out.println("(!) Khong the thong ke " + loi + " khach hang do loi dinh dang ngay mua hang.");
         }
     }
+
+    public static void main(String args[]){
+        DS_Khachhang dskh = new DS_Khachhang();
+
+        dskh.loadFile();
+        dskh.xem();
+    }
 }
