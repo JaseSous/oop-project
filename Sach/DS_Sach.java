@@ -17,6 +17,8 @@ public class DS_Sach {
     private int soLuongSach;
     private Sach[] dsSach;
 
+    Scanner sc = new Scanner(System.in);
+
     // Constructor
     public DS_Sach() {
         soLuongSach = 0;
@@ -29,6 +31,83 @@ public class DS_Sach {
     }
 
     // Phương thức
+    public void nhap(){
+        System.out.print("Nhập số lượng sách: ");
+        soLuongSach = Integer.parseInt(sc.nextLine());
+        dsSach = new Sach[soLuongSach];
+
+        for (int i = 0; i < soLuongSach; i++) {
+            System.out.println("\nNhập thông tin sách thứ " + (i + 1) + ":");
+            Sach sach = null;
+            int choice;
+
+            do {
+                System.out.println("Loại sách (1: SGK, 2: SNC): "); choice = Integer.parseInt(sc.nextLine());
+                switch (choice) {
+                    case 1:
+                        sach = new SGK();
+                        break;
+                    case 2:
+                        sach = new SNC();
+                        break;
+                    default:
+                        System.out.println("Vui lòng nhập số từ khoảng 1-2: ");
+                }
+            } while (sach == null);
+            sach.nhap();
+            dsSach[i] = sach;
+        }
+    }
+
+    public void xuat() {
+        System.out.println("===[Danh sách sản phẩm]===");
+        System.out.println("Số lượng: " + soLuongSach + '\n');
+        if (soLuongSach > 0) {
+            System.out.print("-".repeat(156));
+            System.out.printf(
+                    "\n| %-3s | %-9s | %-7s | %-25s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-8s | %-8s |\n",
+                    "STT", "Loại sách", "Mã sách", "Tên sách", "Mã thể loại", "Mã tác giả", "Mã NXB", "Số lượng", "Giá", " Môn học ", "Lớp", "Lĩnh vực", " Đề tài ");
+            System.out.print("-".repeat(156) + "\n");
+
+            for (int i = 0; i < soLuongSach; i++) {
+                if (dsSach[i] instanceof SGK) {
+                    System.out.printf(
+                            "| %-3s | %-9s | %-7s | %-25s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-8s | %-8s |\n",
+                            i + 1,
+                            "SGK",
+                            dsSach[i].getMasach(),
+                            dsSach[i].getTensach(),
+                            dsSach[i].getMatheloai(),
+                            dsSach[i].getMatg(),
+                            dsSach[i].getManxb(),
+                            dsSach[i].getSoluong(),
+                            dsSach[i].getGia() + " ₫",
+                            ((SGK) dsSach[i]).getMonHoc(),
+                            String.valueOf(((SGK) dsSach[i]).getLop()),
+                            "",
+                            "");
+                } else if (dsSach[i] instanceof SNC) {
+                    System.out.printf(
+                            "| %-3s | %-9s | %-7s | %-25s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-8s | %-8s |\n",
+                            i + 1,
+                            "SNC",
+                            dsSach[i].getMasach(),
+                            dsSach[i].getTensach(),
+                            dsSach[i].getMatheloai(),
+                            dsSach[i].getMatg(),
+                            dsSach[i].getManxb(),
+                            dsSach[i].getSoluong(),
+                            dsSach[i].getGia() + " ₫",
+                            "",
+                            "",
+                            ((SNC) dsSach[i]).getLinhVuc(),
+                            String.valueOf(((SNC) dsSach[i]).getDeTai()));
+                }
+            }
+            System.out.println("-".repeat(156));
+        }
+    }
+
     public void loadFile(){
         try {
             String FilePath = "DATA/DS_Sach.dat";
@@ -128,7 +207,7 @@ public class DS_Sach {
         }
     }
 
-    public void xem() {
+    public void ghiFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachSanPham.txt"));
             Formatter formatter = new Formatter(writer)) {
             
