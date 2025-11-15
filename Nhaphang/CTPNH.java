@@ -68,9 +68,19 @@ public class CTPNH {
                 MaSP, soluonghangnhap, dongia, thanhtien);
     }
 
-    public void ghiFile(BufferedWriter bw) throws IOException {
+    public void ghifile(BufferedWriter bw , BufferedWriter wb) throws IOException
+    {
         bw.write(String.format("%-10s | %-10s | %-10d | %-10.2f | %-10.2f",
                 MaPN, MaSP, soluonghangnhap, dongia, thanhtien));
         bw.newLine();
+
+        wb.write(MaPN);
+        wb.newLine();
+        wb.write(MaSP);
+        wb.newLine();
+        wb.write(String.valueOf(soluonghangnhap));
+        wb.newLine();
+        wb.write(String.valueOf(dongia));
+        wb.newLine();
     }
 }

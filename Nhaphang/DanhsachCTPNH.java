@@ -2,7 +2,6 @@ package Nhaphang;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.io.IOException;
 public class DanhsachCTPNH {
     private CTPNH[] dsct;
     private int soluongchitiet;
@@ -49,9 +48,10 @@ public class DanhsachCTPNH {
         }
     }
 
-    public void xem() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("OUTPUT/DSCTPN.txt"))) {
-
+    public void saveFile() {
+        try  {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("OUTPUT/DSCTPN.txt"));
+            BufferedWriter wb = new BufferedWriter(new FileWriter("INPUT/DSCTPN.txt"));
             bw.write(String.format("%-10s | %-10s | %-10s | %-10s | %-10s",
                     "MaPN", "MaSP", "SoLuong", "DonGia", "ThanhTien"));
             bw.newLine();
@@ -59,7 +59,7 @@ public class DanhsachCTPNH {
             bw.newLine();
 
             for (int i = 0; i < soluongchitiet; i++) {
-                dsct[i].ghiFile(bw);
+                dsct[i].ghifile(bw, wb);
             }
 
             System.out.println("Ghi file CT thanh cong !");

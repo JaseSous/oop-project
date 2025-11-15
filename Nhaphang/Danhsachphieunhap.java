@@ -54,7 +54,7 @@ public class Danhsachphieunhap {
         }
     } 
     //-------------------ghifile-------------------------
-    public void xem() {
+    public void saveFile() {
     try  {
         BufferedWriter bw = new BufferedWriter(new FileWriter("OUTPUT/DSPNH.txt"));
         BufferedWriter wb =new BufferedWriter(new FileWriter("INPUT/DSPNH.txt"));

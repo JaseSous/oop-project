@@ -12,7 +12,7 @@ public class QuanlyPNH_CTPNH extends QLBH{
             p.xuat();
             System.out.println("----------------Xuat thong tin phieu nhap nhang----------------");
             System.out.printf("%-11s | %-10s | %-10s | %-20s%n","MaSP","So luong","Don gia","Tong tien");
-            for (CTPNH c:ds_Ctpnh.getds())
+            for (CTPNH c:ds_CTPNH.getds())
             {
                 if(c.getMaPN().equals(p.getMaPN()))
                 {
@@ -33,7 +33,7 @@ public class QuanlyPNH_CTPNH extends QLBH{
             double tongtienphieu=0.0;
             int month=p.getNgaynhap().getMonthValue();
             int quy=(month-1)/3;
-            for(CTPNH s:ds_Ctpnh.getds())
+            for(CTPNH s:ds_CTPNH.getds())
             {
                 if(s.getMaPN().equals(p.getMaPN()))
                 {
@@ -60,7 +60,7 @@ public class QuanlyPNH_CTPNH extends QLBH{
             CTPNH h=new CTPNH(); 
             h.them(); 
             h.setMaPN(p.getMaPN());
-            ds_Ctpnh.themvaodanhsach(h);
+            ds_CTPNH.themvaodanhsach(h);
         }
     }
     
@@ -83,7 +83,7 @@ public class QuanlyPNH_CTPNH extends QLBH{
                 break;
 
             case 2:
-                ds_Ctpnh.menutimkiemCTPNH(); // gọi menu tìm kiếm chi tiết phiếu nhập
+                ds_CTPNH.menutimkiemCTPNH(); // gọi menu tìm kiếm chi tiết phiếu nhập
                 break;
 
             case 0:
@@ -137,7 +137,7 @@ public class QuanlyPNH_CTPNH extends QLBH{
                 String mapntim3=sc.nextLine();
                 System.out.println("ma san pham  can sua");
                 String masptim1=sc.nextLine();
-                ds_Ctpnh.suaDonGia(mapntim3,masptim1,dongia);
+                ds_CTPNH.suaDonGia(mapntim3,masptim1,dongia);
                 break;
 
                 case 4:
@@ -148,7 +148,7 @@ public class QuanlyPNH_CTPNH extends QLBH{
                 String mapntim4=sc.nextLine();
                 System.out.println("ma san pham  can sua");
                 String masptim2=sc.nextLine();
-                ds_Ctpnh.suaSoLuong(mapntim4, masptim2,soluong);
+                ds_CTPNH.suaSoLuong(mapntim4, masptim2,soluong);
             case 0:
                 System.out.println("Thoat menu sua...");
                 break;
@@ -221,13 +221,14 @@ public class QuanlyPNH_CTPNH extends QLBH{
                     System.out.print("Nhap ma phieu nhap can xoa: ");
                     String maPNXoa = sc.nextLine();
                     ds_phieunhap.xoa(maPNXoa);
-                    ds_Ctpnh.xoatheoMaPN(maPNXoa);
+                    ds_CTPNH.xoatheoMaPN(maPNXoa);
                     break;
                 case 6:
                     menusuathongtin();
                     break;
                 case 0:
-                    xem();//ghi file
+                    ds_CTPNH.saveFile();
+                    ds_phieunhap.saveFile();
                     System.out.println("Da luu du lieu va Thoat chuong trinh.");
                     break;
                 default:
