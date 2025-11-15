@@ -1,6 +1,7 @@
 package QuanLy;
 import java.util.Scanner;
 import TheLoai.*;
+import Sach.DS_Sach;
 public class QLTL extends QLBH {
 
     @Override
@@ -37,7 +38,7 @@ public class QLTL extends QLBH {
                     ds_TheLoai.xoaTL(ma);
                     break;
                 case 0:
-                    ds_TheLoai.xem();
+                    ds_TheLoai.SaveFile();
                     System.out.println("Da luu du lieu va thoat!");
                     break;
                 default:

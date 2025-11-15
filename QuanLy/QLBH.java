@@ -31,9 +31,4 @@ public class QLBH {
 
     public void menuChinh(){
     }
-    public static void main(String[] args) {
-        QLBH ql=new QLTL();
-        ql.loadFile();
-        ql.menuChinh();
-    }
 }

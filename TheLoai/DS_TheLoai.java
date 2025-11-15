@@ -1,6 +1,8 @@
 package TheLoai;
 import java.io.*;
 import java.util.*;
+import Sach.DS_Sach;
+import Sach.Sach;
 
 public class DS_TheLoai {
     private int soluongTL;
@@ -28,7 +30,7 @@ public class DS_TheLoai {
     }
 
     // Ghi file danh sach
-    public void xem() {
+    public void SaveFile() {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("OUTPUT/DSTL.txt"));
             BufferedWriter wb = new BufferedWriter(new FileWriter("DATA/DSTL.dat"));
@@ -159,4 +161,18 @@ public class DS_TheLoai {
             }
         } while (chon != 0);
     }
+    //------------------------thong ke ------------
+public void Thongkesosachtheotheloai(DS_Sach a) {
+    System.out.println("\n--- THỐNG KÊ SỐ LƯỢNG SÁCH THEO THỂ LOẠI ---");
+    for (Theloai tl : dsTL) {
+        int sosach = 0;
+        for (Sach s : a.getDsSach) {
+            if (s.getMatheloai().equals(tl.getMaTL())) {
+                sosach++;
+            }
+        }
+        System.out.println("So sach thuoc the loai " + tl.getTenTL() + ": " + sosach);
+    }
+    System.out.println("----------------------------------------------");
+}
 }
