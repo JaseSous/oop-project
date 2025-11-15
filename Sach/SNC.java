@@ -3,6 +3,8 @@ package Sach;
 import java.util.Scanner;
 
 public class SNC extends Sach {
+    Scanner sc = new Scanner(System.in);
+    
     // Thuoc tinh
     String linhvuc, detai;
 
@@ -48,7 +50,6 @@ public class SNC extends Sach {
     // Phương thức
     @Override public void nhap(){
         super.nhap();
-        Scanner sc = new Scanner(System.in);
 
         System.out.print("\tLĩnh vực: "); linhvuc = sc.nextLine();
         System.out.print("\tĐề tài: "); detai = sc.nextLine();       

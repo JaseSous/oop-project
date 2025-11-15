@@ -3,6 +3,8 @@ package Sach;
 import java.util.Scanner;
 
 public class SGK extends Sach {
+    Scanner sc = new Scanner(System.in);
+
     // Thuoc tinh
     private String monhoc;
     private int lop;
@@ -49,7 +51,6 @@ public class SGK extends Sach {
     // Phương thức
     @Override public void nhap(){
         super.nhap();
-        Scanner sc = new Scanner(System.in);
 
         System.out.print("\tMôn học: "); monhoc = sc.nextLine();
         System.out.print("\tLớp: "); lop = sc.nextInt();       

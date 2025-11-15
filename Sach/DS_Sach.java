@@ -13,11 +13,11 @@ import java.util.Scanner;
 import java.util.Formatter;
 
 public class DS_Sach {
+    Scanner sc = new Scanner(System.in);
+
     // Thuoc tinh
     private int soLuongSach;
     private Sach[] dsSach;
-
-    Scanner sc = new Scanner(System.in);
 
     // Constructor
     public DS_Sach() {
@@ -62,49 +62,9 @@ public class DS_Sach {
     public void xuat() {
         System.out.println("===[Danh sách sản phẩm]===");
         System.out.println("Số lượng: " + soLuongSach + '\n');
-        if (soLuongSach > 0) {
-            System.out.print("-".repeat(156));
-            System.out.printf(
-                    "\n| %-3s | %-9s | %-7s | %-25s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-8s | %-8s |\n",
-                    "STT", "Loại sách", "Mã sách", "Tên sách", "Mã thể loại", "Mã tác giả", "Mã NXB", "Số lượng", "Giá", " Môn học ", "Lớp", "Lĩnh vực", " Đề tài ");
-            System.out.print("-".repeat(156) + "\n");
-
-            for (int i = 0; i < soLuongSach; i++) {
-                if (dsSach[i] instanceof SGK) {
-                    System.out.printf(
-                            "| %-3s | %-9s | %-7s | %-25s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-8s | %-8s |\n",
-                            i + 1,
-                            "SGK",
-                            dsSach[i].getMasach(),
-                            dsSach[i].getTensach(),
-                            dsSach[i].getMatheloai(),
-                            dsSach[i].getMatg(),
-                            dsSach[i].getManxb(),
-                            dsSach[i].getSoluong(),
-                            dsSach[i].getGia() + " ₫",
-                            ((SGK) dsSach[i]).getMonHoc(),
-                            String.valueOf(((SGK) dsSach[i]).getLop()),
-                            "",
-                            "");
-                } else if (dsSach[i] instanceof SNC) {
-                    System.out.printf(
-                            "| %-3s | %-9s | %-7s | %-25s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-8s | %-8s |\n",
-                            i + 1,
-                            "SNC",
-                            dsSach[i].getMasach(),
-                            dsSach[i].getTensach(),
-                            dsSach[i].getMatheloai(),
-                            dsSach[i].getMatg(),
-                            dsSach[i].getManxb(),
-                            dsSach[i].getSoluong(),
-                            dsSach[i].getGia() + " ₫",
-                            "",
-                            "",
-                            ((SNC) dsSach[i]).getLinhVuc(),
-                            String.valueOf(((SNC) dsSach[i]).getDeTai()));
-                }
-            }
-            System.out.println("-".repeat(156));
+        for (int i = 0; i < soLuongSach; i++) {
+            System.out.println("Sách thứ " + (i + 1) + ":");
+            dsSach[i].xuat();
         }
     }
 
@@ -265,8 +225,6 @@ public class DS_Sach {
     }
 
     public void them() {
-        Scanner sc = new Scanner(System.in);
-
         dsSach = Arrays.copyOf(dsSach, dsSach.length + 1);
         System.out.println("Nhập thông tin sách để thêm vào danh sách sản phẩm: ");
         System.out.print("\tLoại sách (1: SGK, 2: SNC): "); int loaisach = Integer.parseInt(sc.nextLine().trim());
@@ -292,8 +250,6 @@ public class DS_Sach {
     }
 
     public void xoa(){
-        Scanner sc = new Scanner(System.in);
-
         System.out.print("Nhập mã sách của sách cần xóa khỏi danh sách sản phẩm: "); String maSachCanXoa = sc.nextLine().trim();
         
         for (int i = 0; i < soLuongSach; i++){
@@ -314,8 +270,6 @@ public class DS_Sach {
     }
 
     public void sua(){
-        Scanner sc = new Scanner(System.in);
-
         System.out.print("Nhập mã sách của sách cần sửa trong danh sách sản phẩm: "); String maSachCanSua = sc.nextLine().trim();
         
         for (int i = 0; i < soLuongSach; i++){
@@ -332,8 +286,6 @@ public class DS_Sach {
     }
 
     public Sach timKiemTheoMaSach(String maSachCanTim){
-        Scanner sc = new Scanner(System.in);
-
         for (Sach sach : dsSach){
             if (sach.getMasach().equals(maSachCanTim)){
                 return sach;
@@ -346,8 +298,6 @@ public class DS_Sach {
     public Sach[] timKiemTheoMaTheLoai(String matheloaicantim){
         Sach[] result = new Sach[0];
         
-        Scanner sc = new Scanner(System.in);
-
         for (Sach sach : dsSach){
             if (sach.getMatheloai().equals(matheloaicantim)){
                 result = Arrays.copyOf(result, result.length+1);

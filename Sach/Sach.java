@@ -3,6 +3,8 @@ package Sach;
 import java.util.Scanner;
 
 public class Sach {
+    Scanner sc = new Scanner(System.in);
+    
     // Thuoc tinh
     private String masach, tensach, matheloai, matg, manxb;
     private int soluong, gia;
@@ -100,8 +102,6 @@ public class Sach {
 
     // Phương thức
     public void nhap(){
-        Scanner sc = new Scanner(System.in);
-
         System.out.print("\tMã sách: "); masach = sc.nextLine();
         System.out.print("\tTên sách: "); tensach = sc.nextLine();
         System.out.print("\tMã thể loại: "); matheloai = sc.nextLine();
