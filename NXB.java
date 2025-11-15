@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.Scanner;
 public class NXB {
     private String maNXB;
@@ -27,6 +29,15 @@ public class NXB {
 
     public void xuat() {
         System.out.printf("Ma NXB: %s, Ten NXB: %s, So dien thoai: %d\n", maNXB, tenNXB, sdt);
+    }
+
+    public void ghiFile(BufferedWriter bw) throws IOException {
+        bw.write(maNXB);
+        bw.newLine();
+        bw.write(tenNXB);
+        bw.newLine();
+        bw.write(String.valueOf(sdt));
+        bw.newLine();
     }
 
     public String getMaNXB() {
