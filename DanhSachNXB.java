@@ -1,5 +1,15 @@
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import Sach.DS_Sach;
+import Sach.Sach;
 
 public class DanhSachNXB {
     private NXB[] dsNXB;
@@ -13,6 +23,84 @@ public class DanhSachNXB {
     public DanhSachNXB(NXB[] dsNXB, int soLuongNXB) {
         this.dsNXB = dsNXB;
         this.soLuongNXB = soLuongNXB;
+    }
+
+    // --- HÀM LOAD FILE ---
+    public void loadFile() {
+        try {
+            String filePath = "DATA/DS_NXB.dat";
+            Path path = Paths.get(filePath);
+            if (!Files.exists(path) || Files.size(path) == 0) {
+                System.out.println("File NXB rong hoac khong ton tai.");
+                return;
+            }
+
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            soLuongNXB = Integer.parseInt(reader.readLine().trim());
+            dsNXB = new NXB[soLuongNXB]; // Cấp phát mảng
+
+            for (int i = 0; i < soLuongNXB; i++) {
+                String ma = reader.readLine().trim();
+                String ten = reader.readLine().trim();
+                int sdt = Integer.parseInt(reader.readLine().trim());
+                dsNXB[i] = new NXB(ma, ten, sdt);
+            }
+            reader.close();
+            System.out.println("--> Da tai " + soLuongNXB + " Nha Xuat Ban.");
+        } catch (Exception e) {
+            System.err.println("Loi khi doc file DS_NXB.dat: " + e.getMessage());
+        }
+    }
+
+    // --- HÀM SAVE FILE (Đã thêm) ---
+    public void saveFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("DATA/DS_NXB.dat"))) {
+            writer.write(String.valueOf(soLuongNXB)); // Ghi tổng số lượng
+            writer.newLine();
+
+            for (int i = 0; i < soLuongNXB; i++) {
+                dsNXB[i].ghiFile(writer); // Gọi hàm ghi file của NXB
+            }
+        } catch (IOException e) {
+            System.err.println("Lỗi khi lưu file DS_NXB.dat: " + e.getMessage());
+        }
+    }
+
+    // --- HÀM XEM (Xuất file báo cáo - Đã thêm) ---
+    public void xem(DS_Sach ds_Sach) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachNXB.txt"));
+             Formatter formatter = new Formatter(writer)) {
+
+            formatter.format("===[DANH SÁCH NHÀ XUẤT BẢN VÀ SÁCH]===\n");
+            formatter.format("Tổng số NXB: %d\n\n", soLuongNXB);
+
+            Sach[] allBooks = ds_Sach.getds();
+
+            for (int i = 0; i < soLuongNXB; i++) {
+                NXB nxb = dsNXB[i];
+                formatter.format("--------------------------------------------------\n");
+                formatter.format("Ma NXB: %s\n", nxb.getMaNXB());
+                formatter.format("Ten NXB: %s\n", nxb.getTenNXB());
+                formatter.format("SDT: %d\n", nxb.getSdt());
+                formatter.format("\n  --- Các sách thuộc NXB này:\n");
+
+                boolean foundBook = false;
+                for (Sach sach : allBooks) {
+                    if (sach.getManxb() != null && sach.getManxb().equals(nxb.getMaNXB())) {
+                        formatter.format("    + [ %s ] - %s\n", sach.getMasach(), sach.getTensach());
+                        foundBook = true;
+                    }
+                }
+                if (!foundBook) {
+                    formatter.format("    (Không có sách nào)\n");
+                }
+                formatter.format("\n");
+            }
+            System.out.println("Đã xuất báo cáo NXB ra file: OUTPUT/DanhSachNXB.txt");
+
+        } catch (IOException e) {
+            System.err.println("Lỗi khi ghi file báo cáo NXB: " + e.getMessage());
+        }
     }
 
     public void nhapNXB(Scanner sc) {
@@ -82,6 +170,40 @@ public class DanhSachNXB {
         System.out.println("Da xoa NXB voi ma: " + maNXB);
     }
 
+    public void inNXBVaSach(DS_Sach ds_Sach) {
+        if (soLuongNXB == 0) {
+            System.out.println("Danh sach NXB rong!");
+            return;
+        }
+
+        System.out.println("\n===== DANH SÁCH NHÀ XUẤT BẢN VÀ SÁCH TƯƠNG ỨNG =====");
+        
+        // Lấy toàn bộ sách ra 1 lần
+        Sach[] allBooks = ds_Sach.getds(); // Giả định DS_Sach có hàm getds() trả về mảng Sach[]
+
+        for (int i = 0; i < soLuongNXB; i++) {
+            NXB nxb = dsNXB[i];
+            nxb.xuat(); // In thông tin NXB
+            
+            System.out.println("  --- Các sách thuộc NXB này:");
+            boolean foundBook = false;
+            
+            // Duyệt qua danh sách sách để tìm sách khớp NXB
+            for (Sach sach : allBooks) {
+                // Giả định class Sach có hàm getManxb()
+                if (sach.getManxb() != null && sach.getManxb().equals(nxb.getMaNXB())) {
+                    // Giả định class Sach có hàm getMasach() và getTensach()
+                    System.out.printf("    + [ %s ] - %s\n", sach.getMasach(), sach.getTensach());
+                    foundBook = true;
+                }
+            }
+
+            if (!foundBook) {
+                System.out.println("    (Không có sách nào thuộc NXB này trong danh sách)");
+            }
+            System.out.println("-----------------------------------------------------");
+        }
+
     public void suaNXB(Scanner sc) {
         System.out.print("Nhap ma NXB can sua: ");
         String maSua = sc.nextLine();
@@ -132,5 +254,33 @@ public class DanhSachNXB {
             }
         }
         while (true);
+    }
+
+    public void thongKeSoLuongSach(DS_Sach ds_Sach) {
+        if (soLuongNXB == 0) {
+            System.out.println("Chưa có NXB nào để thống kê.");
+            return;
+        }
+
+        System.out.println("\n--- THONG KE SO LUONG SACH TREN TUNG NXB ---");
+        
+        Sach[] allBooks = ds_Sach.getds(); // Lấy mảng sách
+        
+        for (int i = 0; i < soLuongNXB; i++) {
+            NXB nxb = dsNXB[i];
+            int count = 0;
+            
+            // Duyệt qua mảng sách để đếm
+            for (Sach sach : allBooks) {
+                if (sach.getManxb() != null && sach.getManxb().equals(nxb.getMaNXB())) {
+                    count++;
+                }
+            }
+            
+            // In kết quả thống kê của NXB này
+            System.out.printf("| %-10s | %-25s | %d (đầu sách)\n", 
+                              nxb.getMaNXB(), nxb.getTenNXB(), count);
+        }
+        System.out.println("---------------------------------------------");
     }
 }
