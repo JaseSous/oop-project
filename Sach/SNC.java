@@ -6,7 +6,7 @@ public class SNC extends Sach {
     Scanner sc = new Scanner(System.in);
     
     // Thuoc tinh
-    String linhvuc, detai;
+    private String linhvuc, detai;
 
     // Constructor
     public SNC(){
