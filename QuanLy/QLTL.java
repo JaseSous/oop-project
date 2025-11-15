@@ -14,6 +14,7 @@ public class QLTL extends QLBH {
             System.out.println("2. Xuat danh sach the loai");
             System.out.println("3. Tim kiem the loai");
             System.out.println("4. Xoa the loai");
+            System.out.println("5.Thong Ke so sach cua tung the loai");
             System.out.println("0. Luu file va thoat");
             System.out.println("==================================");
             System.out.print("Chon: ");
@@ -37,6 +38,9 @@ public class QLTL extends QLBH {
                     String ma = sc.nextLine();
                     ds_TheLoai.xoaTL(ma);
                     break;
+                case 5: 
+                    System.out.println("---------Thong ke---------");
+                    ds_TheLoai.Thongkesosachtheotheloai();
                 case 0:
                     ds_TheLoai.SaveFile();
                     System.out.println("Da luu du lieu va thoat!");
