@@ -1,7 +1,7 @@
 package QuanLy;
 import java.util.Scanner;
 
-public class QLHD extends QLBH {
+public class QLHD extends QLBH implements IQuanLy {
     @Override public void menuChinh() {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
