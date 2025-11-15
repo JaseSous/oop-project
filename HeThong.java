@@ -3,13 +3,13 @@ import QuanLy.*;
 import java.util.Scanner;
 
 public class HeThong {
+    Scanner sc = new Scanner(System.in);
+    
     public void menuChinh(){
         QLBH qlbh = new QLBH();
         qlbh.loadFile();
 
         // Menu chính
-        Scanner sc = new Scanner(System.in);
-
         System.out.println("===[Chương trình quản lý cửa hàng sách]===");
         System.out.println("\nHãy chọn menu quản lý");
         System.out.println("\t1) Quản lý sản phẩm");
