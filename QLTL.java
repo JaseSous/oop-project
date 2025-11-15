@@ -20,7 +20,9 @@ public class QLTL extends QLBH {
 
             switch (choice) {
                 case 1:
-                    dsTL.themTL();
+                    Theloai temp = new Theloai();
+                    temp.themTL();
+                    dsTL.themTL(temp);
                     break;
                 case 2:
                     dsTL.xuatdsTL();

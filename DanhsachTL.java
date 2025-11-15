@@ -60,14 +60,9 @@ public class DanhsachTL {
     }
 
     // Them the loai
-    public void themTL() {
-        Theloai temp = new Theloai();
-        temp.themTL();
-
+    public void themTL(Theloai temp) {
         dsTL = Arrays.copyOf(dsTL, soluongTL + 1);
-        dsTL[soluongTL] = temp;
-        soluongTL++;
-
+        dsTL[soluongTL++] = temp;
         System.out.println("Da them the loai moi!");
     }
 
