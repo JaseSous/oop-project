@@ -4,6 +4,8 @@ import java.util.Scanner;
 import Sach.Sach;
 
 public class QLSP extends QLBH {
+    Scanner sc = new Scanner(System.in);
+
     @Override public void menuChinh(){
         // Menu chính
         System.out.println("\n===[Giao diện quản lý danh sách sản phẩm]===\n");
@@ -16,8 +18,6 @@ public class QLSP extends QLBH {
         System.out.println("7) Tìm kiếm theo mã thể loại");
         System.out.println("8) Thống kê theo số lượng loại sách");
         System.out.println("0) Lưu và thoát");
-
-        Scanner sc = new Scanner(System.in);
         
         int choice = 0;
         boolean running = true;
