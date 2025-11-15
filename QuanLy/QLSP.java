@@ -23,13 +23,13 @@ public class QLSP extends QLBH {
         boolean running = true;
         
         while (running){
-            System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (1-8): ");
+            System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (0-8): ");
             // Kiểm tra hợp lệ
             while (true){
                 try{
                     choice = Integer.parseInt(sc.nextLine().trim());
-                    if (choice < 1 || choice > 8)
-                        System.out.print("Vui lòng nhập số từ khoảng 1-8: ");
+                    if (choice < 0 || choice > 8)
+                        System.out.print("Vui lòng nhập số từ khoảng 0-8: ");
                     else
                         break;
                 }

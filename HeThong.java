@@ -17,8 +17,9 @@ public class HeThong {
         System.out.println("\t3) Quản lý phiếu nhập hàng");
         System.out.println("\t4) Quản lý khách hàng");
         System.out.println("\t5) Quản lý nhân viên");
+        System.out.println("\t6) Quản lý nhà xuất bản");
         
-        System.out.print("Hãy nhập số của menu bạn muốn chọn (1-5): ");
+        System.out.print("Hãy nhập số của menu bạn muốn chọn (1-6): ");
 
         int choice = 0;
 
@@ -26,8 +27,8 @@ public class HeThong {
         while (true){
             try{
                 choice = Integer.parseInt(sc.nextLine().trim());
-                if (choice < 1 || choice > 5)
-                    System.out.print("Vui lòng nhập số từ khoảng 1-5: ");
+                if (choice < 1 || choice > 6)
+                    System.out.print("Vui lòng nhập số từ khoảng 1-6: ");
                 else
                     break;
             }
@@ -56,6 +57,10 @@ public class HeThong {
             case 5: // Quản lý nhân viên
                 QLBH qlnv = new QLNV();
                 qlnv.menuChinh();
+                break;
+            case 6: // Quản lý nhà xuất bản
+                QLBH qlnxb = new QLNXB();
+                qlnxb.menuChinh();
                 break;
         }
     }

@@ -10,6 +10,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import NXB.DS_NXB;
+import NXB.NXB;
+
 import java.util.Formatter;
 
 public class DS_Sach {
@@ -28,6 +32,23 @@ public class DS_Sach {
     public DS_Sach(DS_Sach other) {
         this.soLuongSach = other.soLuongSach;
         dsSach = Arrays.copyOf(other.dsSach, other.soLuongSach);
+    }
+
+    // Get/set
+    public int getSoLuongSach(){
+        return soLuongSach;
+    }
+
+    public Sach[] getDsSach(){
+        return dsSach;
+    }
+
+    public void setSoLuongSach(int soLuongSach){
+        this.soLuongSach = soLuongSach;
+    }
+
+    public void setDsSach(Sach[] dsSach){
+        this.dsSach = Arrays.copyOf(dsSach, dsSach.length);
     }
 
     // Phương thức
@@ -320,5 +341,16 @@ public class DS_Sach {
         }
 
         return result;
+    }
+
+    public void thongKeTheoNXB(DS_NXB ds_NXB){
+        for (NXB nxb : ds_NXB.getDSNXB()) {
+            int sosach = 0;
+            for (Sach sach : dsSach)
+                if (sach.getManxb().equals(nxb.getMaNXB()))
+                    sosach++;
+
+            System.out.printf("Số sách của NXB có mã %s là %d\n", nxb.getMaNXB(), sosach);
+        }
     }
 }

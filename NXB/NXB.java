@@ -1,18 +1,19 @@
+package NXB;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Scanner;
 public class NXB {
     private String maNXB;
     private String tenNXB;
-    private int sdt;
+    private String sdt;
 
     public NXB() {
         this.maNXB = "";
         this.tenNXB = "";
-        this.sdt = 0;
+        this.sdt = "";
     }
 
-    public NXB(String maNXB, String tenNXB, int sdt) {
+    public NXB(String maNXB, String tenNXB, String sdt) {
         this.maNXB = maNXB;
         this.tenNXB = tenNXB;
         this.sdt = sdt;
@@ -20,15 +21,15 @@ public class NXB {
 
     public void nhap(Scanner sc) {
         System.out.print("Nhap ma NXB: ");
-        this.maNXB = sc.nextLine();
+        this.maNXB = sc.nextLine().trim();
         System.out.print("Nhap ten NXB: ");
-        this.tenNXB = sc.nextLine();
+        this.tenNXB = sc.nextLine().trim();
         System.out.print("Nhap so dien thoai NXB: ");
-        this.sdt = sc.nextInt();
+        this.sdt = sc.nextLine().trim();
     }
 
     public void xuat() {
-        System.out.printf("Ma NXB: %s, Ten NXB: %s, So dien thoai: %d\n", maNXB, tenNXB, sdt);
+        System.out.printf("Ma NXB: %s, Ten NXB: %s, So dien thoai: %s\n", maNXB, tenNXB, sdt);
     }
 
     public void ghiFile(BufferedWriter bw) throws IOException {
@@ -36,7 +37,7 @@ public class NXB {
         bw.newLine();
         bw.write(tenNXB);
         bw.newLine();
-        bw.write(String.valueOf(sdt));
+        bw.write(sdt);
         bw.newLine();
     }
 
@@ -48,7 +49,7 @@ public class NXB {
         return tenNXB;
     }
 
-    public int getSdt() {
+    public String getSdt() {
         return sdt;
     }
     public void setMaNXB(String maNXB) {
@@ -57,7 +58,7 @@ public class NXB {
     public void setTenNXB(String tenNXB) {
         this.tenNXB = tenNXB;
     }
-    public void setSdt(int sdt) {
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
 

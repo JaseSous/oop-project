@@ -1,3 +1,4 @@
+package NXB;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,22 +9,41 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Formatter;
+
 import Sach.DS_Sach;
 import Sach.Sach;
 
-public class DanhSachNXB {
+public class DS_NXB {
     private NXB[] dsNXB;
     private int soLuongNXB;
 
-    public DanhSachNXB() {
+    public DS_NXB() {
         this.dsNXB = new NXB[0];
         this.soLuongNXB = 0;
     }
 
-    public DanhSachNXB(NXB[] dsNXB, int soLuongNXB) {
+    public DS_NXB(NXB[] dsNXB, int soLuongNXB) {
         this.dsNXB = dsNXB;
         this.soLuongNXB = soLuongNXB;
     }
+
+    // Get/set
+    public int getSoLuongNXB(){
+        return soLuongNXB;
+    }
+
+    public NXB[] getDSNXB(){
+        return dsNXB;
+    }
+
+    public void setSoLuongNXB(int soLuongNXB){
+        this.soLuongNXB = soLuongNXB;
+    }
+
+    public void setDSNXB(NXB[] dsNXB){
+        this.dsNXB = dsNXB;
+    } 
 
     // --- HÀM LOAD FILE ---
     public void loadFile() {
@@ -42,7 +62,7 @@ public class DanhSachNXB {
             for (int i = 0; i < soLuongNXB; i++) {
                 String ma = reader.readLine().trim();
                 String ten = reader.readLine().trim();
-                int sdt = Integer.parseInt(reader.readLine().trim());
+                String sdt = reader.readLine().trim();
                 dsNXB[i] = new NXB(ma, ten, sdt);
             }
             reader.close();
@@ -69,12 +89,12 @@ public class DanhSachNXB {
     // --- HÀM XEM (Xuất file báo cáo - Đã thêm) ---
     public void xem(DS_Sach ds_Sach) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachNXB.txt"));
-             Formatter formatter = new Formatter(writer)) {
+            Formatter formatter = new Formatter(writer)) {
 
             formatter.format("===[DANH SÁCH NHÀ XUẤT BẢN VÀ SÁCH]===\n");
             formatter.format("Tổng số NXB: %d\n\n", soLuongNXB);
 
-            Sach[] allBooks = ds_Sach.getds();
+            Sach[] allBooks = ds_Sach.getDsSach();
 
             for (int i = 0; i < soLuongNXB; i++) {
                 NXB nxb = dsNXB[i];
@@ -179,7 +199,7 @@ public class DanhSachNXB {
         System.out.println("\n===== DANH SÁCH NHÀ XUẤT BẢN VÀ SÁCH TƯƠNG ỨNG =====");
         
         // Lấy toàn bộ sách ra 1 lần
-        Sach[] allBooks = ds_Sach.getds(); // Giả định DS_Sach có hàm getds() trả về mảng Sach[]
+        Sach[] allBooks = ds_Sach.getDsSach(); // Giả định DS_Sach có hàm getds() trả về mảng Sach[]
 
         for (int i = 0; i < soLuongNXB; i++) {
             NXB nxb = dsNXB[i];
@@ -203,6 +223,7 @@ public class DanhSachNXB {
             }
             System.out.println("-----------------------------------------------------");
         }
+    }
 
     public void suaNXB(Scanner sc) {
         System.out.print("Nhap ma NXB can sua: ");
@@ -237,7 +258,7 @@ public class DanhSachNXB {
                     break;
                 case 2:
                     System.out.print("Nhap so dien thoai NXB moi: ");
-                    int sdtMoi = sc.nextInt();
+                    String sdtMoi = sc.nextLine().trim();
                     dsNXB[vitri].setSdt(sdtMoi);
                     System.out.println("Da cap nhat so dien thoai NXB.");
                     break;
@@ -264,7 +285,7 @@ public class DanhSachNXB {
 
         System.out.println("\n--- THONG KE SO LUONG SACH TREN TUNG NXB ---");
         
-        Sach[] allBooks = ds_Sach.getds(); // Lấy mảng sách
+        Sach[] allBooks = ds_Sach.getDsSach(); // Lấy mảng sách
         
         for (int i = 0; i < soLuongNXB; i++) {
             NXB nxb = dsNXB[i];
