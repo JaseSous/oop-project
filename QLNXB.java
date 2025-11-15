@@ -10,7 +10,8 @@ public class QLNXB extends QLBH {
         System.out.println("3) Xóa");
         System.out.println("4) Sửa");
         System.out.println("5) Tìm kiếm");
-        System.out.println("6) Thống kê");
+        System.out.println("6) In NXB và Sách của NXB đó");
+        System.out.println("7) Thống kê số lượng sách theo NXB");
 
         System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (1-6): ");
         Scanner sc = new Scanner(System.in);
@@ -45,11 +46,14 @@ public class QLNXB extends QLBH {
             case 4: // Sửa
                 ds_NXB.suaNXB(sc);
                 break;
-            case 5: // Tìm kiếm
+            case 5: // Tìm kiếm theo mã
                 ds_NXB.timKiemtheoma(sc);
                 break;
-            case 6: // Thống kê
-
+            case 6: // In NXB và Sách của NXB đó
+                ds_NXB.inNXBVaSach(ds_Sach); 
+                break;
+            case 7: // Thống kê số lượng sách theo NXB
+                ds_Sach.thongKeSoLuongSach(ds_NXB);
                 break;
         }
     }
