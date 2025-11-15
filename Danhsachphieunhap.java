@@ -111,7 +111,7 @@ public class Danhsachphieunhap {
     //--------------------- sửa ngày nhấp------------------------------
     public void suaNgayNhap(String mapn, LocalDate ngayMoi) {
         for (Phieunhaphang p : ds) {
-            if (p.getMaPN().equalsIgnoreCase(mapn)) {
+            if (p.getMaPN().equals(mapn)) {
                 p.setNgaynhap(ngayMoi);
                 System.out.println("Da sua ngay nhap cho phieu " + mapn);
                 return;
@@ -149,7 +149,7 @@ public class Danhsachphieunhap {
         Phieunhaphang ketqua=new Phieunhaphang();
     boolean found =false;
     for ( int i=0;i<soluongphieunhap;i++) {
-        if (ds[i].getMaPN().equalsIgnoreCase(matim)) {
+        if (ds[i].getMaPN().equals(matim)) {
             found=true;
             ketqua=ds[i];
         }   

@@ -122,7 +122,7 @@ public void menutimkiemCTPNH() {
                 String mapntim = sc.nextLine();
                 CTPNH[] kq1 = timTheoMaPN(mapntim);
                 if (kq1 != null) {
-                    System.out.printf("%-10s | %-20s | %-10s | %-10s%n", 
+                    System.out.printf("%-11s | %-10s | %-10s | %-10s%n", 
                         "MASP", "SoLuongNhap", "DonGia", "ThanhTien");
                     for (CTPNH ct : kq1) {
                         ct.xuat();
