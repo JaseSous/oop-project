@@ -2,7 +2,7 @@ package QuanLy;
 
 import java.util.Scanner;
 
-public class QLKH extends QLBH implements IQuanLy {
+public class QLKH extends QLBH {
     @Override public void menuChinh(){
         // Menu chính
         System.out.println("\n===[Giao diện quản lý danh sách khách hàng]===\n");
