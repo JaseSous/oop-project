@@ -1,5 +1,6 @@
 package QuanLy;
 import Sach.DS_Sach;
+import TheLoai.DS_TheLoai;
 import Khachhang.DS_Khachhang;
 import NXB.DS_NXB;
 import Nhacungcap.DS_NCC;
@@ -20,6 +21,7 @@ public class QLBH implements IQuanLy {
     protected static DS_HoaDon ds_Hoadon = new DS_HoaDon();
     protected static DS_ChiTietHoaDon ds_ChitietHoaDon = new DS_ChiTietHoaDon();
     protected static DS_NCC ds_NCC = new DS_NCC();
+    protected static DS_TheLoai ds_Theloai = new DS_TheLoai();
 
     public void loadFile(){
         ds_Sach.loadFile();
@@ -31,6 +33,7 @@ public class QLBH implements IQuanLy {
         ds_Phieunhap.loadFile();
         ds_CTPNH.loadFile();
         ds_NCC.loadFile();
+        ds_Theloai.loadFile();
     }
 
     public void menuChinh(){}
