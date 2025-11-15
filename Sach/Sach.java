@@ -42,59 +42,59 @@ public class Sach {
     }
 
     // Get/set
-    String getMasach(){
+    public String getMasach(){
         return masach;
     }
 
-    String getTensach(){
+    public String getTensach(){
         return tensach;
     }
 
-    String getMatheloai(){
+    public String getMatheloai(){
         return matheloai;
     }
 
-    String getMatg(){
+    public String getMatg(){
         return matg;
     }
 
-    String getManxb(){
+    public String getManxb(){
         return manxb;
     }
 
-    int getSoluong(){
+    public int getSoluong(){
         return soluong;
     }
 
-    int getGia(){
+    public int getGia(){
         return gia;
     }
 
-    void setMasach(String masach){
+    public void setMasach(String masach){
         this.masach = masach;
     }
 
-    void setTensach(String tensach){
+    public void setTensach(String tensach){
         this.tensach = tensach;
     }
 
-    void setMatheloai(String matheloai){
+    public void setMatheloai(String matheloai){
         this.matheloai = matheloai;
     }
 
-    void setMatg(String matg){
+    public void setMatg(String matg){
         this.matg = matg;
     }
 
-    void setManxb(String manxb){
+    public void setManxb(String manxb){
         this.manxb = manxb;
     }
 
-    void setSoluong(int soluong){
+    public void setSoluong(int soluong){
         this.soluong = soluong;
     }
 
-    void setGia(int gia){
+    public void setGia(int gia){
         this.gia = gia;
     }
 
