@@ -6,7 +6,7 @@ public class HeThong {
     public void menuChinh(){
         QLBH qlbh = new QLBH();
         qlbh.loadFile();
-
+        
         // Menu chính
         Scanner sc = new Scanner(System.in);
 
@@ -43,8 +43,8 @@ public class HeThong {
                 qlsp.menuChinh();
                 break;
             case 2: // Quản lý hóa đơn
-                //QLBH qlhd = new QLHD();
-                //qlhd.menuChinh();
+                QLBH qlhd = new QLHD();
+                qlhd.menuChinh();
                 break;
             case 3: // Quản lý phiếu nhập hàng
 

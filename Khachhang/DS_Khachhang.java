@@ -43,7 +43,7 @@ public class DS_Khachhang {
             
             for (int i = 0; i < n; i++){
                 // Đọc các thuộc tính của khách hàng 
-                long makh = Long.parseLong(reader.readLine().trim()); 
+                String makh = reader.readLine().trim();
                 String ho = reader.readLine().trim();
                 String ten = reader.readLine().trim();
                 String dchi = reader.readLine().trim();
@@ -105,7 +105,7 @@ public class DS_Khachhang {
                 Khachhang khach = kh[i]; 
     
                 writer.newLine();
-                writer.write(String.valueOf(khach.getMakh()));
+                writer.write(khach.getMakh());
     
                 writer.newLine();
                 writer.write(khach.getHo());
@@ -148,7 +148,7 @@ public class DS_Khachhang {
         System.out.println("Đã thêm khách hàng " + khMoi.getTen() + " vào danh sách.");
     }
     
-    public void them(long makh, String ho, String ten, String dchi,long sdt, String ngaysinh,String ngaymuahang ) {
+    public void them(String makh, String ho, String ten, String dchi,long sdt, String ngaysinh,String ngaymuahang ) {
         kh = Arrays.copyOf(kh, kh.length + 1);
         kh[soluong] = new Khachhang(makh, ho, ten, dchi,sdt, ngaysinh, ngaymuahang);
         soluong++;
@@ -175,11 +175,11 @@ public class DS_Khachhang {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma KH muon xoa: ");
-        long maxoa = sc.nextLong();
+        String maxoa = sc.nextLine();
         
         int vitri = -1;
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getMakh() == maxoa) {
+            if (kh[i].getMakh().equals(maxoa)) {
                 vitri = i;
                 break;
             }
@@ -201,12 +201,12 @@ public class DS_Khachhang {
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma KH muon sua: ");
-        long masua = sc.nextLong();
+        String masua = sc.nextLine();
         int vitri = -1;
     
         // 1. Tìm vị trí
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getMakh() == masua) {
+            if (kh[i].getMakh().equals(masua)) {
                 vitri = i;
                 break;
             }
@@ -231,10 +231,10 @@ public class DS_Khachhang {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma Khach Hang muon tim: ");
-        long matim = sc.nextInt();
+        String matim = sc.nextLine();
         
         // Gọi hàm helper bên dưới
-        Khachhang kh_tim = timKhachHangTheoMa(matim); 
+        Khachhang kh_tim = timKhachHangTheoMa(matim);
         
         if (kh_tim != null) {
             System.out.println("Tim thay khach hang:");
@@ -246,9 +246,9 @@ public class DS_Khachhang {
     }
 
     //---- HÀM HELPER MỚI: Dùng để trả về đối tượng Khachhang ----
-    public Khachhang timKhachHangTheoMa(long maKH) {
+    public Khachhang timKhachHangTheoMa(String maKH) {
         for (int i = 0; i < soluong; i++) {
-            if (kh[i].getMakh() == maKH) {
+            if (kh[i].getMakh().equals(maKH)) {
                 return kh[i]; // Trả về đối tượng tìm thấy
             }
         }

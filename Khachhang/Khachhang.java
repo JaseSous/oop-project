@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Khachhang {
-    private long makh;
+    private String makh;
     private String ho;
     private String ten;
     private String dchi;
@@ -15,7 +15,7 @@ public class Khachhang {
     private String ngaymuahang;
 
     public Khachhang(){
-        this.makh=0;
+        this.makh=" ";
         this.ho="";
         this.ten="";
         this.dchi="";
@@ -23,7 +23,8 @@ public class Khachhang {
         this.ngaysinh="";
         this.ngaymuahang="";
     }
-    public Khachhang(long makh,String ho,String ten,String dchi,long sdt,String ngaysinh,String ngaymuahang){
+
+    public Khachhang(String makh,String ho,String ten,String dchi,long sdt,String ngaysinh,String ngaymuahang){
         this.makh=makh;
         this.ho=ho;
         this.ten=ten;
@@ -38,7 +39,7 @@ public class Khachhang {
         Scanner sc = new Scanner(System.in);
     
         System.out.print("\nMa Khach Hang: ");
-        makh = sc.nextLong();
+        makh = sc.nextLine();
         sc.nextLine(); // bỏ dòng trống còn lại sau khi nhập số
         System.out.print("Ho: ");
         ho = sc.nextLine();
@@ -77,7 +78,7 @@ public class Khachhang {
     }
 
     //----Hàm get/set----
-    public long getMakh(){
+    public String getMakh(){
         return makh;
     }
     public String getHo(){
@@ -99,7 +100,7 @@ public class Khachhang {
         return ngaymuahang;
     }
 
-    public void setMakh(long makh_x){
+    public void setMakh(String makh_x){
         makh=makh_x;
     }
     public void setHo(String ho_x){

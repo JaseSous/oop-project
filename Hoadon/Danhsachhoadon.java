@@ -1,9 +1,9 @@
 package Hoadon;
 
-import Khachhang.DanhsachKhachhang;
-import Nhanvien.DanhsachNhanvien;
+import Khachhang.DS_Khachhang;
+import Nhanvien.DS_Nhanvien;
 import Khachhang.Khachhang;
-import Nhanvien.Nhanvien;
+import Nhanvien.NhanVien;
 import java.util.Formatter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -35,7 +35,7 @@ public class Danhsachhoadon {
     }
 
     // --- LOAD FILE ---
-    public void loadFile(DanhsachKhachhang dskh, DanhsachNhanvien dsnv) {
+    public void loadFile(DS_Khachhang dskh, DS_Nhanvien dsnv) {
         try {
             String filePath = "DATA/DS_HoaDon.dat";
             Path path = Paths.get(filePath);
@@ -49,8 +49,8 @@ public class Danhsachhoadon {
                 String maHD = reader.readLine().trim();
                 LocalDate ngayLap = LocalDate.parse(reader.readLine().trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 // Đọc mã KH/NV và tìm kiếm đối tượng tương ứng
-                Khachhang kh = dskh.timKiem(reader.readLine().trim());
-                Nhanvien nv = dsnv.timKiem(reader.readLine().trim());
+                Khachhang kh = dskh.timKhachHangTheoMa(reader.readLine().trim());
+                NhanVien nv = dsnv.timNhanVienTheoMa(reader.readLine().trim());
                 ds[i] = new Hoadon(maHD, ngayLap, kh, nv);
             }
             reader.close();
@@ -86,8 +86,8 @@ public class Danhsachhoadon {
                 formatter.format("------------------------------------------------------------\n");
                 formatter.format("HÓA ĐƠN SỐ: %s\n", hd.getMaHD());
                 formatter.format("Ngày lập: %s\n", hd.getNgayLapHD().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                if (hd.getKhachHang() != null) formatter.format("Khách hàng: %s (%s)\n", hd.getKhachHang().getTenkh(), hd.getKhachHang().getMakh());
-                if (hd.getNhanVien() != null) formatter.format("Nhân viên lập: %s (%s)\n", hd.getNhanVien().getTennv(), hd.getNhanVien().getManv());
+                if (hd.getKhachHang() != null) formatter.format("Khách hàng: %s (%s)\n", hd.getKhachHang().getTen(), hd.getKhachHang().getMakh());
+                if (hd.getNhanVien() != null) formatter.format("Nhân viên lập: %s (%s)\n", hd.getNhanVien().getTen(), hd.getNhanVien().getManv());
 
                 formatter.format("\n--- Chi tiết đơn hàng ---\n");
                 formatter.format("| %-10s | %-8s | %-11s | %-13s |\n", "Mã sách", "SL", "Đơn giá", "Thành tiền");
@@ -158,7 +158,7 @@ public class Danhsachhoadon {
             Khachhang kh = ds[i].getKhachHang();
             if (kh != null) {
                 // Kiểm tra xem tên khách hàng có chứa chuỗi tìm kiếm không
-                if (kh.getTenkh().toLowerCase().contains(tenKH.toLowerCase())) {
+                if (kh.getTen().toLowerCase().contains(tenKH.toLowerCase())) {
                     ketqua = Arrays.copyOf(ketqua, count + 1);
                     ketqua[count] = ds[i];
                     count++;
@@ -177,6 +177,29 @@ public class Danhsachhoadon {
             dem[quy]++;
         }
         return dem;
+    }
+
+    public double[] ThongKeDoanhThuTheoQuy(DanhsachChiTietHoaDon ds_CTHD_Tong) {
+        double[] doanhThuQuy = new double[4]; 
+        // Vòng lặp 1: Duyệt qua từng hóa đơn trong danh sách (ds)
+        for (int i = 0; i < siso; i++) {
+            Hoadon hd = ds[i];
+            // Lấy tháng và quý của hóa đơn
+            int month = hd.getNgayLapHD().getMonthValue();
+            int quy = (month - 1) / 3;
+
+            double tongTienCuaHoaDonNay = 0;
+
+            // Vòng lặp 2: Duyệt qua TẤT CẢ chi tiết trong danh sách TỔNG
+            for (ChiTietHoaDon ct : ds_CTHD_Tong.getds()) {
+                if (ct.getMaHD().equals(hd.getMaHD())) {
+                    tongTienCuaHoaDonNay += ct.getThanhTien();
+                }
+            }
+            doanhThuQuy[quy] += tongTienCuaHoaDonNay;
+        }
+        
+        return doanhThuQuy;
     }
     
     // Các hàm sửa
