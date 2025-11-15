@@ -1,5 +1,6 @@
 package QuanLy;
 import Sach.DS_Sach;
+import TheLoai.DS_TheLoai;
 import Khachhang.DS_Khachhang;
 import Nhanvien.DS_Nhanvien;
 import Nhaphang.DS_CTPNH;
@@ -14,6 +15,7 @@ public class QLBH {
     protected static DS_PNH ds_PNH=new DS_PNH();
     protected static DS_CTPNH ds_CTPNH =new DS_CTPNH();
     protected static DS_NCC ds_NCC=new DS_NCC();
+    protected static DS_TheLoai ds_TheLoai =new DS_TheLoai();
     //protected static DS_Hoadon ds_Hoadon = new DS_Hoadon();
 
     public void loadFile(){
@@ -23,13 +25,14 @@ public class QLBH {
         ds_CTPNH.loadFile();
         ds_PNH.loadFile();
         ds_NCC.loadFile();
+        ds_TheLoai.loadFile(); 
         //ds_Hoadon.loadFile(ds_Khachhang, ds_Nhanvien);
     }
 
     public void menuChinh(){
     }
     public static void main(String[] args) {
-        QLBH ql=new QuanlyPNH_CTPNH();
+        QLBH ql=new QLTL();
         ql.loadFile();
         ql.menuChinh();
     }
