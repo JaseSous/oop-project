@@ -1,7 +1,6 @@
 package QuanLy;
 import java.util.Scanner;
 import TheLoai.*;
-import Sach.DS_Sach;
 public class QLTL extends QLBH {
 
     @Override
