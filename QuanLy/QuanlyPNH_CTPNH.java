@@ -159,6 +159,7 @@ public class QuanlyPNH_CTPNH extends QLBH{
         }
 
     } while (chon != 0);
+       
     } 
 
     @Override
