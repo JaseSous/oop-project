@@ -33,8 +33,11 @@ public class DanhsachNCC {
         dsNCC = new Nhacungcap[soluongNCC]; // cấp phát mảng
         for (int i = 0; i < soluongNCC; i++) {
             dsNCC[i] = new Nhacungcap();
-            dsNCC[i].nhapNCC(br);
+            dsNCC[i].setmaNCC(br.readLine().trim());
+            dsNCC[i].settenNCC(br.readLine().trim());
+            dsNCC[i].setdiachi(br.readLine().trim());
         }
+        br.close();
         System.out.println("\n Nhap du lieu hoan tat");
         }
         catch (Exception e)

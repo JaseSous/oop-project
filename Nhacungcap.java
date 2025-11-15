@@ -35,11 +35,7 @@ public class Nhacungcap {
     public String getdiachi() { return diachi; }
     public void setdiachi(String diachi) { this.diachi = diachi; }
 
-    public void nhapNCC(BufferedReader br) throws IOException {
-        maNCC =br.readLine().trim();
-        tenNCC =br.readLine().trim();
-        diachi =br.readLine().trim();
-    }
+
 
      public void them(){
           Scanner sc = new Scanner(System.in);
