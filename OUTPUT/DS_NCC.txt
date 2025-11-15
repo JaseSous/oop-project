@@ -1,0 +1,22 @@
+Ma NCC     | Ten NCC              |  Dia Chi             
+--------------------------------------------------
+NCC01      | Cong ty Minh Phat    | 123 Le Loi, TP.HCM  
+NCC02      | Cong ty Bao Long     | 45 Nguyen Trai, HN  
+NCC03      | Cong ty Dai Nam      | 89 Tran Phu, DN     
+NCC04      | Cong ty An Khang     | 56 Mau Than, CT     
+NCC05      | Cong ty Tien Dat     | 22 Cach Mang Thang 8, TP.HCM
+NCC06      | Cong ty Phuong Nam   | 77 Le Duan, DN      
+NCC07      | Cong ty AHB          | 101 Hai Ba Trung, HN
+NCC08      | Cong ty Hoang Gia    | 15 Nguyen Van Cu, TP.HCM
+NCC09      | Cong ty Tan Phu      | 200 Tran Hung Dao, CT
+NCC10      | Cong ty Viet Thinh   | 88 Pho Hue, HN      
+NCC11      | Cong ty Hoang Phuc   | 35 Nguyen Van Linh, DN
+NCC12      | Cong ty Nam Long     | 90 Dien Bien Phu, TP.HCM
+NCC13      | Cong ty Kim Ngan     | 72 Lang Ha, HN      
+NCC14      | Cong ty Son Ha       | 15 Nguyen Trai, CT  
+NCC15      | Cong ty Quoc Bao     | 67 Phan Chau Trinh, DN
+NCC16      | Cong ty Dong Tam     | 108 Pasteur, TP.HCM 
+NCC17      | Cong ty Hoang Vu     | 54 Kim Ma, HN       
+NCC18      | Cong ty Bao Chau     | 99 Le Loi, DN       
+NCC19      | Cong ty Phu My       | 66 Nguyen Van Linh, CT
+NCC20      | Cong ty An Phuoc     | 120 Tran Quang Khai, TP.HCM
