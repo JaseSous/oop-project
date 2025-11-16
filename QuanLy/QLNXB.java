@@ -13,6 +13,7 @@ public class QLNXB extends QLBH {
         System.out.println("5) Tim kiem");
         System.out.println("6) In NXB và Sach của NXB do");
         System.out.println("7) Thong ke so luong sach theo NXB");
+        System.out.println("8) Xuat danh sach ra file báo cáo");
         System.out.println("0) Luu và thoat");
 
         Scanner sc = new Scanner(System.in);
@@ -21,13 +22,13 @@ public class QLNXB extends QLBH {
         boolean running = true;
         
         while (running){
-            System.out.print("\nHay nhap so thao tac ma ban muon thuc hien (0-7): ");
+            System.out.print("\nHay nhap so thao tac ma ban muon thuc hien (0-8): ");
             // Kiểm tra hợp lệ
             while (true){
                 try{
                     choice = Integer.parseInt(sc.nextLine().trim());
-                    if (choice < 0 || choice > 7)
-                        System.out.print("Vui long nhap so tu khoang 1-7: ");
+                    if (choice < 0 || choice > 8)
+                        System.out.print("Vui long nhap so tu khoang 1-8: ");
                     else
                         break;
                 }
@@ -57,6 +58,9 @@ public class QLNXB extends QLBH {
                     break;
                 case 7: // Thống kê số lượng sách theo NXB
                     ds_Sach.thongKeTheoNXB(ds_NXB);
+                    break;
+                case 8: // Xuất danh sách ra file báo cáo
+                    ds_NXB.xem(ds_Sach);
                     break;
                 case 0: // Lưu và thoát
                     ds_NXB.saveFile();
