@@ -101,7 +101,7 @@ public class DS_NXB {
                 formatter.format("--------------------------------------------------\n");
                 formatter.format("Ma NXB: %s\n", nxb.getMaNXB());
                 formatter.format("Ten NXB: %s\n", nxb.getTenNXB());
-                formatter.format("SDT: %d\n", nxb.getSdt());
+                formatter.format("SDT: %s\n", nxb.getSdt());
                 formatter.format("\n  --- Cac sach thuoc NXB nay:\n");
 
                 boolean foundBook = false;
