@@ -1,0 +1,75 @@
+===[DANH SACH NXB VA SACH]===
+Tong so NXB: 8
+
+--------------------------------------------------
+Ma NXB: NXB01
+Ten NXB: NXB Kim Dong
+SDT: 02439434730
+
+  --- Cac sach thuoc NXB nay:
+    (Khong co sach nao)
+
+--------------------------------------------------
+Ma NXB: NXB02
+Ten NXB: NXB Tre
+SDT: 02839316289
+
+  --- Cac sach thuoc NXB nay:
+    (Khong co sach nao)
+
+--------------------------------------------------
+Ma NXB: NXB03
+Ten NXB: NXB Giao duc Viet Nam
+SDT: 02438220801
+
+  --- Cac sach thuoc NXB nay:
+    + [ S001 ] - Sach giao khoa Toan 10
+    + [ S003 ] - Sach giao khoa Ngu Van 12
+    + [ S005 ] - Sach giao khoa Vat Ly 11
+    + [ S007 ] - Sach bai tap Hoa Hoc 9
+    + [ S009 ] - Sach giao khoa Tieng Anh 7
+
+--------------------------------------------------
+Ma NXB: NXB04
+Ten NXB: NXB Van hoc
+SDT: 02438252041
+
+  --- Cac sach thuoc NXB nay:
+    (Khong co sach nao)
+
+--------------------------------------------------
+Ma NXB: NXB05
+Ten NXB: NXB Khoa hoc va Ky thuat
+SDT: 02438263871
+
+  --- Cac sach thuoc NXB nay:
+    + [ S002 ] - Nghien cuu ve AI trong y te
+    + [ S004 ] - Phan tich kinh te vi mo
+    + [ S006 ] - Lich su Dang CSVN (NC)
+    + [ S008 ] - Tam ly hoc hanh vi
+    + [ S010 ] - OOP va Design Patterns
+
+--------------------------------------------------
+Ma NXB: NXB06
+Ten NXB: NXB Tong hop TPHCM
+SDT: 02838225340
+
+  --- Cac sach thuoc NXB nay:
+    (Khong co sach nao)
+
+--------------------------------------------------
+Ma NXB: NXB07
+Ten NXB: NXB Lao Dong
+SDT: 02438515380
+
+  --- Cac sach thuoc NXB nay:
+    (Khong co sach nao)
+
+--------------------------------------------------
+Ma NXB: NXB08
+Ten NXB: NXB Phu nu Viet Nam
+SDT: 02439717101
+
+  --- Cac sach thuoc NXB nay:
+    (Khong co sach nao)
+
