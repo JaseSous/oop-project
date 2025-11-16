@@ -47,6 +47,10 @@ public class SNC extends Sach {
         this.detai = detai;
     }
 
+    @Override public String getLoaiSach(){
+        return "SNC";
+    }
+
     // Phương thức
     @Override public void nhap(){
         super.nhap();

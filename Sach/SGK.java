@@ -48,6 +48,10 @@ public class SGK extends Sach {
         this.lop = lop;
     }
 
+    @Override public String getLoaiSach(){
+        return "SGK";
+    }
+
     // Phương thức
     @Override public void nhap(){
         super.nhap();

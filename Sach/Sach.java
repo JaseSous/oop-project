@@ -2,7 +2,7 @@ package Sach;
 
 import java.util.Scanner;
 
-public class Sach {
+public abstract class Sach {
     Scanner sc = new Scanner(System.in);
     
     // Thuoc tinh
@@ -99,6 +99,8 @@ public class Sach {
     public void setGia(int gia){
         this.gia = gia;
     }
+
+    public abstract String getLoaiSach();
 
     // Phương thức
     public void nhap(){

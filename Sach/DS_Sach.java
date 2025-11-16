@@ -321,7 +321,7 @@ public class DS_Sach {
         for (Sach sach : dsSach){
             if (sach.getMatheloai().equals(matheloaicantim)){
                 result = Arrays.copyOf(result, result.length+1);
-                result[result.length-1] = new Sach(sach);
+                result[result.length-1] = sach;
             }
         }
 
