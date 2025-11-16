@@ -68,7 +68,7 @@ public class DS_ChiTietHoaDon {
     // Thêm
     public void themvaodanhsach(ChiTietHoaDon ct) {
         ds = Arrays.copyOf(ds, n + 1);
-        ds[n++] = new ChiTietHoaDon(ct.getMaHD(), ct.getMaSach(), ct.getSoLuong(), ct.getDongia());
+        ds[n++] = new ChiTietHoaDon(ct);
     }
 
     // Xóa theo mã HD
