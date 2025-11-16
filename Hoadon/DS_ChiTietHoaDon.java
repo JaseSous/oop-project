@@ -78,6 +78,7 @@ public class DS_ChiTietHoaDon {
 
     // Xóa theo mã HD
     public void xoatheoMaHD(String maHD) {
+        boolean found = false;
         for (int i = 0; i < n;) {
             if (ds[i].getMaHD().equals(maHD)) {
                 for (int j = i; j < n - 1; j++) {
@@ -85,11 +86,15 @@ public class DS_ChiTietHoaDon {
                 }
                 n--;
                 ds = Arrays.copyOf(ds, n);
+                found = true;
                 // Không tăng i vì phần tử mới đã dồn lên vị trí i
             } else {
                 i++; // Chỉ tăng i nếu không xóa
             }
         }
+        if(!found) {
+            System.out.println("Khong tim thay chi tiet thuoc HD: " + maHD);
+        } else
         System.out.println("Da xoa cac chi tiet thuoc HD: " + maHD);
     }
 

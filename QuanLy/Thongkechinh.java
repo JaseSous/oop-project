@@ -32,21 +32,6 @@ public void menuChinh() {
 }
 
 
-    public double[] ThongKeLoiNhuanTheoQuy() {
-
-        // TIỀN NHẬP
-        double[] tienNhap = ds_Phieunhap.ThongKeTienNhapHang(ds_CTPNH);
-
-        // DOANH THU
-        double[] tienBan = ds_Hoadon.ThongKeDoanhThuTheoQuy(ds_ChitietHoaDon);
-
-        double[] loiNhuan = new double[4];
-
-        for (int i = 0; i < 4; i++)
-            loiNhuan[i] = tienBan[i] - tienNhap[i];
-
-        return loiNhuan;
-    }
  public void inBangThongKe() {
         double[] tienNhap = ds_Phieunhap.ThongKeTienNhapHang(ds_CTPNH);
         double[] tienBan  = ds_Hoadon.ThongKeDoanhThuTheoQuy(ds_ChitietHoaDon);
@@ -65,7 +50,7 @@ public void menuChinh() {
         System.out.printf("| %-14s ", "TONG THU");
         for (int i = 0; i < 4; i++) {
             System.out.printf("| %,10.0f ", tienBan[i]);
-            tongBan -= tienBan[i];
+            tongBan += tienBan[i];
         }
         System.out.printf("| %,10.0f |%n", tongBan);
         System.out.println("-----------------------------------------------------------------------------------");
@@ -74,7 +59,7 @@ public void menuChinh() {
         System.out.printf("| %-14s ", "TONG CHI");
         for (int i = 0; i < 4; i++) {
             System.out.printf("| %,10.0f ", tienNhap[i]);
-            tongNhap -= tienNhap[i];
+            tongNhap += tienNhap[i];
         }
         System.out.printf("| %,10.0f |%n", tongNhap);
         System.out.println("-----------------------------------------------------------------------------------");
@@ -84,7 +69,7 @@ public void menuChinh() {
         System.out.printf("| %-14s ", "LOI NHUAN");
         for (int i = 0; i < 4; i++) {
             System.out.printf("| %,10.0f ", loiNhuan[i]);
-            tongLN -= loiNhuan[i];
+            tongLN += loiNhuan[i];
         }
         System.out.printf("| %,10.0f |%n", tongLN);
         System.out.println("-----------------------------------------------------------------------------------");
