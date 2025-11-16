@@ -52,7 +52,7 @@ public class QLNV extends QLBH {
                 ds_Nhanvien.xoanv();
                 break;
             case 4: // Sửa
-                ds_Nhanvien.suasv();
+                ds_Nhanvien.suanv();
                 break;
             case 5: // Tìm kiếm theo Mã NV
                 ds_Nhanvien.timTheoma();

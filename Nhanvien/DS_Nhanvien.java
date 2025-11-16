@@ -183,7 +183,7 @@ public class DS_Nhanvien {
     }
 
     //-----ham sua nhan vien----
-    public void suasv() {
+    public void suanv() {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma NV muon sua: ");
