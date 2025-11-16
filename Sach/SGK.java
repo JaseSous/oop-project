@@ -58,7 +58,9 @@ public class SGK extends Sach {
 
     @Override public void xuat(){
         super.xuat();
-        System.out.println("\tMôn học: " + monhoc);
-        System.out.println("\tLớp: " + lop);
+
+        System.out.printf("| %-20s | %-30s |", "Môn học", this.getMonHoc());
+        System.out.printf("\n| %-20s | %-30d |\n", "Lớp", this.getLop());
+        System.out.println("-".repeat(57));
     }
 }

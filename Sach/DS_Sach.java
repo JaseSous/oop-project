@@ -196,14 +196,14 @@ public class DS_Sach {
             formatter.format("Số lượng: " + soLuongSach + "\n\n");
 
             if (soLuongSach > 0){
-                formatter.format("-".repeat(156));
-                formatter.format("\n| %-3s | %-9s | %-7s | %-25s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-8s | %-8s |\n",
-                                "STT", "Loại sách", "Mã sách", "Tên sách", "Mã thể loại", "Mã tác giả", "Mã NXB", "Số lượng", "Giá", " Môn học ", "Lớp", "Lĩnh vực", " Đề tài ");
-                formatter.format("-".repeat(156) + "\n");
+                formatter.format("-".repeat(178));
+                formatter.format("\n| %-3s | %-9s | %-7s | %-35s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-10s | %-18s |\n",
+                                "STT", "Loại sách", "Mã sách", "Tên sách", "Mã thể loại", "Mã tác giả", "Mã NXB", "Số lượng", "Giá", " Môn học ", "Lớp", " Lĩnh vực ", "Đề tài");
+                formatter.format("-".repeat(178) + "\n");
 
                 for (int i = 0; i < soLuongSach; i++){
                     if (dsSach[i] instanceof SGK){
-                        formatter.format("| %-3s | %-9s | %-7s | %-25s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-8s | %-8s |\n",
+                        formatter.format("| %-3s | %-9s | %-7s | %-35s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-10s | %-18s |\n",
                                 i+1,
                                 "SGK",
                                 dsSach[i].getMasach(),
@@ -219,7 +219,7 @@ public class DS_Sach {
                                 "");
                     }
                     else if (dsSach[i] instanceof SNC){
-                        formatter.format("| %-3s | %-9s | %-7s | %-25s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-8s | %-8s |\n",
+                        formatter.format("| %-3s | %-9s | %-7s | %-35s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-10s | %-18s |\n",
                                 i+1,
                                 "SNC",
                                 dsSach[i].getMasach(),
@@ -235,7 +235,7 @@ public class DS_Sach {
                                 String.valueOf(((SNC)dsSach[i]).getDeTai()));
                     }
                 }
-                formatter.format("-".repeat(156));
+                formatter.format("-".repeat(178));
             }
 
             System.out.println("Đã ghi dữ liệu vào file: DanhSachSanPham.txt");
@@ -295,8 +295,7 @@ public class DS_Sach {
         
         for (int i = 0; i < soLuongSach; i++){
             if (dsSach[i].getMasach().equals(maSachCanSua)){
-                System.out.println("Hãy nhập thông tin của sách sau khi sửa:");
-                dsSach[i].nhap();
+                dsSach[i].sua();
 
                 System.out.println("Đã sửa sách có mã sách " + maSachCanSua + " trong khỏi danh sách sản phẩm");
                 return;
