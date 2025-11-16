@@ -79,6 +79,5 @@ public class QLNV extends QLBH {
                 break;
             }
         }
-        sc.close();
     }
 }

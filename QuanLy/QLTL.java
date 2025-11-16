@@ -48,7 +48,6 @@ public class QLTL extends QLBH {
                     System.out.println("Lua chon khong hop le!");
             }
         } while (choice != 0);
-        sc.close();
     }
 
 
