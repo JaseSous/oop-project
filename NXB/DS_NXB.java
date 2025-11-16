@@ -152,8 +152,7 @@ public class DS_NXB {
         NXB newDsNXB = new NXB();
         newDsNXB.nhap(sc);
         dsNXB = Arrays.copyOf(dsNXB, soLuongNXB + 1);
-        dsNXB[soLuongNXB] = newDsNXB;
-        soLuongNXB++;
+        dsNXB[soLuongNXB++] = new NXB(newDsNXB);
     }
 
     public void timKiemtheoma(Scanner sc) {
