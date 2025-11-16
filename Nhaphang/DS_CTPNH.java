@@ -45,6 +45,7 @@ public class DS_CTPNH {
                 dsct[i].setsoluonghangnhap(Integer.parseInt(br.readLine().trim()));
                 dsct[i].setDongia(Double.parseDouble(br.readLine().trim()));
             }
+            br.close();
         } catch (Exception e) {
             System.out.println("Loi doc file: " );
         }
@@ -59,11 +60,13 @@ public class DS_CTPNH {
             bw.newLine();
             bw.write("--------------------------------------------------------------");
             bw.newLine();
-
+            wb.write(String.valueOf(soluongchitiet));
+            wb.newLine();
             for (int i = 0; i < soluongchitiet; i++) {
                 dsct[i].ghifile(bw, wb);
             }
-
+            bw.close();
+            wb.close();
             System.out.println("Ghi file CT thanh cong !");
 
         } catch (IOException e) {
@@ -220,5 +223,5 @@ public void menutimkiemCTPNH() {
         System.out.println(">> Khong tim thay chi tiet de sua!");
     }
 }
-    
+
 }

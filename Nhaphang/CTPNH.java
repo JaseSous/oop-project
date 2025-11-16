@@ -12,11 +12,6 @@ public class CTPNH {
     private double thanhtien;   
 
     public CTPNH() {
-        MaSP = "";
-        soluonghangnhap = 0;
-        dongia = 0;
-        MaPN = "";
-        thanhtien = 0;
     }
 
     public CTPNH(String MaSP,String MaPN,int soluonghangnhap,double dongia) {

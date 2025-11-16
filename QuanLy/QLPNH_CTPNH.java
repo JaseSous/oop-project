@@ -26,25 +26,7 @@ public class QLPNH_CTPNH extends QLBH{
         }
     }
 
-    public double[] ThongKeTienNhapHang()
-    {
-        double[] Tongtientheoquy={0.0,0.0,0.0,0.0};
-        for (Phieunhaphang p:ds_Phieunhap.getds())
-        {
-            double tongtienphieu=0.0;
-            int month=p.getNgaynhap().getMonthValue();
-            int quy=(month-1)/3;
-            for(CTPNH s:ds_CTPNH.getds())
-            {
-                if(s.getMaPN().equals(p.getMaPN()))
-                {
-                    tongtienphieu+=s.getThanhtien();
-                }
-            }
-            Tongtientheoquy[quy]+=tongtienphieu;
-        }
-        return Tongtientheoquy;
-    }
+
         
     public void themphieunhap()
     {
@@ -194,10 +176,10 @@ public class QLPNH_CTPNH extends QLBH{
                         sc.nextLine();
                     switch (chon) {
                         case 1:
-                        double[] tongTien = ThongKeTienNhapHang();
+                        double[] tongTien = ds_Phieunhap.ThongKeTienNhapHang(ds_CTPNH);
                         System.out.println("--- THONG KE TONG TIEN NHAP HANG THEO QUY ---");
                         for (int i = 0; i < tongTien.length; i++) {
-                            System.out.printf("Quy %d: %.2f VND%n", (i + 1), tongTien[i]);
+                            System.out.printf("Quy %d: %,.2f VND%n", (i + 1), tongTien[i]);
                             }
                             break;
                         case 2:

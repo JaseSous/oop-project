@@ -11,7 +11,7 @@ public class ChiTietHoaDon {
     private String maSach;
     private int soLuong;
     private float dongia;
-
+    private float ThanhTien;
     // Constructors
     public ChiTietHoaDon() {
     }
@@ -21,6 +21,7 @@ public class ChiTietHoaDon {
         this.maSach = maSach;
         this.soLuong = soLuong;
         this.dongia = dongia;
+        this.ThanhTien=dongia*soLuong;
     }
 
     public ChiTietHoaDon(ChiTietHoaDon other) {
@@ -28,6 +29,7 @@ public class ChiTietHoaDon {
     this.maSach = other.maSach;
     this.soLuong = other.soLuong;
     this.dongia = other.dongia;
+    this.ThanhTien=other.dongia*other.soLuong;
     }
 
     // Getters / Setters
@@ -42,7 +44,7 @@ public class ChiTietHoaDon {
 
     // Tính thành tiền
     public float getThanhTien() {
-        return this.soLuong * this.dongia;
+        return ThanhTien;
     }
 
     // Hàm nhập

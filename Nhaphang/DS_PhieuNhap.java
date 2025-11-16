@@ -233,5 +233,26 @@ public class DS_PhieuNhap {
         }
         return dem;
     }
+
+    public double[] ThongKeTienNhapHang(DS_CTPNH ds_CTPNH)
+    {
+        double[] Tongtientheoquy={0.0,0.0,0.0,0.0};
+        for (Phieunhaphang p:ds)
+        {
+            double tongtienphieu=0.0;
+            int month=p.getNgaynhap().getMonthValue();
+            int quy=(month-1)/3;
+            for(CTPNH s:ds_CTPNH.getds())
+            {
+                if(s.getMaPN().equals(p.getMaPN()))
+                {
+                    tongtienphieu+=s.getThanhtien();
+                }
+            }
+            Tongtientheoquy[quy]+=tongtienphieu;
+        }
+        return Tongtientheoquy;
+    }
+        
 }
 

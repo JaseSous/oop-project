@@ -112,79 +112,12 @@ public class Sach {
     }
 
     public void xuat(){
-        System.out.printf("-".repeat(47));
-        System.out.printf("\n| %-20s | %-20s |", "Mã sách", this.getMasach());
-        System.out.printf("\n| %-20s | %-20s |", "Tên sách", this.getTensach());
-        System.out.printf("\n| %-20s | %-20s |", "Mã thể loại", this.getMatheloai());
-        System.out.printf("\n| %-20s | %-20s |", "Mã tác giả", this.getMatg());
-        System.out.printf("\n| %-20s | %-20s |", "Mã nhà xuất bản", this.getManxb());
-        System.out.printf("\n| %-20s | %-20d |", "Số lượng", this.getSoluong());
-        System.out.printf("\n| %-20s | %-20d |\n", "Giá", this.getGia());
-        System.out.println("-".repeat(47));
-    }
-
-    public void sua(){
-        boolean running = true;
-        int choice;
-        while (running){
-            System.out.println("===[Chỉnh sửa thông tin sách có mã " + this.getMasach() + "]===");
-            System.out.println("1. Tên sách: " + tensach);
-            System.out.println("2. Mã thể loại: " + matheloai);
-            System.out.println("3. Mã tác giả: " + matg);
-            System.out.println("4. Mã nhà xuất bản: " + manxb);
-            System.out.println("5. Số lượng: " + soluong);
-            System.out.println("6. Giá: " + gia);
-            System.out.println("0. Thoát");
-
-            System.out.print("\nHãy nhập số của thông tin cần sửa hoặc thoát (0-6): ");
-
-            // Kiểm tra hợp lệ
-            while (true){
-                try{
-                    choice = Integer.parseInt(sc.nextLine().trim());
-                    if (choice < 0 || choice > 6)
-                        System.out.print("Vui lòng nhập số từ khoảng 0-6: ");
-                    else
-                        break;
-                }
-                catch (NumberFormatException e){
-                    System.out.print("Hãy nhập số hợp lệ: ");
-                }
-            }
-
-            switch(choice){
-                case 1:
-                    System.out.print("Bạn đang thay đổi tên sách: " + this.getTensach() + " --> "); String tensachmoi = sc.nextLine().trim();
-                    this.setTensach(tensachmoi);
-                    break;
-                case 2:
-                    System.out.print("Bạn đang thay đổi mã thể loại: " + this.getMatheloai() + " --> "); String matlmoi = sc.nextLine().trim();
-                    this.setMatheloai(matlmoi);
-                    break;
-                case 3:
-                    System.out.print("Bạn đang thay đổi mã tác giả: " + this.getMatg() + " --> "); String matgmoi = sc.nextLine().trim();
-                    this.setMatg(matgmoi);
-                    break;
-                case 4:
-                    System.out.print("Bạn đang thay đổi mã nhà xuất bản: " + this.getManxb() + " --> "); String manxbmoi = sc.nextLine().trim();
-                    this.setManxb(manxbmoi);
-                    break;
-                case 5:
-                    System.out.print("Bạn đang thay đổi số lượng: " + this.getSoluong() + " --> "); int soluongmoi = Integer.parseInt(sc.nextLine().trim());
-                    this.setSoluong(soluongmoi);;
-                    break;
-                case 6:
-                    System.out.print("Bạn đang thay đổi giá: " + this.getGia() + " --> "); int giamoi = Integer.parseInt(sc.nextLine().trim());
-                    this.setGia(giamoi);
-                    break;
-                case 0:
-                    System.out.println("Đang thoát menu sửa thông tin sách...");
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Số không hợp lệ");
-                    break;
-            }
-        }
+        System.out.println("\tMã sách: " + masach);
+        System.out.println("\tTên sách: " + tensach);
+        System.out.println("\tMã thể loại: " + matheloai);
+        System.out.println("\tMã tác giả: " + matg);
+        System.out.println("\tMã nhà xuất bản: " + manxb);
+        System.out.println("\tSố lượng: " + soluong);
+        System.out.println("\tGiá: " + gia);
     }
 }
