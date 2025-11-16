@@ -23,6 +23,13 @@ public class ChiTietHoaDon {
         this.dongia = dongia;
     }
 
+    public ChiTietHoaDon(ChiTietHoaDon other) {
+    this.maHD = other.maHD;
+    this.maSach = other.maSach;
+    this.soLuong = other.soLuong;
+    this.dongia = other.dongia;
+    }
+
     // Getters / Setters
     public String getMaHD() { return maHD; }
     public void setMaHD(String maHD) { this.maHD = maHD; }
