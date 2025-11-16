@@ -31,7 +31,7 @@ public class Hoadon {
         this(other.maHD, other.ngayLapHD, other.khachHang, other.nhanVien);
     }
 
-    // Getters / Setters
+    // Get/Set
     public String getMaHD() { return maHD; }
     public void setMaHD(String maHD) { this.maHD = maHD; }
     public LocalDate getNgayLapHD() { return ngayLapHD; }

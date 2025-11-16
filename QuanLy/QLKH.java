@@ -13,35 +13,35 @@ public class QLKH extends QLBH {
         boolean running = true;
         
         while (running){
-            System.out.println("1) Xem danh sách (In ra Console)");
-            System.out.println("2) Thêm khách hàng (Nhập tay)");
-            System.out.println("3) Xóa khách hàng");
-            System.out.println("4) Sửa khách hàng");
-            System.out.println("5) Tìm kiếm theo Mã KH");
-            System.out.println("6) Tìm kiếm theo Họ");
-            System.out.println("7) Tìm kiếm theo Tên");
-            System.out.println("8) Tìm kiếm theo Số điện thoại");
-            System.out.println("9) Thống kê theo nhóm tuổi");
-            System.out.println("10) Thống kê theo họ");
-            System.out.println("11) Thống kê theo tên");
-            System.out.println("12) Thống kê theo Quý mua hàng"); // <-- SỬA
-            System.out.println("13) Xuất danh sách ra file (OUTPUT)"); // <-- THÊM MỚI
-            System.out.println("14) Lưu và thoát"); // <-- SỬA
+            System.out.println("1) Xem danh sach (In ra Console)");
+            System.out.println("2) Them khach hang (Nhap tay)");
+            System.out.println("3) Xoa khach hang");
+            System.out.println("4) Sua khach hang");
+            System.out.println("5) Tim kiem theo Ma KH");
+            System.out.println("6) Tim kiem theo Ho");
+            System.out.println("7) Tim kiem theo Ten");
+            System.out.println("8) Tim kiem theo So đien thoai");
+            System.out.println("9) Thong ke theo nhom tuoi");
+            System.out.println("10) Thong ke theo ho");
+            System.out.println("11) Thong ke theo ten");
+            System.out.println("12) Thong ke theo Quy mua hang"); // <-- SỬA
+            System.out.println("13) Xuat danh sach ra file (OUTPUT)"); // <-- THÊM MỚI
+            System.out.println("14) Luu và thoat"); // <-- SỬA
 
             // 3. Sửa lại dải số nhập
-            System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (1-14): ");
+            System.out.print("\nHay nhap so của thao tac ban muon thuc hien (1-14): ");
             
             // 4. Sửa lại kiểm tra
             while (true){
                 try{
                     choice = Integer.parseInt(sc.nextLine().trim());
                     if (choice < 1 || choice > 14) // SỬA
-                        System.out.print("Vui lòng nhập số từ khoảng 1-14: "); // SỬA
+                        System.out.print("Vui lòng nhap so tu khoang 1-14: "); // SỬA
                     else
                         break;
                 }
                 catch (NumberFormatException e){
-                    System.out.print("Hãy nhập số hợp lệ: ");
+                    System.out.print("Hay nhap so hop le: ");
                 }
             }
             //
@@ -54,7 +54,7 @@ public class QLKH extends QLBH {
                 case 2: // Thêm
                     ds_Khachhang.them();
                     // Sửa thông báo
-                    System.out.println("Đã thêm khách hàng thành công.");
+                    System.out.println("Đa them khach hang thanh cong.");
                     break;
                 case 3: // Xóa
                     ds_Khachhang.xoakh();
@@ -92,7 +92,7 @@ public class QLKH extends QLBH {
                 case 14: // Lưu và thoát
                     ds_Khachhang.saveFile(); // Thêm saveFile()
                     running = false;
-                    System.out.println("Đã lưu và thoát chương trình.");
+                    System.out.println("Đa luu và thoat chuong trinh.");
                     break;
             }
         }

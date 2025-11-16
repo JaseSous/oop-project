@@ -26,6 +26,11 @@ public class DS_HoaDon {
         siso = 0;
     }
 
+    public DS_HoaDon(DS_HoaDon other) {
+        this.ds = Arrays.copyOf(other.ds, other.siso);
+        this.siso = other.siso;
+    }
+
     public Hoadon[] getds() {
         return ds;
     }
@@ -71,7 +76,7 @@ public class DS_HoaDon {
                 ds[i].ghiFile(writer); // Gọi hàm ghi file của Hoadon
             }
         } catch (IOException e) {
-            System.err.println("Lỗi khi lưu file DS_HoaDon.dat: " + e.getMessage());
+            System.err.println("Loi khi lưu file DS_HoaDon.dat: " + e.getMessage());
         }
     }
     // --- Hàm xem (xuất) danh sách hóa đơn ra file ---
@@ -79,19 +84,19 @@ public class DS_HoaDon {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachHoaDon_BaoCao.txt"));
              Formatter formatter = new Formatter(writer)) {
 
-            formatter.format("===[DANH SÁCH HÓA ĐƠN]===\n");
-            formatter.format("Tổng số hóa đơn: %d\n\n", siso);
+            formatter.format("===[DANH SACH HOA DON]===\n");
+            formatter.format("Tong so hoa don: %d\n\n", siso);
 
             for (int i = 0; i < siso; i++) {
                 Hoadon hd = ds[i];
                 formatter.format("------------------------------------------------------------\n");
-                formatter.format("HÓA ĐƠN SỐ: %s\n", hd.getMaHD());
-                formatter.format("Ngày lập: %s\n", hd.getNgayLapHD().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                if (hd.getKhachHang() != null) formatter.format("Khách hàng: %s (%s)\n", hd.getKhachHang().getTen(), hd.getKhachHang().getMakh());
-                if (hd.getNhanVien() != null) formatter.format("Nhân viên lập: %s (%s)\n", hd.getNhanVien().getTen(), hd.getNhanVien().getManv());
+                formatter.format("HOA DON SO: %s\n", hd.getMaHD());
+                formatter.format("Ngay lap: %s\n", hd.getNgayLapHD().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                if (hd.getKhachHang() != null) formatter.format("Khach hang: %s (%s)\n", hd.getKhachHang().getTen(), hd.getKhachHang().getMakh());
+                if (hd.getNhanVien() != null) formatter.format("Nhan vien lap: %s (%s)\n", hd.getNhanVien().getTen(), hd.getNhanVien().getManv());
 
-                formatter.format("\n--- Chi tiết đơn hàng ---\n");
-                formatter.format("| %-10s | %-8s | %-11s | %-13s |\n", "Mã sách", "SL", "Đơn giá", "Thành tiền");
+                formatter.format("\n--- Chi tiet don hang ---\n");
+                formatter.format("| %-10s | %-8s | %-11s | %-13s |\n", "Ma sach", "SL", "Don gia", "Thanh tien");
                 formatter.format("|------------|----------|-------------|---------------|\n");
 
                 double tongTienPhieu = 0;
@@ -104,13 +109,13 @@ public class DS_HoaDon {
                 }
                 
                 formatter.format("|-----------------------------------------------------|\n");
-                formatter.format("%43s: %,.0f VND\n", "TỔNG CỘNG", tongTienPhieu);
+                formatter.format("%43s: %,.0f VND\n", "TONG CONG", tongTienPhieu);
                 formatter.format("\n");
             }
             formatter.format("============================================================\n");
-            System.out.println("Đã xuất báo cáo ra file: OUTPUT/DanhSachHoaDon_BaoCao.txt");
+            System.out.println("Da xuat bao cao ra file: OUTPUT/DanhSachHoaDon_BaoCao.txt");
         } catch (IOException e) {
-            System.err.println("Lỗi khi ghi file báo cáo: " + e.getMessage());
+            System.err.println("Loi khi ghi file bao cao: " + e.getMessage());
         }
     }
 

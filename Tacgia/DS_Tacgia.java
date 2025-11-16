@@ -56,7 +56,7 @@ public class DS_Tacgia {
 
             reader.close();
         } catch (IOException | NumberFormatException e) {
-            System.err.println("Lỗi khi đọc file DS_Tacgia.dat: " + e.getMessage());
+            System.err.println("Loi khi đoc file DS_Tacgia.dat: " + e.getMessage());
         }
     }
 
@@ -86,10 +86,10 @@ public class DS_Tacgia {
                 writer.write(tacGia.getNgaysinh());
             }
             
-            System.out.println("Đã lưu dữ liệu vào file: DS_Tacgia.dat");
+            System.out.println("Đa luu du lieu vao file: DS_Tacgia.dat");
 
         } catch (IOException e) {
-            System.err.println("Lỗi khi lưu danh sách tác giả vào file: " + e.getMessage());
+            System.err.println("Loi khi luu danh sach tac gia vào file: " + e.getMessage());
         }
     }
     
@@ -97,13 +97,13 @@ public class DS_Tacgia {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachTacgia.txt"));
              Formatter formatter = new Formatter(writer)) {
             
-                formatter.format("===[Danh sách Tác giả]===\n");
-                formatter.format("Số lượng: " + soluong + "\n\n");
+                formatter.format("===[Danh sach tac gia]===\n");
+                formatter.format("So luong: " + soluong + "\n\n");
 
                 if (soluong > 0){
                     formatter.format("-".repeat(94));
                     formatter.format("\n| %-3s | %-10s | %-20s | %-10s | %-15s | %-15s |\n",
-                                     "STT", "Mã Tác Giả", "Họ", "Tên", "Trình độ", "Ngày sinh");
+                                     "STT", "Ma Tac Gia", "Ho", "Ten", "Trinh đo", "Ngay sinh");
                     formatter.format("-".repeat(94) + "\n");
 
                     for (int i = 0; i < soluong; i++){
@@ -119,16 +119,16 @@ public class DS_Tacgia {
                     formatter.format("-".repeat(94));
                 }
 
-                System.out.println("Đã ghi dữ liệu vào file: DanhSachTacgia.txt");
+                System.out.println("Đa ghi du lieu vao file: DanhSachTacgia.txt");
 
         } catch (IOException e) {
-            System.err.println("Lỗi I/O: " + e.getMessage());
+            System.err.println("Loi I/O: " + e.getMessage());
         }
     }
 
     //-----Hàm them ko tham số----
     public void them() {
-        System.out.println("===[ Thêm Tác Giả Mới ]===");
+        System.out.println("===[ Them Tac Gia Moi ]===");
         
         // Tạo một tác giả mới
         Tacgia tgMoi = new Tacgia();
@@ -139,7 +139,7 @@ public class DS_Tacgia {
         tg[soluong] = tgMoi;
         soluong++;
 
-        System.out.println("Đã thêm tác giả " + tgMoi.getTen() + " vào danh sách.");
+        System.out.println("Đa them tac gia " + tgMoi.getTen() + " vao danh sach.");
     }
 
     //---- Hàm them có tham số----
@@ -151,12 +151,12 @@ public class DS_Tacgia {
     //----Hàm xuất ra console----
     public void xuat() {
         if (soluong == 0) {
-            System.out.println("Danh sách tác giả rỗng.");
+            System.out.println("Danh sach tac gia rong.");
             return;
         }
-        System.out.println("\n----- DANH SÁCH TÁC GIẢ -----");
+        System.out.println("\n----- DANH SACH TAC GIA -----");
         for (int i = 0; i < soluong; i++) {
-            System.out.println("--- Tác giả " + (i + 1) + " ---");
+            System.out.println("--- Tac gia " + (i + 1) + " ---");
             // Gọi hàm xuat() của lớp Tacgia
             // (Giả định lớp Tacgia.java của bạn có hàm xuat())
             tg[i].xuat(); 

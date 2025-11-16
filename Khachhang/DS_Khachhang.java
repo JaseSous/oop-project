@@ -64,13 +64,13 @@ public class DS_Khachhang {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachKhachHang.txt")); // Đổi tên file cho đúng ngữ cảnh
              Formatter formatter = new Formatter(writer)) {
                 
-            formatter.format("===[Danh sách Khách hàng]===\n"); // Đổi tiêu đề
+            formatter.format("===[Danh sach Khach Hang]===\n"); // Đổi tiêu đề
             formatter.format("Số lượng: " + soluong + "\n\n");
     
             if (soluong > 0){
                 formatter.format("-".repeat(122)); 
                 formatter.format("\n| %-3s | %-7s | %-15s | %-10s | %-15s | %-10s | %-15s | %-15s\n", // 7 cột
-                                     "STT", "Mã KH", "Họ", "Tên", "SĐT", "Địa chỉ", "Ngày sinh","Ngày mua hàng"); 
+                                     "STT", "Ma KH", "Ho", "Ten", "SĐT", "Đia chi", "Ngay sinh","Ngay mua hang"); 
                 formatter.format("-".repeat(122) + "\n"); 
     
                 for (int i = 0; i < soluong; i++){
@@ -87,10 +87,10 @@ public class DS_Khachhang {
                 formatter.format("-".repeat(122));
             }
     
-            System.out.println("Đã ghi dữ liệu vào file: DanhSachKhachHang.txt"); // Đổi tên file
+            System.out.println("Đa ghi dữ lieu vào file: DanhSachKhachHang.txt"); // Đổi tên file
     
         } catch (IOException e) {
-            System.err.println("Lỗi I/O: " + e.getMessage());
+            System.err.println("Loi I/O: " + e.getMessage());
         }
     }
 
@@ -126,15 +126,15 @@ public class DS_Khachhang {
                 writer.write(khach.getNgaymuahang());
             }
     
-            System.out.println("Đã lưu dữ liệu vào file: DS_Khachhang.dat");
+            System.out.println("Da luu du lieu vao file: DS_Khachhang.dat");
     
         } catch (IOException e) {
-            System.err.println("Lỗi khi lưu danh sách khách hàng vào file: " + e.getMessage());
+            System.err.println("Loi khi luu danh sach Khach hang vao file: " + e.getMessage());
         }
     }
 
     public void them() {
-        System.out.println("===[ Thêm Khách Hàng Mới ]===");
+        System.out.println("===[ Them Khach Hang Moi ]===");
     
         // 1. Tạo một khách hàng mới
         Khachhang khMoi = new Khachhang();
@@ -145,7 +145,7 @@ public class DS_Khachhang {
         kh[soluong] = khMoi;
         soluong++;
     
-        System.out.println("Đã thêm khách hàng " + khMoi.getTen() + " vào danh sách.");
+        System.out.println("Đa them khach hang " + khMoi.getTen() + " vao danh sach.");
     }
     
     public void them(String makh, String ho, String ten, String dchi,long sdt, String ngaysinh,String ngaymuahang ) {
@@ -157,12 +157,12 @@ public class DS_Khachhang {
     //-----Hàm xuất ra console----
     public void xuat() {
         if (soluong == 0) {
-            System.out.println("Danh sách khách hàng rỗng.");
+            System.out.println("Danh sach khach hang rong.");
             return;
         }
-        System.out.println("\n----- DANH SÁCH KHÁCH HÀNG -----");
+        System.out.println("\n----- DANH SACH KHACH HANG -----");
         for (int i = 0; i < soluong; i++) {
-            System.out.println("--- Khách hàng " + (i + 1) + " ---");
+            System.out.println("--- Khach hang " + (i + 1) + " ---");
             // Gọi hàm xuat() của lớp Khachhang
             // (Hàm này đã được dùng trong timTheoma() nên chắc chắn đã có)
             kh[i].xuat(); 

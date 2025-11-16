@@ -6,38 +6,38 @@ public class QLTG extends QLBH {
     Scanner sc = new Scanner(System.in);
 
     @Override public void menuChinh(){
-        System.out.println("\n===[Giao diện quản lý danh sách Tác Giả]===\n"); 
+        System.out.println("\n===[Giao dien quan li danh sach tac gia]===\n"); 
 
         int choice = 0;
         boolean running = true;
         
         while (running){
             // 2. Sửa lại toàn bộ menu text
-            System.out.println("1) Xem danh sách (In ra Console)");
-            System.out.println("2) Thêm tác giả (Nhập tay)");
-            System.out.println("3) Xóa tác giả");
-            System.out.println("4) Sửa tác giả");
-            System.out.println("5) Tìm kiếm theo Mã Tác Giả");
-            System.out.println("6) Tìm kiếm theo Tên");
-            System.out.println("7) Tìm kiếm theo Họ");
-            System.out.println("8) Thống kê theo nhóm tuổi");
-            System.out.println("9) Thống kê theo họ");
-            System.out.println("10) Thống kê theo tên");
-            System.out.println("11) Xuất danh sách ra file (OUTPUT)");
-            System.out.println("12) Lưu và thoát");
+            System.out.println("1) Xem danh sach (In ra Console)");
+            System.out.println("2) Them tac gia (Nhập tay)");
+            System.out.println("3) Xoa tac gia");
+            System.out.println("4) Sua tac gia");
+            System.out.println("5) Tim kiem theo Ma Tac Gia");
+            System.out.println("6) Tim kiem theo Ten");
+            System.out.println("7) Tim kiem theo Ho");
+            System.out.println("8) Thong ke theo nhom tuoi");
+            System.out.println("9) Thong ke theo họ");
+            System.out.println("10) Thong ke theo ten");
+            System.out.println("11) Xuat danh sach ra file (OUTPUT)");
+            System.out.println("12) Luu và thoat");
 
-            System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (1-12): ");
+            System.out.print("\nHay nhap so cua thao tac ban muon thuc hien (1-12): ");
             
             while (true){
                 try{
                     choice = Integer.parseInt(sc.nextLine().trim());
                     if (choice < 1 || choice > 12) // SỬA
-                        System.out.print("Vui lòng nhập số từ khoảng 1-12: "); // SỬA
+                        System.out.print("Vui long nhap so tu khoang 1-12: "); // SỬA
                     else
                         break;
                 }
                 catch (NumberFormatException e){
-                    System.out.print("Hãy nhập số hợp lệ: ");
+                    System.out.print("Hay nhap so hop le: ");
                 }
             }
 
@@ -79,7 +79,7 @@ public class QLTG extends QLBH {
                 case 12: // Lưu và thoát
                     ds_Tacgia.saveFile(); // Thêm saveFile()
                     running = false;
-                    System.out.println("Đã lưu và thoát chương trình.");
+                    System.out.println("Đa luu va thoat chuong trinh.");
                     break;
             }
         }

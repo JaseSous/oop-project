@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class QLNV extends QLBH {
     @Override public void menuChinh(){
         // Menu chính
-        System.out.println("\n===[Giao diện quản lý danh sách Nhân Viên]===\n");
+        System.out.println("\n===[Giao dien quan li danh sach nhan vien]===\n");
 
         Scanner sc = new Scanner(System.in);
         int choice = 0;
@@ -13,31 +13,31 @@ public class QLNV extends QLBH {
 
         while (running){
             // In lại menu mới
-            System.out.println("1) Xem danh sách (In ra Console)");
-            System.out.println("2) Thêm nhân viên (Nhập tay)");
-            System.out.println("3) Xóa nhân viên");
-            System.out.println("4) Sửa nhân viên");
-            System.out.println("5) Tìm kiếm theo Mã NV");
-            System.out.println("6) Tìm kiếm theo Tên");
-            System.out.println("7) Tìm kiếm theo Họ");
-            System.out.println("8) Thống kê theo nhóm tuổi");
-            System.out.println("9) Thống kê theo tên");
-            System.out.println("10) Xuất danh sách ra file (OUTPUT/DanhSachNhanVien.txt)");
-            System.out.println("11) Lưu và thoát");
+            System.out.println("1) Xem danh sach (In ra Console)");
+            System.out.println("2) Thêm nhan vien (Nhap tay)");
+            System.out.println("3) Xoa nhan vien");
+            System.out.println("4) Sua nhan vien");
+            System.out.println("5) Tim kiem theo Ma NV");
+            System.out.println("6) Tim kiem theo Ten");
+            System.out.println("7) Tim kiếm theo Ho");
+            System.out.println("8) Thong ke theo nhom tuoi");
+            System.out.println("9) Thong ke theo ten");
+            System.out.println("10) Xuat danh sach ra file (OUTPUT/DanhSachNhanVien.txt)");
+            System.out.println("11) Luu và thoat");
 
-            System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (1-11): ");
+            System.out.print("\nHay nhap so của thao tac ban muon thuc hien (1-11): ");
         
         // Kiểm tra hợp lệ
         while (true){
             try{
                 choice = Integer.parseInt(sc.nextLine().trim());
                 if (choice < 1 || choice > 11)
-                    System.out.print("Vui lòng nhập số từ khoảng 1-11: ");
+                    System.out.print("Vui long nhap so tu khoang 1-11: ");
                 else
                     break;
             }
             catch (NumberFormatException e){
-                System.out.print("Hãy nhập số hợp lệ: ");
+                System.out.print("Hay nhap so hop le: ");
             }
         }
 
@@ -75,7 +75,7 @@ public class QLNV extends QLBH {
             case 11: // Lưu và thoát
                 ds_Nhanvien.saveFile(); // Lưu lại file
                 running = false;
-                System.out.println("Đã lưu và thoát chương trình.");
+                System.out.println("Đa luu va thoat chuong trinh.");
                 break;
             }
         }

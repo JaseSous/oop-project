@@ -54,11 +54,11 @@ public class Tacgia {
 
     public void xuat(){
         System.out.println("---------------------------------------------------------");
-        System.out.printf("| Mã TG: %-10d | Họ Tên: %-15s %-10s |\n",
+        System.out.printf("| Ma TG: %-10d | Ho Ten: %-15s %-10s |\n",
                 matg, ho, ten);
-        System.out.printf("| Ngày sinh: %-12s | Tuổi: %-3d                 |\n",
+        System.out.printf("| Ngay sinh: %-12s | Tuoi: %-3d                 |\n",
                 ngaysinh, age());
-        System.out.printf("| Trình độ: %-15s                           |\n",
+        System.out.printf("| Trinh đo: %-15s                           |\n",
                 trinhdo);
         System.out.println("---------------------------------------------------------");
     }

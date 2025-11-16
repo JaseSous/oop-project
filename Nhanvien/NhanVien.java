@@ -56,11 +56,11 @@ public class NhanVien {
     //----Hàm xuất ----
     public void xuat(){
         System.out.println("----------------------------------------------------------");
-        System.out.printf("| Mã NV: %-10s | Họ Tên: %-15s %-10s |\n",
+        System.out.printf("| Ma NV: %-10s | Ho Ten: %-15s %-10s |\n",
                 manv, ho, ten);
-        System.out.printf("| Ngày sinh: %-12s | Tuổi: %-3d                 |\n",
+        System.out.printf("| Ngay sinh: %-12s | Tuoi: %-3d                 |\n",
                 ngaysinh, age());
-        System.out.printf("| Lương tháng: %-15d ₫                           |\n",
+        System.out.printf("| Luong thang: %-15d ₫                           |\n",
                 luongthang);
         System.out.println("----------------------------------------------------------");
     }

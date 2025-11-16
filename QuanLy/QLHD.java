@@ -118,9 +118,6 @@ public class QLHD extends QLBH {
     // --- Menu chính ---
     @Override
     public void menuChinh() {
-        // thêm 2 thằng này vào QLBH
-        //ds_Hoadon.loadFile(dskh, dsnv);
-        //ds_CTHD_Tong.loadFile();
         
         Scanner sc = new Scanner(System.in);
         int choice;

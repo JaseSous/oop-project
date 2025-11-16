@@ -58,9 +58,9 @@ public class Khachhang {
 
     public void xuat(){
         System.out.println("-----------------------------------------------------------------------------------------");
-        System.out.printf("| Mã KH: %-10s | Họ: %-15s | Tên: %-10s | Tuổi: %-3d |\n", makh, ho, ten, age());
-        System.out.printf("| SĐT: %-10d   | Địa chỉ: %-48s |\n", sdt, dchi);
-        System.out.printf("| Ngày sinh: %-10s | Ngày mua: %-47s |\n", ngaysinh, ngaymuahang);
+        System.out.printf("| Ma KH: %-10s | Ho: %-15s | Ten: %-10s | Tuoi: %-3d |\n", makh, ho, ten, age());
+        System.out.printf("| SĐT: %-10d   | Đia chi: %-48s |\n", sdt, dchi);
+        System.out.printf("| Ngay sinh: %-10s | Ngay mua: %-47s |\n", ngaysinh, ngaymuahang);
         System.out.println("-----------------------------------------------------------------------------------------");
     }
 

@@ -19,6 +19,11 @@ public class DS_ChiTietHoaDon {
         n = 0;
     }
 
+    public DS_ChiTietHoaDon(DS_ChiTietHoaDon other) {
+        this.ds = Arrays.copyOf(other.ds, other.n);
+        this.n = other.n;
+    }
+
     public ChiTietHoaDon[] getds() {
         return ds;
     }
@@ -61,7 +66,7 @@ public class DS_ChiTietHoaDon {
                 ds[i].ghiFile(writer); // Gọi hàm ghi file của ChiTietHoaDon
             }
         } catch (IOException e) {
-            System.err.println("Lỗi khi lưu file DS_ChiTietHoaDon.dat: " + e.getMessage());
+            System.err.println("Loi khi luu file file DS_ChiTietHoaDon.dat: " + e.getMessage());
         }
     }
 

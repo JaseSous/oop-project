@@ -81,22 +81,22 @@ public class DS_Nhanvien {
                 writer.write(String.valueOf(nhanVien.getLuongthang()));
             }
             
-            System.out.println("Đã lưu dữ liệu vào file: DS_Nhanvien.dat");
+            System.out.println("Đa luu du lieu vao file: DS_Nhanvien.dat");
         } catch (IOException e) {
-            System.err.println("Lỗi khi lưu danh sách nhân viên vào file: " + e.getMessage());
+            System.err.println("Loi khi luu danh sach nhan vien vào file: " + e.getMessage());
         }
     }
     public void xem() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachNhanVien.txt"));
             Formatter formatter = new Formatter(writer)) {
             
-                formatter.format("===[Danh sách Nhân viên]===\n");
-                formatter.format("Số lượng: " + soluong + "\n\n");
+                formatter.format("===[Danh sach nhan vien]===\n");
+                formatter.format("So luong: " + soluong + "\n\n");
 
                 if (soluong > 0){
                     formatter.format("-".repeat(94));
                     formatter.format("\n| %-3s | %-10s | %-20s | %-10s | %-15s | %-15s |\n",
-                                     "STT", "Mã NV", "Họ", "Tên", "Ngày sinh", "Lương tháng");
+                                     "STT", "Ma NV", "Ho", "Ten", "Ngay sinh", "Luong thang");
                     formatter.format("-".repeat(94) + "\n");
 
                     for (int i = 0; i < soluong; i++){
@@ -112,14 +112,14 @@ public class DS_Nhanvien {
                     formatter.format("-".repeat(94));
             }
 
-            System.out.println("Đã ghi dữ liệu vào file: DanhSachNhanVien.txt");
+            System.out.println("Da ghi du lieu vao file: DanhSachNhanVien.txt");
 
         } catch (IOException e) {
-            System.err.println("Lỗi I/O khi xuất danh sách nhân viên: " + e.getMessage());
+            System.err.println("Loi I/O khi xuat danh sach nhan vien: " + e.getMessage());
         }
     }
     public void them() {
-        System.out.println("===[ Thêm Nhân Viên Mới ]===");
+        System.out.println("===[ Them Nhan Vien Moi ]===");
         
         // 1. Tạo một nhân viên mới
         NhanVien nvMoi = new NhanVien();
@@ -131,7 +131,7 @@ public class DS_Nhanvien {
         nv[soluong] = nvMoi;
         soluong++;
 
-        System.out.println("Đã thêm nhân viên " + nvMoi.getTen() + " vào danh sách.");
+        System.out.println("Đa them nhan vien " + nvMoi.getTen() + " vao danh sach.");
     }
 
     public void them(String manv, String ho, String ten, String ngaysinh, long luongthang) {
@@ -143,12 +143,12 @@ public class DS_Nhanvien {
     //-----Hàm xuất console----
     public void xuat() {
         if (soluong == 0) {
-            System.out.println("Danh sách nhân viên rỗng.");
+            System.out.println("Danh sach nhan vien rong.");
             return;
         }
-        System.out.println("\n----- DANH SÁCH NHÂN VIÊN -----");
+        System.out.println("\n----- DANH SACH NHAN VIEN -----");
         for (int i = 0; i < soluong; i++) {
-            System.out.println("--- Nhân viên " + (i + 1) + " ---");
+            System.out.println("--- Nhan vien " + (i + 1) + " ---");
             // Gọi hàm xuat() của lớp NhanVien
             nv[i].xuat(); 
             System.out.println("\n-----------------------------");

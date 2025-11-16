@@ -4,16 +4,16 @@ import java.util.Scanner;
 public class QLNXB extends QLBH {
     @Override public void menuChinh(){
         // Menu chính
-        System.out.println("\n===[Giao diện quản lý danh sách nhà xuất bản]===\n");
+        System.out.println("\n===[Giao dien quan li danh sach nha xuat ban]===\n");
 
-        System.out.println("1) Xem danh sách");
-        System.out.println("2) Thêm");
-        System.out.println("3) Xóa");
-        System.out.println("4) Sửa");
-        System.out.println("5) Tìm kiếm");
-        System.out.println("6) In NXB và Sách của NXB đó");
-        System.out.println("7) Thống kê số lượng sách theo NXB");
-        System.out.println("0) Lưu và thoát");
+        System.out.println("1) Xem danh sach");
+        System.out.println("2) Them");
+        System.out.println("3) Xoa");
+        System.out.println("4) Sua");
+        System.out.println("5) Tim kiem");
+        System.out.println("6) In NXB và Sach của NXB do");
+        System.out.println("7) Thong ke so luong sach theo NXB");
+        System.out.println("0) Luu và thoat");
 
         Scanner sc = new Scanner(System.in);
         
@@ -21,21 +21,20 @@ public class QLNXB extends QLBH {
         boolean running = true;
         
         while (running){
-            System.out.print("\nHãy nhập số của thao tác bạn muốn thực hiện (0-7): ");
+            System.out.print("\nHay nhap so thao tac ma ban muon thuc hien (0-7): ");
             // Kiểm tra hợp lệ
             while (true){
                 try{
                     choice = Integer.parseInt(sc.nextLine().trim());
                     if (choice < 0 || choice > 7)
-                        System.out.print("Vui lòng nhập số từ khoảng 1-7: ");
+                        System.out.print("Vui long nhap so tu khoang 1-7: ");
                     else
                         break;
                 }
                 catch (NumberFormatException e){
-                    System.out.print("Hãy nhập số hợp lệ: ");
+                    System.out.print("Hay nhap so hop le: ");
                 }
             }
-            //
 
             switch (choice){
                 case 1: // Xem danh sách

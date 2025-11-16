@@ -9,10 +9,10 @@ public class Thongkechinh extends QLBH {
     @Override
 public void menuChinh() {
 
-    System.out.println("\n====== MENU THỐNG KÊ ======");
-    System.out.println("1. Thống kê lợi nhuận theo quý");
-    System.out.println("0. Thoát");
-    System.out.print("Chọn: ");
+    System.out.println("\n====== MENU THONG KE ======");
+    System.out.println("1. Thong ke loi nhuan theo quy");
+    System.out.println("0. Thoat");
+    System.out.print("Chon: ");
 
     int chon = sc.nextInt();
     sc.nextLine();
@@ -23,10 +23,10 @@ public void menuChinh() {
             inBangThongKe();
             break;
         case 0:
-            System.out.println("Thoát menu thống kê...");
+            System.out.println("Thoat menu thong ke...");
             break;
         default:
-            System.out.println("Lựa chọn không hợp lệ!");
+            System.out.println("Lua chon khong hop le!");
             break;
     }
 }
@@ -59,10 +59,10 @@ public void menuChinh() {
         
         System.out.println("\n-----------------------------------------------------------------------------------");
         System.out.printf("| %-14s | %-10s | %-10s | %-10s | %-10s | %-10s |%n", 
-                            "DANH MỤC", "Q1", "Q2", "Q3", "Q4", "TỔNG CỘNG");
+                            "DANH MỤC", "Q1", "Q2", "Q3", "Q4", "TONG CONG");
         System.out.println("-----------------------------------------------------------------------------------");
 
-        System.out.printf("| %-14s ", "TỔNG THU");
+        System.out.printf("| %-14s ", "TONG THU");
         for (int i = 0; i < 4; i++) {
             System.out.printf("| %,10.0f ", tienBan[i]);
             tongBan -= tienBan[i];
@@ -71,7 +71,7 @@ public void menuChinh() {
         System.out.println("-----------------------------------------------------------------------------------");
 
 
-        System.out.printf("| %-14s ", "TỔNG CHI");
+        System.out.printf("| %-14s ", "TONG CHI");
         for (int i = 0; i < 4; i++) {
             System.out.printf("| %,10.0f ", tienNhap[i]);
             tongNhap -= tienNhap[i];
@@ -81,7 +81,7 @@ public void menuChinh() {
 
 
         // Dòng 3: Lợi nhuận
-        System.out.printf("| %-14s ", "LỢI NHUẬN");
+        System.out.printf("| %-14s ", "LOI NHUAN");
         for (int i = 0; i < 4; i++) {
             System.out.printf("| %,10.0f ", loiNhuan[i]);
             tongLN -= loiNhuan[i];
