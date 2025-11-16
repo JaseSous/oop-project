@@ -19,6 +19,12 @@ public class NXB {
         this.sdt = sdt;
     }
 
+    public NXB(NXB other) {
+        this.maNXB = other.maNXB;
+        this.tenNXB = other.tenNXB;
+        this.sdt = other.sdt;
+    }
+
     public void nhap(Scanner sc) {
         System.out.print("Nhap ma NXB: ");
         this.maNXB = sc.nextLine().trim();
