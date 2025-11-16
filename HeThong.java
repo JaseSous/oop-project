@@ -27,7 +27,7 @@ public class HeThong {
             System.out.println("\t10) Thống kê chính");
             System.out.println("\t0) Thoát");
             
-            System.out.print("Hãy nhập số của menu bạn muốn chọn (1-10): ");
+            System.out.print("Hãy nhập số của menu bạn muốn chọn (0-10): ");
 
             int choice = 0;
 
