@@ -65,12 +65,12 @@ public class DS_Khachhang {
              Formatter formatter = new Formatter(writer)) {
                 
             formatter.format("===[Danh sach Khach Hang]===\n"); // Đổi tiêu đề
-            formatter.format("Số lượng: " + soluong + "\n\n");
+            formatter.format("So luong: " + soluong + "\n\n");
     
             if (soluong > 0){
                 formatter.format("-".repeat(122)); 
                 formatter.format("\n| %-3s | %-7s | %-15s | %-10s | %-15s | %-10s | %-15s | %-15s\n", // 7 cột
-                                     "STT", "Ma KH", "Ho", "Ten", "SĐT", "Đia chi", "Ngay sinh","Ngay mua hang"); 
+                                     "STT", "Ma KH", "Ho", "Ten", "SDT", "Dia chi", "Ngay sinh","Ngay mua hang"); 
                 formatter.format("-".repeat(122) + "\n"); 
     
                 for (int i = 0; i < soluong; i++){
@@ -87,7 +87,7 @@ public class DS_Khachhang {
                 formatter.format("-".repeat(122));
             }
     
-            System.out.println("Đa ghi dữ lieu vào file: DanhSachKhachHang.txt"); // Đổi tên file
+            System.out.println("Da ghi du lieu vào file: DanhSachKhachHang.txt"); // Đổi tên file
     
         } catch (IOException e) {
             System.err.println("Loi I/O: " + e.getMessage());

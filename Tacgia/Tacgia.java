@@ -58,7 +58,7 @@ public class Tacgia {
                 matg, ho, ten);
         System.out.printf("| Ngay sinh: %-12s | Tuoi: %-3d                 |\n",
                 ngaysinh, age());
-        System.out.printf("| Trinh đo: %-15s                           |\n",
+        System.out.printf("| Trinh do: %-15s                           |\n",
                 trinhdo);
         System.out.println("---------------------------------------------------------");
     }

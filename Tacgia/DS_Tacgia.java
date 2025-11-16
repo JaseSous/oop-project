@@ -86,7 +86,7 @@ public class DS_Tacgia {
                 writer.write(tacGia.getNgaysinh());
             }
             
-            System.out.println("Đa luu du lieu vao file: DS_Tacgia.dat");
+            System.out.println("Da luu du lieu vao file: DS_Tacgia.dat");
 
         } catch (IOException e) {
             System.err.println("Loi khi luu danh sach tac gia vào file: " + e.getMessage());
@@ -119,7 +119,7 @@ public class DS_Tacgia {
                     formatter.format("-".repeat(94));
                 }
 
-                System.out.println("Đa ghi du lieu vao file: DanhSachTacgia.txt");
+                System.out.println("Da ghi du lieu vao file: DanhSachTacgia.txt");
 
         } catch (IOException e) {
             System.err.println("Loi I/O: " + e.getMessage());
@@ -139,7 +139,7 @@ public class DS_Tacgia {
         tg[soluong] = tgMoi;
         soluong++;
 
-        System.out.println("Đa them tac gia " + tgMoi.getTen() + " vao danh sach.");
+        System.out.println("Da them tac gia " + tgMoi.getTen() + " vao danh sach.");
     }
 
     //---- Hàm them có tham số----

@@ -81,7 +81,7 @@ public class DS_Nhanvien {
                 writer.write(String.valueOf(nhanVien.getLuongthang()));
             }
             
-            System.out.println("Đa luu du lieu vao file: DS_Nhanvien.dat");
+            System.out.println("Da luu du lieu vao file: DS_Nhanvien.dat");
         } catch (IOException e) {
             System.err.println("Loi khi luu danh sach nhan vien vào file: " + e.getMessage());
         }
@@ -131,7 +131,7 @@ public class DS_Nhanvien {
         nv[soluong] = nvMoi;
         soluong++;
 
-        System.out.println("Đa them nhan vien " + nvMoi.getTen() + " vao danh sach.");
+        System.out.println("Da them nhan vien " + nvMoi.getTen() + " vao danh sach.");
     }
 
     public void them(String manv, String ho, String ten, String ngaysinh, long luongthang) {
