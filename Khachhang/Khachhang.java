@@ -33,6 +33,15 @@ public class Khachhang {
         this.ngaysinh=ngaysinh;
         this.ngaymuahang=ngaymuahang;
     }
+    public Khachhang(Khachhang other){
+        this.makh = other.makh;
+        this.ho = other.ho;
+        this.ten = other.ten;
+        this.dchi = other.dchi;
+        this.sdt = other.sdt;
+        this.ngaysinh = other.ngaysinh;
+        this.ngaymuahang = other.ngaymuahang;
+    }
     
     public void nhap(){
         @SuppressWarnings("resource")
