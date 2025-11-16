@@ -295,8 +295,7 @@ public class DS_Sach {
         
         for (int i = 0; i < soLuongSach; i++){
             if (dsSach[i].getMasach().equals(maSachCanSua)){
-                System.out.println("Hãy nhập thông tin của sách sau khi sửa:");
-                dsSach[i].nhap();
+                dsSach[i].sua();
 
                 System.out.println("Đã sửa sách có mã sách " + maSachCanSua + " trong khỏi danh sách sản phẩm");
                 return;
