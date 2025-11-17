@@ -46,7 +46,9 @@ public class DS_PhieuNhap {
             ds[i]=new Phieunhaphang();
             ds[i].setMaPN(br.readLine().trim());
             ds[i].setMaNCC(br.readLine().trim());
+            ds[i].setMaNV(br.readLine().trim());
             ds[i].setNgaynhap(LocalDate.parse(br.readLine().trim()));
+           
         }
         br.close();
         System.out.println("\n Nhap du lieu hoan tat");
@@ -60,40 +62,39 @@ public class DS_PhieuNhap {
     public void saveFile() {
     try  {
         BufferedWriter bw = new BufferedWriter(new FileWriter("OUTPUT/DS_PNH.txt"));
-        BufferedWriter wb =new BufferedWriter(new FileWriter("DATA/DS_PNH.dat"));
         // Ghi file output danh sach
         bw.write("-----------Danh Sach Phieu Nhap Hang-----------");
         bw.newLine();
         bw.write("\t\tMaPN |\t NgayNhap \t\t| MaNCC");
         bw.newLine();
-        bw.write("------------------------------------\r\n" + //
-                        "    //tong tien theo nam x\r\n" + //
-                        "    public int tongTienTheoNam(int x){\r\n" + //
-                        "        int res = 0;\r\n" + //
-                        "\r\n" + //
-                        "        for (Phieunhaphang pn : getds()){\r\n" + //
-                        "            if (pn.getNgaynhap().getYear() == x){\r\n" + //
-                        "                res += pn.get();\r\n" + //
-                        "            }\r\n" + //
-                        "        }\r\n" + //
-                        "\r\n" + //
-                        "        return res;\r\n" + //
-                        "    }-----------");
-        bw.newLine();
         //cap nhat so luong  phieu
-        wb.write(String.valueOf(soluongphieunhap));
-        wb.newLine();
+        bw.write(String.valueOf(soluongphieunhap));
+        bw.newLine();
 
         for (int i = 0; i < soluongphieunhap; i++) {
-            ds[i].ghiFile(bw,wb);
+            ds[i].ghiFile(bw);
         }
         bw.close();
-        wb.close();
         System.out.println("Ghi file thanh cong!");
     } catch (IOException e) {
         System.out.println("Loi ghi file: ");
     }
     }   
+        public void xuat() {
+        
+        System.out.println("\n---------- DANH SACH PHIEU NHAP HANG ----------");
+        if (soluongphieunhap == 0) {
+            System.out.println("Danh sach rong.");
+            System.out.println("-------------------------------------------------");
+            return;
+        }
+
+        for (Phieunhaphang p : ds) {
+             System.out.printf(" %-10s |  %-10s |  %-10s |  %-10s%n", "MaPN", "ngaynhap", "MaNCC", "maNV");
+            p.xuat(); 
+           
+        }
+    }
     
   
 
@@ -227,14 +228,6 @@ public class DS_PhieuNhap {
     } while (chon != 0);
     
 }
-    // xuất
-    public void xuatpn() {
-        for (Phieunhaphang p : ds) {
-            p.xuat();
-            System.out.println("----------------------------------------");
-        }
-    }
-
 
     public int [] ThongkesophieunhapTheoQuy() {
         int[] dem = new int[4]; // quý 1-4

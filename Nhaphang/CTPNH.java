@@ -60,23 +60,22 @@ public class CTPNH {
     }
 
     public void xuat() {
-        System.out.printf(" %-10s | %-10d | %-10.2f | %-10.2f%n", 
-                MaSP, soluonghangnhap, dongia, thanhtien);
+        
+        System.out.printf("%-10s | %-10s | %-15d | %-10.2f | %-10.2f%n", 
+                MaPN,MaSP, soluonghangnhap, dongia, thanhtien);
     }
 
-    public void ghifile(BufferedWriter bw , BufferedWriter wb) throws IOException
+    public void ghifile(BufferedWriter bw ) throws IOException
     {
-        bw.write(String.format("%-10s | %-10s | %-10d | %-10.2f | %-10.2f",
-                MaPN, MaSP, soluonghangnhap, dongia, thanhtien));
+        bw.write(MaPN);
         bw.newLine();
-
-        wb.write(MaPN);
-        wb.newLine();
-        wb.write(MaSP);
-        wb.newLine();
-        wb.write(String.valueOf(soluonghangnhap));
-        wb.newLine();
-        wb.write(String.valueOf(dongia));
-        wb.newLine();
+        bw.write(MaSP);
+        bw.newLine();
+        bw.write(String.valueOf(soluonghangnhap));
+        bw.newLine();
+        bw.write(String.valueOf(dongia));
+        bw.newLine();
+        bw.write(String.valueOf(thanhtien));
+        bw.newLine();
     }
 }

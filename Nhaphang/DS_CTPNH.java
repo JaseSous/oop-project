@@ -54,19 +54,12 @@ public class DS_CTPNH {
     public void saveFile() {
         try  {
             BufferedWriter bw = new BufferedWriter(new FileWriter("OUTPUT/DS_CTPNH.txt"));
-            BufferedWriter wb = new BufferedWriter(new FileWriter("DATA/DS_CTPNH.dat"));
-            bw.write(String.format("%-10s | %-10s | %-10s | %-10s | %-10s",
-                    "MaPN", "MaSP", "SoLuong", "DonGia", "ThanhTien"));
+            bw.write(String.valueOf(soluongchitiet));
             bw.newLine();
-            bw.write("--------------------------------------------------------------");
-            bw.newLine();
-            wb.write(String.valueOf(soluongchitiet));
-            wb.newLine();
             for (int i = 0; i < soluongchitiet; i++) {
-                dsct[i].ghifile(bw, wb);
+                dsct[i].ghifile(bw);
             }
             bw.close();
-            wb.close();
             System.out.println("Ghi file CT thanh cong !");
 
         } catch (IOException e) {
@@ -75,10 +68,12 @@ public class DS_CTPNH {
     }
     public void xuat()
     {
+        System.out.println("Danh Sach CTPNH");
+        System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s%n","MaPN","MaSP", "soluonghangnhap", "dongia", "thanhtien");
         for(CTPNH p:dsct)
         {
+            
             p.xuat();
-             System.out.println("----------------------------------------");
         }
     }
 //------------------timtheoMaPN---------------------
@@ -223,5 +218,6 @@ public void menutimkiemCTPNH() {
         System.out.println(">> Khong tim thay chi tiet de sua!");
     }
 }
+
 
 }
