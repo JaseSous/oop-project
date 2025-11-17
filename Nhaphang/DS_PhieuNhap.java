@@ -1,5 +1,8 @@
 package Nhaphang;
 import java.util.Scanner;
+
+import Hoadon.ChiTietHoaDon;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -253,6 +256,20 @@ public class DS_PhieuNhap {
         }
         return Tongtientheoquy;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
 }
 

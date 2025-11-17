@@ -10,6 +10,7 @@ public class Phieunhaphang {
     private String MaPN;
     private String MaNCC;
     private LocalDate ngaynhap;
+    private float TongTien;
 
     // Constructor mặc định
     public Phieunhaphang() {
@@ -19,15 +20,16 @@ public class Phieunhaphang {
     }
 
     // Constructor đầy đủ
-    public Phieunhaphang(String MaPN, LocalDate ngaynhap, String MaNCC) {
+    public Phieunhaphang(String MaPN, LocalDate ngaynhap, String MaNCC, float TongTien) {
         this.MaPN = MaPN;
         this.MaNCC=MaNCC;
         this.ngaynhap = ngaynhap;
+        this.TongTien = TongTien;
     }
 
     // Constructor sao chép
     public Phieunhaphang(Phieunhaphang other) {
-        this(other.MaPN, other.ngaynhap,other.MaNCC);
+        this(other.MaPN, other.ngaynhap,other.MaNCC, other.TongTien);
     }
 
     // Getter - Setter
@@ -39,6 +41,9 @@ public class Phieunhaphang {
 
     public LocalDate getNgaynhap() { return ngaynhap; }
     public void setNgaynhap(LocalDate ngaynhap) { this.ngaynhap = ngaynhap;}
+
+    public float getTongTien() { return TongTien; }
+    public void setTongTien(float TongTien) { this.TongTien = TongTien;}
 
     public void them() {
         System.out.print("Nhap ma phieu nhap: ");

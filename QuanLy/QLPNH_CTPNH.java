@@ -9,7 +9,6 @@ public class QLPNH_CTPNH extends QLBH{
     public void xuatthongtinhphieu(){
         for(Phieunhaphang p : ds_Phieunhap.getds())
         {
-            double  tongtiennhap1phieu=0.0;
             p.xuat();
             System.out.println("----------------Xuat thong tin phieu nhap nhang----------------");
             System.out.printf("%-11s | %-10s | %-10s | %-20s%n","MaSP","So luong","Don gia","Tong tien");
@@ -18,11 +17,25 @@ public class QLPNH_CTPNH extends QLBH{
                 if(c.getMaPN().equals(p.getMaPN()))
                 {
                     c.xuat();
+                }
+            }
+            System.out.printf("Tong tien phieu nhap hang: %,.0f VND%n", p.getTongTien());
+            System.out.println("----------------------------------------------------------\n");
+        }
+    }
+
+        public void tinhtongtien1phieu(){
+        for(Phieunhaphang p : ds_Phieunhap.getds())
+        {
+            float tongtiennhap1phieu=0;
+            for (CTPNH c:ds_CTPNH.getds())
+            {
+                if(c.getMaPN().equals(p.getMaPN()))
+                {
                     tongtiennhap1phieu+=c.getThanhtien();
                 }
             }
-            System.out.printf("Tong tien phieu nhap hang: %,.0f VND%n", tongtiennhap1phieu);
-            System.out.println("----------------------------------------------------------\n");
+            p.setTongTien(tongtiennhap1phieu);
         }
     }
 

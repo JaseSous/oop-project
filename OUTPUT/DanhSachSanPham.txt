@@ -4,14 +4,14 @@ Số lượng: 10
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | STT | Loại sách | Mã sách | Tên sách                            | Mã thể loại | Mã tác giả | Mã NXB | Số lượng | Giá       |  Môn học  | Lớp |  Lĩnh vực  | Đề tài             |
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| 1   | SGK       | S001    | Sách giáo khoa Toán 10              | TL010       | 201        | 36     | 500      | 25000 ₫   | Toán      | 10  |            |                    |
-| 2   | SNC       | S002    | Nghiên cứu về AI trong y tế         | TL015       | 202        | 069    | 50       | 350000 ₫  |           |     | Y học      | Trí tuệ nhân tạo   |
-| 3   | SGK       | S003    | Sách giáo khoa Ngữ Văn 12           | TL001       | 203        | 36     | 450      | 32000 ₫   | Ngữ Văn   | 12  |            |                    |
-| 4   | SNC       | S004    | Phân tích kinh tế vĩ mô             | TL002       | 204        | 069    | 70       | 280000 ₫  |           |     | Kinh tế    | Kinh tế vĩ mô      |
-| 5   | SGK       | S005    | Sách giáo khoa Vật Lý 11            | TL006       | 205        | 36     | 300      | 28000 ₫   | Vật Lý    | 11  |            |                    |
-| 6   | SNC       | S006    | Lịch sử Đảng CSVN (NC)              | TL004       | 206        | 069    | 120      | 150000 ₫  |           |     | Chính trị  | Chính trị Việt Nam |
-| 7   | SGK       | S007    | Sách bài tập Hóa Học 9              | TL006       | 207        | 36     | 400      | 19000 ₫   | Hóa Học   | 9   |            |                    |
-| 8   | SNC       | S008    | Tâm lý học hành vi                  | TL005       | 208        | 069    | 80       | 220000 ₫  |           |     | Tâm lý     | Hành vi con người  |
-| 9   | SGK       | S009    | Sách giáo khoa Tiếng Anh 7          | TL010       | 209        | 36     | 350      | 45000 ₫   | Tiếng Anh | 7   |            |                    |
-| 10  | SNC       | S010    | OOP và Design Patterns              | TL016       | 210        | 069    | 100      | 290000 ₫  |           |     | Máy tính   | Kỹ thuật phần mềm  |
+| 1   | SGK       | S001    | Sach giao khoa Toan 10              | TL010       | 201        | NXB03  | 500      | 25000 ₫   | Toan      | 10  |            |                    |
+| 2   | SNC       | S002    | Nghien cuu ve AI trong y te         | TL015       | 202        | NXB05  | 50       | 350000 ₫  |           |     | Y hoc      | Tri tue nhan tao   |
+| 3   | SGK       | S003    | Sach giao khoa Ngu Van 12           | TL001       | 203        | NXB03  | 450      | 32000 ₫   | Ngu Van   | 12  |            |                    |
+| 4   | SNC       | S004    | Phan tich kinh te vi mo             | TL002       | 204        | NXB05  | 70       | 280000 ₫  |           |     | Kinh te    | Kinh te vi mo      |
+| 5   | SGK       | S005    | Sach giao khoa Vat Ly 11            | TL006       | 205        | NXB03  | 300      | 28000 ₫   | Vat Ly    | 11  |            |                    |
+| 6   | SNC       | S006    | Lich su Dang CSVN (NC)              | TL004       | 206        | NXB05  | 120      | 150000 ₫  |           |     | Chinh tri  | Chinh tri Viet Nam |
+| 7   | SGK       | S007    | Sach bai tap Hoa Hoc 9              | TL006       | 207        | NXB03  | 400      | 19000 ₫   | Hoa Hoc   | 9   |            |                    |
+| 8   | SNC       | S008    | Tam ly hoc hanh vi                  | TL005       | 208        | NXB05  | 80       | 220000 ₫  |           |     | Tam ly     | Hanh vi con nguoi  |
+| 9   | SGK       | S009    | Sach giao khoa Tieng Anh 7          | TL010       | 209        | NXB03  | 350      | 45000 ₫   | Tieng Anh | 7   |            |                    |
+| 10  | SNC       | S010    | OOP va Design Patterns              | TL016       | 210        | NXB05  | 100      | 290000 ₫  |           |     | May tinh   | Ky thuat phan mem  |
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
