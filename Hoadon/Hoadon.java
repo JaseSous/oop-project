@@ -69,7 +69,7 @@ public class Hoadon {
     // Hàm xuất
     public void xuat() {
         String maKH = (this.maKH != null) ? getKhachHang() : "N/A";
-        String tenNV = (this.maNV != null) ? getKhachHang() : "N/A";
+        String maNV = (this.maNV != null) ? getNhanVien() : "N/A";
         String ngay = (ngayLapHD != null) ? ngayLapHD.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "N/A";
         System.out.printf("Ma HD: %s | Ngay: %s | Khach: %s | Nhan Vien: %s\n", maHD, ngay, maKH, maNV);
     }

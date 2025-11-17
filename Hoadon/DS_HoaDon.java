@@ -2,8 +2,6 @@ package Hoadon;
 
 import Khachhang.DS_Khachhang;
 import Nhanvien.DS_Nhanvien;
-import Khachhang.Khachhang;
-import Nhanvien.NhanVien;
 import java.util.Formatter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -55,9 +53,8 @@ public class DS_HoaDon {
                 // Đọc mã KH/NV và tìm kiếm đối tượng tương ứng
                 String maKH_str = reader.readLine().trim();
                 String maNV_str = reader.readLine().trim();
-                Khachhang kh = dskh.timKhachHangTheoMa(maKH_str);
-                NhanVien nv = dsnv.timNhanVienTheoMa(maNV_str);
-                ds[i] = new Hoadon();
+                double TongTien = Double.parseDouble(reader.readLine().trim());
+                ds[i] = new Hoadon(maHD, ngayLap, maKH_str, maNV_str, TongTien);
             }
             reader.close();
             System.out.println("--> Da tai " + siso + " hoa don.");
@@ -92,8 +89,8 @@ public class DS_HoaDon {
                 formatter.format("------------------------------------------------------------\n");
                 formatter.format("HOA DON SO: %s\n", hd.getMaHD());
                 formatter.format("Ngay lap: %s\n", hd.getNgayLapHD().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                if (hd.getKhachHang() != null) formatter.format("Khach hang: %s (%s)\n", hd.getKhachHang().getTen(), hd.getKhachHang().getMakh());
-                if (hd.getNhanVien() != null) formatter.format("Nhan vien lap: %s (%s)\n", hd.getNhanVien().getTen(), hd.getNhanVien().getManv());
+                if (hd.getKhachHang() != null) formatter.format("Khach hang: %s (%s)\n", hd.getKhachHang(), hd.getKhachHang());
+                if (hd.getNhanVien() != null) formatter.format("Nhan vien lap: %s (%s)\n", hd.getNhanVien(), hd.getNhanVien());
 
                 formatter.format("\n--- Chi tiet don hang ---\n");
                 formatter.format("| %-10s | %-8s | %-11s | %-13s |\n", "Ma sach", "SL", "Don gia", "Thanh tien");
@@ -164,7 +161,7 @@ public class DS_HoaDon {
             String kh = ds[i].getKhachHang();
             if (kh != null) {
                 // Kiểm tra xem tên khách hàng có chứa chuỗi tìm kiếm không
-                if (kh.getKhachHang().toLowerCase().contains(tenKH.toLowerCase())) {
+                if (kh.toLowerCase().contains(tenKH.toLowerCase())) {
                     ketqua = Arrays.copyOf(ketqua, count + 1);
                     ketqua[count] = ds[i];
                     count++;
@@ -218,7 +215,7 @@ public class DS_HoaDon {
             System.out.println("Khong tim thay HD de sua!");
         }
     }
-    public void suaKhachHang(String maHD, Khachhang khMoi) {
+    public void suaKhachHang(String maHD, String khMoi) {
         Hoadon hd = timKiemTheoMa(maHD);
         if (hd != null) {
             hd.setKhachHang(khMoi);
