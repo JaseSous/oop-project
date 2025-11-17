@@ -1,34 +1,35 @@
 package Hoadon;
 
-import Khachhang.DS_Khachhang;
-import Khachhang.Khachhang;
-import Nhanvien.DS_Nhanvien;
-import Nhanvien.NhanVien;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+
 public class Hoadon {
+
+    Scanner sc = new Scanner(System.in);
     private String maHD;
     private LocalDate ngayLapHD;
-    private Khachhang khachHang; 
-    private NhanVien nhanVien;   
+    private String maNV;
+    private String maKH;
+    private double Tongtien; 
 
     // Constructor
     public Hoadon() {
     }
 
-    public Hoadon(String maHD, LocalDate ngayLapHD, Khachhang khachHang, NhanVien nhanVien) {
+    public Hoadon(String maHD, LocalDate ngayLapHD, String maKH, String maNV,double Tongtien) {
         this.maHD = maHD;
         this.ngayLapHD = ngayLapHD;
-        this.khachHang = khachHang;
-        this.nhanVien = nhanVien;
+        this.maKH = maKH;
+        this.maNV = maNV;
+        this.Tongtien=Tongtien;
     }
 
     public Hoadon(Hoadon other) {
-        this(other.maHD, other.ngayLapHD, other.khachHang, other.nhanVien);
+        this(other.maHD, other.ngayLapHD, other.maKH, other.maNV,other.Tongtien);
     }
 
     // Get/Set
@@ -36,13 +37,15 @@ public class Hoadon {
     public void setMaHD(String maHD) { this.maHD = maHD; }
     public LocalDate getNgayLapHD() { return ngayLapHD; }
     public void setNgayLapHD(LocalDate ngayLapHD) { this.ngayLapHD = ngayLapHD; }
-    public Khachhang getKhachHang() { return khachHang; }
-    public void setKhachHang(Khachhang khachHang) { this.khachHang = khachHang; }
-    public NhanVien getNhanVien() { return nhanVien; }
-    public void setNhanVien(NhanVien nhanVien) { this.nhanVien = nhanVien; }
+    public String getKhachHang() { return maKH; }
+    public void setKhachHang(String khachHang) { this.maKH = khachHang; }
+    public String getNhanVien() { return maNV; }
+    public void setNhanVien(String nhanVien) { this.maKH = nhanVien; }
+    public double getTongtien() {return Tongtien;}
+    public void setTongtien(double Tongtien){this.Tongtien=Tongtien;}
 
     // Hàm nhập 
-    public void nhap(Scanner sc, DS_Khachhang dskh, DS_Nhanvien dsnv) {
+    public void nhap() {
         System.out.print("Nhap ma hoa don: ");
         this.maHD = sc.nextLine();
 
@@ -56,35 +59,26 @@ public class Hoadon {
                 System.out.println("Dinh dang ngay khong hop le!");
             }
         }
-
-        while (this.khachHang == null) {
             System.out.print("Nhap ma Khach Hang: ");
-            String maKH = sc.nextLine();
-            this.khachHang = dskh.timKhachHangTheoMa(maKH);
-            if (this.khachHang == null) System.out.println("Ma KH khong ton tai!");
-        }
-        
-        while (this.nhanVien == null) {
+            this.maKH = sc.nextLine();
+       
             System.out.print("Nhap ma Nhan vien: ");
-            String maNV = sc.nextLine();
-            this.nhanVien = dsnv.timNhanVienTheoMa(maNV);
-            if (this.nhanVien == null) System.out.println("Ma NV khong ton tai!");
-        }
+            this.maNV = sc.nextLine();
     }
 
     // Hàm xuất
     public void xuat() {
-        String tenKH = (khachHang != null) ? khachHang.getTen() : "N/A";
-        String tenNV = (nhanVien != null) ? nhanVien.getTen() : "N/A";
+        String maKH = (this.maKH != null) ? getKhachHang() : "N/A";
+        String tenNV = (this.maNV != null) ? getKhachHang() : "N/A";
         String ngay = (ngayLapHD != null) ? ngayLapHD.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "N/A";
-        System.out.printf("Ma HD: %s | Ngay: %s | Khach: %s | Nhan Vien: %s\n", maHD, ngay, tenKH, tenNV);
+        System.out.printf("Ma HD: %s | Ngay: %s | Khach: %s | Nhan Vien: %s\n", maHD, ngay, maKH, maNV);
     }
 
     // Hàm ghi file
     public void ghiFile(BufferedWriter bw) throws IOException {
         // Ghi vào file DATA
-        String maKH = (khachHang != null) ? khachHang.getMakh() : "";
-        String maNV = (nhanVien != null) ? nhanVien.getManv() : "";
+        String maKH = (this.maKH != null) ? getKhachHang() : "";
+        String maNV = (this.maNV != null) ? getNhanVien() : "";
         
         bw.write(maHD); bw.newLine();
         bw.write(ngayLapHD.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))); bw.newLine();

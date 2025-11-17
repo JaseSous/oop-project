@@ -57,7 +57,7 @@ public class DS_HoaDon {
                 String maNV_str = reader.readLine().trim();
                 Khachhang kh = dskh.timKhachHangTheoMa(maKH_str);
                 NhanVien nv = dsnv.timNhanVienTheoMa(maNV_str);
-                ds[i] = new Hoadon(maHD, ngayLap, kh, nv);
+                ds[i] = new Hoadon();
             }
             reader.close();
             System.out.println("--> Da tai " + siso + " hoa don.");
@@ -161,10 +161,10 @@ public class DS_HoaDon {
         int count = 0;
         
         for (int i = 0; i < siso; i++) {
-            Khachhang kh = ds[i].getKhachHang();
+            String kh = ds[i].getKhachHang();
             if (kh != null) {
                 // Kiểm tra xem tên khách hàng có chứa chuỗi tìm kiếm không
-                if (kh.getTen().toLowerCase().contains(tenKH.toLowerCase())) {
+                if (kh.getKhachHang().toLowerCase().contains(tenKH.toLowerCase())) {
                     ketqua = Arrays.copyOf(ketqua, count + 1);
                     ketqua[count] = ds[i];
                     count++;
@@ -227,4 +227,40 @@ public class DS_HoaDon {
             System.out.println("Khong tim thay HD de sua!");
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //tinh r
 }
