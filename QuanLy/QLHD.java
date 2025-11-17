@@ -7,7 +7,7 @@ import Hoadon.Hoadon;
 import Hoadon.ChiTietHoaDon;
 
 public class QLHD extends QLBH {
-    
+    Scanner sc = new Scanner(System.in);
     // --- HÀM HỖ TRỢ IN ---
     private void xuatDayDuMotHoaDon(Hoadon hd) {
         if (hd == null) return;
@@ -30,6 +30,20 @@ public class QLHD extends QLBH {
         System.out.printf("  ==> TONG TIEN HOA DON: %,.0f VND\n\n", tongTienHD);
     }
 
+    public void TinhTongHoaDon() {
+
+        // Duyệt danh sách tổng (ds_CTHD_Tong) để tìm chi tiết
+        for(Hoadon hd:ds_Hoadon.getds()){
+        double tongTienHD = 0.0;
+        for (ChiTietHoaDon ct : ds_ChitietHoaDon.getds()) {
+            if (ct.getMaHD().equals(hd.getMaHD())) {
+                tongTienHD += ct.getThanhTien();
+            }
+        }
+         hd.setTongtien(tongTienHD);
+    }     
+    }
+
     // --- Hàm xuất ---
     public void xuatThongTinHoaDon() {
         if (ds_Hoadon.getSiso() == 0) {
@@ -43,9 +57,9 @@ public class QLHD extends QLBH {
     }
 
     // --- Hàm thêm ---
-    public void themHoaDon(Scanner sc) {
+    public void themHoaDon() {
         Hoadon hd = new Hoadon();
-        hd.nhap(sc, ds_Khachhang, ds_Nhanvien); // Nhập thông tin chung
+        hd.nhap(); // Nhập thông tin chung
         ds_Hoadon.themvaodanhsach(hd); // Thêm vào danh sách HD
 
         System.out.print("Nhap so luong loai sach can them: ");
@@ -62,7 +76,7 @@ public class QLHD extends QLBH {
     }
 
     // --- Hàm xóa này xóa cả hóa đơn lẫn chi tiết hóa đơn---
-    public void xoaHoaDon(Scanner sc) {
+    public void xoaHoaDon() {
         System.out.print("Nhap ma hoa don can xoa (se xoa ca chi tiet): ");
         String maHDXoa = sc.nextLine();
         
@@ -71,7 +85,7 @@ public class QLHD extends QLBH {
     }
 
     // --- Menu sửa (Giữ nguyên) ---
-    public void menuSuaThongTin(Scanner sc) {
+    public void menuSuaThongTin() {
         int chon;
         do {
             System.out.println("\n===== MENU SUA HOA DON =====");
@@ -142,10 +156,10 @@ public class QLHD extends QLBH {
                     xuatThongTinHoaDon();
                     break;
                 case 2:
-                    themHoaDon(sc);
+                    themHoaDon();
                     break;
                 case 3:
-                    xoaHoaDon(sc);
+                    xoaHoaDon();
                     break;
                 case 4: 
                     System.out.print("Nhap Ma Hoa Don can tim: ");
@@ -172,7 +186,7 @@ public class QLHD extends QLBH {
                     }
                     break;
                 case 6:
-                    menuSuaThongTin(sc);
+                    menuSuaThongTin();
                     break;
                 case 7:
                     double[] doanhThu = ds_Hoadon.ThongKeDoanhThuTheoQuy(ds_ChitietHoaDon); 
