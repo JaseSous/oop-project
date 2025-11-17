@@ -84,5 +84,6 @@ public class Hoadon {
         bw.write(ngayLapHD.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))); bw.newLine();
         bw.write(maKH); bw.newLine();
         bw.write(maNV); bw.newLine();
+        bw.write(String.valueOf(Tongtien)); bw.newLine();
     }
 }

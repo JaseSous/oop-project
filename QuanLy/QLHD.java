@@ -108,7 +108,7 @@ public class QLHD extends QLBH {
                     System.out.print("Ma hoa don can sua: "); String maHD2 = sc.nextLine();
                     System.out.print("Ma khach hang moi: ");
                     Khachhang khMoi = ds_Khachhang.timKhachHangTheoMa(sc.nextLine());
-                    if (khMoi != null) ds_Hoadon.suaKhachHang(maHD2, khMoi);
+                    if (khMoi != null) ds_Hoadon.suaKhachHang(maHD2, khMoi.getTen());
                     else System.out.println("Khong tim thay khach hang!");
                     break;
                 case 3:

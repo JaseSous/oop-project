@@ -1,8 +1,6 @@
 package Nhaphang;
 import java.util.Scanner;
 
-import Hoadon.ChiTietHoaDon;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -68,7 +66,19 @@ public class DS_PhieuNhap {
         bw.newLine();
         bw.write("\t\tMaPN |\t NgayNhap \t\t| MaNCC");
         bw.newLine();
-        bw.write("-----------------------------------------------");
+        bw.write("------------------------------------\r\n" + //
+                        "    //tong tien theo nam x\r\n" + //
+                        "    public int tongTienTheoNam(int x){\r\n" + //
+                        "        int res = 0;\r\n" + //
+                        "\r\n" + //
+                        "        for (Phieunhaphang pn : getds()){\r\n" + //
+                        "            if (pn.getNgaynhap().getYear() == x){\r\n" + //
+                        "                res += pn.get();\r\n" + //
+                        "            }\r\n" + //
+                        "        }\r\n" + //
+                        "\r\n" + //
+                        "        return res;\r\n" + //
+                        "    }-----------");
         bw.newLine();
         //cap nhat so luong  phieu
         wb.write(String.valueOf(soluongphieunhap));
