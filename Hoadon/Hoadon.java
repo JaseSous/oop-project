@@ -40,7 +40,7 @@ public class Hoadon {
     public String getKhachHang() { return maKH; }
     public void setKhachHang(String khachHang) { this.maKH = khachHang; }
     public String getNhanVien() { return maNV; }
-    public void setNhanVien(String nhanVien) { this.maKH = nhanVien; }
+    public void setNhanVien(String nhanVien) { this.maNV = nhanVien; }
     public double getTongtien() {return Tongtien;}
     public void setTongtien(double Tongtien){this.Tongtien=Tongtien;}
 
@@ -77,8 +77,8 @@ public class Hoadon {
     // Hàm ghi file
     public void ghiFile(BufferedWriter bw) throws IOException {
         // Ghi vào file DATA
-        String maKH = (this.maKH != null) ? getKhachHang() : "";
-        String maNV = (this.maNV != null) ? getNhanVien() : "";
+        String maKH = (this.maKH != "") ? getKhachHang() : "";
+        String maNV = (this.maNV != "") ? getNhanVien() : "";
         
         bw.write(maHD); bw.newLine();
         bw.write(ngayLapHD.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))); bw.newLine();

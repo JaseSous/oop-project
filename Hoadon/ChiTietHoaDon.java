@@ -38,9 +38,9 @@ public class ChiTietHoaDon {
     public String getMaSach() { return maSach; }
     public void setMaSach(String maSach) { this.maSach = maSach; }
     public int getSoLuong() { return soLuong; }
-    public void setSoLuong(int soLuong) { this.soLuong = soLuong; }
+    public void setSoLuong(int soLuong) { this.soLuong = soLuong; this.ThanhTien = this.soLuong * this.dongia;}
     public float getDongia() { return dongia; }
-    public void setDongia(float dongia) { this.dongia = dongia; }
+    public void setDongia(float dongia) { this.dongia = dongia; this.ThanhTien = this.soLuong * this.dongia;}
 
     // Tính thành tiền
     public float getThanhTien() {

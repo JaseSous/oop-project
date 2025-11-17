@@ -10,6 +10,7 @@ public class QLHD extends QLBH {
     Scanner sc = new Scanner(System.in);
     // --- HÀM HỖ TRỢ IN ---
     private void xuatDayDuMotHoaDon(Hoadon hd) {
+        TinhTongHoaDon();
         if (hd == null) return;
         
         double tongTienHD = 0.0;
@@ -31,7 +32,7 @@ public class QLHD extends QLBH {
     }
 
     public void TinhTongHoaDon() {
-
+        if (ds_Hoadon.getds() == null) return;
         // Duyệt danh sách tổng (ds_CTHD_Tong) để tìm chi tiết
         for(Hoadon hd:ds_Hoadon.getds()){
         double tongTienHD = 0.0;
@@ -59,7 +60,7 @@ public class QLHD extends QLBH {
     // --- Hàm thêm ---
     public void themHoaDon() {
         Hoadon hd = new Hoadon();
-        hd.nhap(); // Nhập thông tin chung
+        hd.nhap(); // Nhập tkhMoihông tin chung
         ds_Hoadon.themvaodanhsach(hd); // Thêm vào danh sách HD
 
         System.out.print("Nhap so luong loai sach can them: ");

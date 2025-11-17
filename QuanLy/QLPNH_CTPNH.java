@@ -7,6 +7,8 @@ public class QLPNH_CTPNH extends QLBH{
     Scanner sc =new Scanner(System.in);
 
     public void xuatthongtinhphieu(){
+        tinhtongtien1phieu();
+        
         for(Phieunhaphang p : ds_Phieunhap.getds())
         {
             p.xuat();

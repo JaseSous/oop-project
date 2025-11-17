@@ -72,6 +72,8 @@ public class DS_HoaDon {
             for (int i = 0; i < siso; i++) {
                 ds[i].ghiFile(writer); // Gọi hàm ghi file của Hoadon
             }
+            
+            writer.close();
         } catch (IOException e) {
             System.err.println("Loi khi lưu file DS_HoaDon.dat: " + e.getMessage());
         }
