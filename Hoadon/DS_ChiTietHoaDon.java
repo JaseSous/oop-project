@@ -3,6 +3,7 @@ package Hoadon;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.util.Formatter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -67,6 +68,36 @@ public class DS_ChiTietHoaDon {
             }
         } catch (IOException e) {
             System.err.println("Loi khi luu file file DS_ChiTietHoaDon.dat: " + e.getMessage());
+        }
+    }
+
+    public void ghiFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachChiTietHoaDon.txt"));
+             Formatter formatter = new Formatter(writer)) {
+
+            formatter.format("===[DANH SACH CHI TIET HOA DON]===\n");
+            formatter.format("Tong so chi tiet: %d\n\n", n);
+            
+            // Header bảng
+            formatter.format("| %-10s | %-10s | %-8s | %-12s | %-15s |\n", 
+                            "Ma HD", "Ma Sach", "So Luong", "Don Gia", "Thanh Tien");
+            formatter.format("|------------|------------|----------|--------------|-----------------|\n");
+
+            for (int i = 0; i < n; i++) {
+                ChiTietHoaDon ct = ds[i];
+                formatter.format("| %-10s | %-10s | %-8d | %,12.0f | %,15.0f |\n",
+                        ct.getMaHD(),
+                        ct.getMaSach(),
+                        ct.getSoLuong(),
+                        ct.getDongia(),
+                        ct.getThanhTien());
+            }
+            formatter.format("|------------|------------|----------|--------------|-----------------|\n");
+            
+            System.out.println("Da xuat danh sach chi tiet hoa don ra file: OUTPUT/DS_ChiTietHoaDon.txt");
+
+        } catch (IOException e) {
+            System.err.println("Loi khi ghi file chi tiet: " + e.getMessage());
         }
     }
 
