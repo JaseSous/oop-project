@@ -61,11 +61,11 @@ public class SGK extends Sach {
     }
 
     @Override public void xuat(){
-        System.out.printf("%-9s | ", "SGK");
+        System.out.printf("| %-9s ", "SGK");
 
         super.xuat();
 
-        System.out.printf("%-9s | %-3s | %-10s | %-18s |\n",
+        System.out.printf("| %-9s | %-3s | %-10s | %-18s |\n",
                           monhoc, lop, "", "");
     }
 }

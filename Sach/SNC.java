@@ -60,11 +60,11 @@ public class SNC extends Sach {
     }
 
     @Override public void xuat(){
-        System.out.printf("%-9s | ", "SNC");
+        System.out.printf("| %-9s ", "SNC");
 
         super.xuat();
         
-        System.out.printf("%-9s | %-3s | %-10s | %-18s |\n",
+        System.out.printf("| %-9s | %-3s | %-10s | %-18s |\n",
                           "", "", linhvuc, detai);
     }
 }

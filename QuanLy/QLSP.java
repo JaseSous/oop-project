@@ -62,7 +62,11 @@ public class QLSP extends QLBH {
                     Sach resultsearchmasach = ds_Sach.timKiemTheoMaSach(masachcantim);
                     if (masachcantim != null){
                         System.out.println("Đã tìm thấy sách cần tìm, thông tin sách:");
+                        System.out.println("=".repeat(172));
+                        System.out.printf("| %-9s | %-7s | %-35s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-10s | %-18s |\n",
+                            "Loại sách", "Mã sách", "Tên sách", "Mã thể loại", "Mã tác giả", "Mã NXB", "Số lượng", "Giá", " Môn học ", "Lớp", " Lĩnh vực ", "Đề tài");
                         resultsearchmasach.xuat();
+                        System.out.println("=".repeat(172));
                     }
                     else
                         System.out.println("Không tìm thấy sách cần tìm.");
@@ -75,10 +79,14 @@ public class QLSP extends QLBH {
                     Sach[] resultsearchmatheloai = ds_Sach.timKiemTheoMaTheLoai(matheloaicantim);
                     if (resultsearchmatheloai.length > 0){
                         System.out.println("Đã tìm thấy " + resultsearchmatheloai.length + " sách có mã thể loại " + matheloaicantim + ":");
+                        System.out.println("=".repeat(178));
+                        System.out.printf("| %-3s | %-9s | %-7s | %-35s | %-11s | %-10s | %-6s | %-8s | %-9s | %-9s | %-3s | %-10s | %-18s |\n",
+                            "STT", "Loại sách", "Mã sách", "Tên sách", "Mã thể loại", "Mã tác giả", "Mã NXB", "Số lượng", "Giá", " Môn học ", "Lớp", " Lĩnh vực ", "Đề tài");
                         for (int i = 0; i < resultsearchmatheloai.length; i++){
-                            System.out.println("Sách thứ " + (i+1) + ":");
+                            System.out.printf("| %-3s ", i+1);
                             resultsearchmatheloai[i].xuat();
                         }
+                        System.out.println("=".repeat(178));
                     }
                     else
                         System.out.println("Không tìm thấy sách cần tìm.");
@@ -88,8 +96,12 @@ public class QLSP extends QLBH {
 
                     int[] resultthongkeloaisach = ds_Sach.thongKeLoaiSach();
                     System.out.println("Thống kê theo số lượng loại sách:");
-                    System.out.println("\tSách giáo khoa: " + resultthongkeloaisach[0]);
-                    System.out.println("\tSách nghiên cứu: " + resultthongkeloaisach[1]);
+                    System.out.println("=".repeat(37));
+                    System.out.printf("| %-20s | %-10s |\n", "Loại sách", "Số sách");
+                    System.out.println("=".repeat(37));
+                    System.out.printf("| %-20s | %-10s |\n", "Sách giáo khoa", resultthongkeloaisach[0]);
+                    System.out.printf("| %-20s | %-10s |\n", "Sách nghiên cứu", resultthongkeloaisach[1]);
+                    System.out.println("=".repeat(37));
 
                     break;
                 case 0: // Lưu và thoát

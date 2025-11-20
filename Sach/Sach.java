@@ -114,7 +114,7 @@ public abstract class Sach {
     }
 
     public void xuat(){
-        System.out.printf("%-7s | %-35s | %-11s | %-10s | %-6s | %-8s | %-9s | ",
+        System.out.printf("| %-7s | %-35s | %-11s | %-10s | %-6s | %-8s | %-9s ",
                             getMasach(),
                             getTensach(),
                             getMatheloai(),

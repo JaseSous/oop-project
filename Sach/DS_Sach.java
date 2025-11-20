@@ -88,7 +88,7 @@ public class DS_Sach {
                             "STT", "Loại sách", "Mã sách", "Tên sách", "Mã thể loại", "Mã tác giả", "Mã NXB", "Số lượng", "Giá", " Môn học ", "Lớp", " Lĩnh vực ", "Đề tài");
         System.out.println("=".repeat(178));
         for (int i = 0; i < soLuongSach; i++) {
-            System.out.printf("| %-3s | ", i+1);
+            System.out.printf("| %-3s ", i+1);
             dsSach[i].xuat();
         }
         System.out.println("=".repeat(178));
