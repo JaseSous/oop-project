@@ -114,15 +114,14 @@ public abstract class Sach {
     }
 
     public void xuat(){
-        System.out.printf("-".repeat(57));
-        System.out.printf("\n| %-20s | %-30s |", "Mã sách", this.getMasach());
-        System.out.printf("\n| %-20s | %-30s |", "Tên sách", this.getTensach());
-        System.out.printf("\n| %-20s | %-30s |", "Mã thể loại", this.getMatheloai());
-        System.out.printf("\n| %-20s | %-30s |", "Mã tác giả", this.getMatg());
-        System.out.printf("\n| %-20s | %-30s |", "Mã nhà xuất bản", this.getManxb());
-        System.out.printf("\n| %-20s | %-30d |", "Số lượng", this.getSoluong());
-        System.out.printf("\n| %-20s | %-30d |\n", "Giá", this.getGia());
-        System.out.println("-".repeat(57));
+        System.out.printf("%-7s | %-35s | %-11s | %-10s | %-6s | %-8s | %-9s | ",
+                            getMasach(),
+                            getTensach(),
+                            getMatheloai(),
+                            getMatg(),
+                            getManxb(),
+                            getSoluong(),
+                            getGia() + " ₫");
     }
 
     public void sua(){

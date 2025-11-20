@@ -60,10 +60,11 @@ public class SNC extends Sach {
     }
 
     @Override public void xuat(){
+        System.out.printf("%-9s | ", "SNC");
+
         super.xuat();
         
-        System.out.printf("| %-20s | %-30s |", "Lĩnh vực", this.getLinhVuc());
-        System.out.printf("\n| %-20s | %-30s |\n", "Đề tài", this.getDeTai());
-        System.out.println("-".repeat(57));
+        System.out.printf("%-9s | %-3s | %-10s | %-18s |\n",
+                          "", "", linhvuc, detai);
     }
 }
