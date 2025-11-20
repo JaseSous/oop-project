@@ -1,7 +1,10 @@
 package Hoadon;
 
 import Khachhang.DS_Khachhang;
+import Khachhang.Khachhang;
 import Nhanvien.DS_Nhanvien;
+import Nhanvien.NhanVien;
+
 import java.util.Formatter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -78,46 +81,52 @@ public class DS_HoaDon {
             System.err.println("Loi khi lưu file DS_HoaDon.dat: " + e.getMessage());
         }
     }
-    // --- Hàm xem (xuất) danh sách hóa đơn ra file ---
-    public void xem(DS_ChiTietHoaDon ds_CTHD_Tong) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachHoaDon_BaoCao.txt"));
+    // --- Hàm (xuất) danh sách hóa đơn ra file OUTPUT---
+    public void ghiFile(DS_Khachhang dskh, DS_Nhanvien dsnv) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("OUTPUT/DanhSachHoaDon.txt"));
              Formatter formatter = new Formatter(writer)) {
 
             formatter.format("===[DANH SACH HOA DON]===\n");
             formatter.format("Tong so hoa don: %d\n\n", siso);
+            
+            // Header bảng
+            formatter.format("| %-10s | %-12s | %-25s | %-25s | %-15s |\n", 
+                            "Ma HD", "Ngay Lap", "Khach Hang", "Nhan Vien", "Tong Tien");
+            formatter.format("|------------|--------------|---------------------------|---------------------------|-----------------|\n");
 
             for (int i = 0; i < siso; i++) {
                 Hoadon hd = ds[i];
-                formatter.format("------------------------------------------------------------\n");
-                formatter.format("HOA DON SO: %s\n", hd.getMaHD());
-                formatter.format("Ngay lap: %s\n", hd.getNgayLapHD().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                if (hd.getKhachHang() != null) formatter.format("Khach hang: %s (%s)\n", hd.getKhachHang(), hd.getKhachHang());
-                if (hd.getNhanVien() != null) formatter.format("Nhan vien lap: %s (%s)\n", hd.getNhanVien(), hd.getNhanVien());
-
-                formatter.format("\n--- Chi tiet don hang ---\n");
-                formatter.format("| %-10s | %-8s | %-11s | %-13s |\n", "Ma sach", "SL", "Don gia", "Thanh tien");
-                formatter.format("|------------|----------|-------------|---------------|\n");
-
-                double tongTienPhieu = 0;
-                for (ChiTietHoaDon ct : ds_CTHD_Tong.getds()) {
-                    if (ct.getMaHD().equals(hd.getMaHD())) {
-                        formatter.format("| %-10s | %-8d | %,11.0f | %,13.0f |\n",
-                                ct.getMaSach(), ct.getSoLuong(), ct.getDongia(), ct.getThanhTien());
-                        tongTienPhieu += ct.getThanhTien();
-                    }
+                
+                // 1. Tra cứu tên KH đầy đủ
+                String tenKH = "N/A"; 
+                Khachhang kh = dskh.timKhachHangTheoMa(hd.getKhachHang());
+                if (kh != null) {
+                    // Lấy cả Họ và Tên cho đẹp (Hoặc chỉ getTen() tùy bạn)
+                    tenKH = kh.getHo() + " " + kh.getTen(); 
                 }
                 
-                formatter.format("|-----------------------------------------------------|\n");
-                formatter.format("%43s: %,.0f VND\n", "TONG CONG", tongTienPhieu);
-                formatter.format("\n");
+                // 2. Tra cứu tên NV đầy đủ
+                String tenNV = "N/A";
+                NhanVien nv = dsnv.timNhanVienTheoMa(hd.getNhanVien());
+                if (nv != null) {
+                    tenNV = nv.getHo() + " " + nv.getTen();
+                }
+
+                // 3. In biến TÊN vào bảng (Thay vì in hd.getKhachHang())
+                formatter.format("| %-10s | %-12s | %-25s | %-25s | %,15.0f |\n",
+                        hd.getMaHD(),
+                        hd.getNgayLapHD().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        tenKH, // <-- ĐÃ SỬA: Dùng biến tên vừa tìm được
+                        tenNV, // <-- ĐÃ SỬA: Dùng biến tên vừa tìm được
+                        hd.getTongtien());
             }
-            formatter.format("============================================================\n");
-            System.out.println("Da xuat bao cao ra file: OUTPUT/DanhSachHoaDon_BaoCao.txt");
+            formatter.format("|------------|--------------|---------------------------|---------------------------|-----------------|\n");
+            
+            System.out.println("Da xuat danh sach hoa don ra file: OUTPUT/DanhSachHoaDon.txt");
         } catch (IOException e) {
-            System.err.println("Loi khi ghi file bao cao: " + e.getMessage());
+            System.err.println("Loi khi ghi file hoa don: " + e.getMessage());
         }
     }
-
     // Thêm hóa đơn
     public void themvaodanhsach(Hoadon hd) {
         ds = Arrays.copyOf(ds, siso + 1);
@@ -153,24 +162,6 @@ public class DS_HoaDon {
             }
         }
         return null;
-    }
-
-    public Hoadon[] timKiemTheoTenKhachHang(String tenKH) {
-        Hoadon[] ketqua = new Hoadon[0];
-        int count = 0;
-        
-        for (int i = 0; i < siso; i++) {
-            String kh = ds[i].getKhachHang();
-            if (kh != null) {
-                // Kiểm tra xem tên khách hàng có chứa chuỗi tìm kiếm không
-                if (kh.toLowerCase().contains(tenKH.toLowerCase())) {
-                    ketqua = Arrays.copyOf(ketqua, count + 1);
-                    ketqua[count] = ds[i];
-                    count++;
-                }
-            }
-        }
-        return ketqua;
     }
     
     // Thống kê số lượng
