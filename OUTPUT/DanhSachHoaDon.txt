@@ -1,0 +1,17 @@
+===[DANH SACH HOA DON]===
+Tong so hoa don: 11
+
+| Ma HD      | Ngay Lap     | Khach Hang                | Nhan Vien                 | Tong Tien       |
+|------------|--------------|---------------------------|---------------------------|-----------------|
+| HD001      | 10/10/2025   | Nguyễn Văn An             | Nguyễn Văn An             |         750,000 |
+| HD002      | 12/11/2025   | Trần Thị Bình             | Bùi Thị Giàu              |         255,000 |
+| HD003      | 15/11/2025   | Lê Minh Cường             | Trần Thị Bình             |         415,000 |
+| HD004      | 17/11/2025   | Nguyễn Văn An             | Trần Thị Bình             |         150,000 |
+| HD005      | 20/12/2025   | Phạm Thị Dung             | Phạm Thị Dung             |         600,000 |
+| HD006      | 22/12/2025   | Hoàng Văn Em              | Ngô Thị Lan               |         500,000 |
+| HD007      | 05/01/2026   | Trần Thị Bình             | Ngô Thị Lan               |         310,000 |
+| HD008      | 10/01/2026   | Lê Minh Cường             | Lê Văn Cường              |         725,000 |
+| HD009      | 15/02/2026   | Hoàng Văn Em              | Hoàng Văn Em              |         540,000 |
+| HD010      | 20/02/2026   | Nguyễn Văn An             | Đỗ Văn Hùng               |         350,000 |
+| BAN001     | 17/11/2025   | Hoàng Văn Em              | Nguyễn Văn An             |      44,750,000 |
+|------------|--------------|---------------------------|---------------------------|-----------------|
