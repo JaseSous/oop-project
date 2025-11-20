@@ -109,7 +109,7 @@ public class QLHD extends QLBH {
                     System.out.print("Ma hoa don can sua: "); String maHD2 = sc.nextLine();
                     System.out.print("Ma khach hang moi: ");
                     Khachhang khMoi = ds_Khachhang.timKhachHangTheoMa(sc.nextLine());
-                    if (khMoi != null) ds_Hoadon.suaKhachHang(maHD2, khMoi.getTen());
+                    if (khMoi != null) ds_Hoadon.suaKhachHang(maHD2, khMoi.getMakh());
                     else System.out.println("Khong tim thay khach hang!");
                     break;
                 case 3:
@@ -142,11 +142,10 @@ public class QLHD extends QLBH {
             System.out.println("2. Them Hoa Don moi");
             System.out.println("3. Xoa Hoa Don (Theo MaHD)");
             System.out.println("4. Tim kiem theo Ma Hoa Don"); 
-            System.out.println("5. Tim kiem theo Ten Khach Hang"); 
-            System.out.println("6. Sua thong tin Hoa Don / Chi Tiet");
-            System.out.println("7. Thong ke theo quy");
-            System.out.println("8. XUAT file bao cao (xem())");
-            System.out.println("9. LUU vao file");
+            System.out.println("5. Sua thong tin Hoa Don / Chi Tiet");
+            System.out.println("6. Thong ke theo quy");
+            System.out.println("7. XUAT file bao cao");
+            System.out.println("8. LUU vao file");
             System.out.println("0. Thoat");
             System.out.println("==================================");
             System.out.print("Lua chon: ");
@@ -174,22 +173,9 @@ public class QLHD extends QLBH {
                     }
                     break;
                 case 5:
-                    System.out.print("Nhap Ten Khach Hang can tim: ");
-                    String tenKH = sc.nextLine();
-                    Hoadon[] dsTimThay = ds_Hoadon.timKiemTheoTenKhachHang(tenKH);
-                    if (dsTimThay.length > 0) {
-                        System.out.println("--- Tim thay " + dsTimThay.length + " hoa don ---");
-                        for (Hoadon hd : dsTimThay) {
-                            xuatDayDuMotHoaDon(hd);
-                        }
-                    } else {
-                        System.out.println("Khong tim thay hoa don nao cua khach hang: " + tenKH);
-                    }
-                    break;
-                case 6:
                     menuSuaThongTin();
                     break;
-                case 7:
+                case 6:
                     double[] doanhThu = ds_Hoadon.ThongKeDoanhThuTheoQuy(ds_ChitietHoaDon); 
                     int[] soLuong = ds_Hoadon.ThongKeSoLuongTheoQuy();
                     System.out.println("\n--- THONG KE THEO QUY ---");
@@ -197,10 +183,11 @@ public class QLHD extends QLBH {
                         System.out.printf("Quy %d: %d hoa don - Doanh thu: %,.0f VND\n", (i+1), soLuong[i], doanhThu[i]);
                     }
                     break;
-                case 8:
-                    ds_Hoadon.xem(ds_ChitietHoaDon);
+                case 7:
+                    ds_Hoadon.ghiFile(ds_Khachhang, ds_Nhanvien);
+                    ds_ChitietHoaDon.ghiFile();
                     break;
-                case 9:
+                case 8:
                     ds_Hoadon.saveFile();
                     ds_ChitietHoaDon.saveFile();
                     System.out.println("Da luu du lieu vao 2 file DATA.");
